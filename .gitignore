@@ -1,0 +1,22 @@
+# Secrets and environment variables
+.env
+.env.*
+*.secret
+*.secrets
+openai.env
+
+# Python cache/artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# OS metadata
+.DS_Store
+**/.DS_Store
+
+# Local editor/agent artifacts
+.codex
+
+# Local notebooks not intended for upload
+notebooks/demo_ambiguity_checkeval.ipynb
+notebooks/kakaobank_ambiguity_eval.ipynb

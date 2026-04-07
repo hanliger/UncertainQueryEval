@@ -1,0 +1,1151 @@
+{
+  "_meta": {
+    "title": "카카오뱅크 AI 서비스 API 명세서",
+    "description": "AI 검색 / AI 이체 / AI 금융계산기 / AI 모임총무 서비스에서 챗봇 에이전트가 호출하는 API 전체 목록. 멀티턴 대화 마지막 모호 쿼리 처리 데모용.",
+    "version": "1.0.0",
+    "base_url": "https://api.kakaobank.com",
+    "auth": {
+      "type": "Bearer Token",
+      "header": "Authorization: Bearer {access_token}"
+    },
+    "common_headers": {
+      "Content-Type": "application/json",
+      "X-Request-ID": "UUID v4 (중복 방지)",
+      "X-User-ID": "인증된 사용자 고유 식별자"
+    },
+    "services": ["AI_SEARCH", "AI_TRANSFER", "AI_CALCULATOR", "AI_GROUP_TREASURER"]
+  },
+
+  "apis": {
+
+    "AI_SEARCH": {
+      "description": "AI 검색 서비스. 카카오뱅크 상품·서비스 문의 및 일반 금융 지식 질의응답.",
+      "endpoints": [
+
+        {
+          "api_id": "AS-01",
+          "name": "질문 제출 및 답변 생성",
+          "method": "POST",
+          "endpoint": "/api/v1/ai-search/query",
+          "description": "사용자의 자연어 질문을 수신하여 AI 답변, 관련 카카오뱅크 서비스 링크, 추가 추천 질문을 반환한다. 대화 이력을 함께 전달하면 멀티턴 문맥을 반영한 답변을 생성한다.",
+          "request": {
+            "query": {
+              "type": "string",
+              "required": true,
+              "description": "사용자 자연어 질문",
+              "example": "내 통장에 이번달 이자 얼마 붙었어?"
+            },
+            "session_id": {
+              "type": "string",
+              "format": "UUID v4",
+              "required": true,
+              "description": "동일 대화 세션 식별자. 멀티턴 문맥 유지에 사용."
+            },
+            "conversation_history": {
+              "type": "array",
+              "required": false,
+              "description": "현재 세션 내 이전 턴의 질문-답변 이력 (멀티턴 문맥 제공용)",
+              "items": {
+                "role": "string — 'user' | 'assistant'",
+                "content": "string — 발화 내용",
+                "turn_index": "integer — 턴 순서 (0부터)"
+              },
+              "example": [
+                { "role": "user", "content": "세이프박스 금리 얼마야?", "turn_index": 0 },
+                { "role": "assistant", "content": "세이프박스 현재 금리는 연 2.5%입니다.", "turn_index": 1 }
+              ]
+            },
+            "query_type_hint": {
+              "type": "string",
+              "required": false,
+              "enum": ["KAKAOBANK_SERVICE", "FINANCIAL_KNOWLEDGE", "GENERAL", "AUTO"],
+              "description": "질문 유형 힌트. AUTO 시 AI가 자동 분류.",
+              "default": "AUTO"
+            }
+          },
+          "response": {
+            "answer": "string — AI 생성 답변 텍스트",
+            "source_type": "string — 'KAKAOBANK_DOC' | 'AI_GENERATED' | 'MIXED'",
+            "related_links": [
+              {
+                "label": "string — 링크 표시 이름",
+                "url": "string — 카카오뱅크 앱 내 딥링크 또는 웹 URL",
+                "service_type": "string — 연결 서비스 유형"
+              }
+            ],
+            "suggested_questions": ["string — 추천 추가 질문 목록 (최대 3개)"],
+            "session_id": "string — 세션 ID (에코)",
+            "turn_index": "integer — 현재 턴 번호"
+          }
+        },
+
+        {
+          "api_id": "AS-02",
+          "name": "답변 피드백 제출",
+          "method": "POST",
+          "endpoint": "/api/v1/ai-search/feedback",
+          "description": "AI 답변에 대한 좋아요/싫어요 피드백을 수집한다.",
+          "request": {
+            "session_id": {
+              "type": "string",
+              "required": true,
+              "description": "피드백 대상 세션 ID"
+            },
+            "turn_index": {
+              "type": "integer",
+              "required": true,
+              "description": "피드백 대상 턴 번호"
+            },
+            "feedback_type": {
+              "type": "string",
+              "required": true,
+              "enum": ["LIKE", "DISLIKE"],
+              "description": "좋아요 / 싫어요"
+            },
+            "feedback_reason": {
+              "type": "string",
+              "required": false,
+              "description": "싫어요 선택 시 사유 (선택 입력)"
+            }
+          },
+          "response": {
+            "feedback_id": "string — 피드백 처리 고유 ID",
+            "status": "string — RECEIVED"
+          }
+        },
+
+        {
+          "api_id": "AS-03",
+          "name": "카카오뱅크 서비스 연결 라우팅",
+          "method": "POST",
+          "endpoint": "/api/v1/ai-search/route",
+          "description": "사용자 질문이 AI 이체 등 다른 AI 서비스 범위에 해당한다고 판단될 때, 해당 서비스로 전환하기 위한 라우팅 정보를 반환한다.",
+          "request": {
+            "query": {
+              "type": "string",
+              "required": true,
+              "description": "사용자 자연어 질문"
+            },
+            "session_id": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response": {
+            "route_required": "boolean — 타 서비스 전환 필요 여부",
+            "target_service": "string — 'AI_TRANSFER' | 'AI_CALCULATOR' | 'AI_GROUP_TREASURER' | null",
+            "forwarded_context": "object — 전환 서비스에 전달할 문맥 정보"
+          }
+        }
+      ]
+    },
+
+    "AI_TRANSFER": {
+      "description": "AI 이체 서비스. 자연어 한 문장으로 이체 대상과 금액을 파악하여 이체를 실행한다.",
+      "endpoints": [
+
+        {
+          "api_id": "AT-01",
+          "name": "이체 대상 검색",
+          "method": "GET",
+          "endpoint": "/api/v1/transfer/recipients/search",
+          "description": "사용자가 입력한 이름 또는 별명으로 최근 이체 이력 내 수신자 후보를 검색한다. 동명이인·동일 별명 복수 매핑 시 후보 목록을 반환한다.",
+          "request": {
+            "query": {
+              "type": "string",
+              "required": true,
+              "description": "수신자 이름 또는 별명 (e.g. '엄마', '베프', '김이지')",
+              "example": "베프"
+            },
+            "match_type": {
+              "type": "string",
+              "required": false,
+              "enum": ["EXACT", "FUZZY", "ALIAS"],
+              "default": "FUZZY",
+              "description": "이름 매칭 방식"
+            }
+          },
+          "response": {
+            "candidates": [
+              {
+                "recipient_id": "string — 수신자 고유 ID",
+                "display_name": "string — 표시 이름",
+                "alias": "string | null — 사용자 지정 별명",
+                "bank_name": "string — 수신 은행명",
+                "masked_account": "string — 마스킹된 계좌번호 (e.g. 110-****-1234)",
+                "last_transfer_date": "string — 최근 이체일 (ISO 8601)",
+                "last_transfer_amount": "integer — 최근 이체 금액 (원)"
+              }
+            ],
+            "total_count": "integer — 검색된 후보 수",
+            "is_ambiguous": "boolean — 동명/동 별명 복수 후보 존재 여부"
+          }
+        },
+
+        {
+          "api_id": "AT-02",
+          "name": "최근 이체 목록 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/transfer/recipients/recent",
+          "description": "사용자의 최근 이체 수신자 목록을 반환한다. AI 이체 화면 하단 '최근이체목록' 데이터 소스.",
+          "request": {
+            "limit": {
+              "type": "integer",
+              "required": false,
+              "default": 20,
+              "description": "반환할 최대 항목 수"
+            },
+            "include_alias": {
+              "type": "boolean",
+              "required": false,
+              "default": true,
+              "description": "별명 정보 포함 여부"
+            }
+          },
+          "response": {
+            "recipients": [
+              {
+                "recipient_id": "string",
+                "display_name": "string",
+                "alias": "string | null",
+                "bank_name": "string",
+                "masked_account": "string",
+                "last_transfer_date": "string",
+                "last_transfer_amount": "integer"
+              }
+            ]
+          }
+        },
+
+        {
+          "api_id": "AT-03",
+          "name": "출금 계좌 잔액 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/transfer/accounts/balance",
+          "description": "이체 시 출금 가능한 사용자 계좌 목록과 각 계좌의 잔액을 반환한다.",
+          "request": {
+            "account_type_filter": {
+              "type": "string",
+              "required": false,
+              "enum": ["ALL", "CHECKING", "SAVINGS"],
+              "default": "CHECKING",
+              "description": "조회할 계좌 유형 필터"
+            }
+          },
+          "response": {
+            "accounts": [
+              {
+                "account_id": "string — 계좌 내부 ID",
+                "account_number": "string — 마스킹 계좌번호",
+                "account_type": "string — 계좌 유형",
+                "balance": "integer — 현재 잔액 (원)",
+                "available_balance": "integer — 출금 가능 잔액 (원)",
+                "is_primary": "boolean — 주 출금 계좌 여부"
+              }
+            ]
+          }
+        },
+
+        {
+          "api_id": "AT-04",
+          "name": "이체 정보 검증",
+          "method": "POST",
+          "endpoint": "/api/v1/transfer/validate",
+          "description": "실제 이체 실행 전, 수신자·금액·출금 가능 여부를 검증하고 최종 확인용 이체 정보를 반환한다. 이체 한도(1일 200만원) 초과 여부도 이 단계에서 확인.",
+          "request": {
+            "recipient_id": {
+              "type": "string",
+              "required": true,
+              "description": "이체 대상 수신자 고유 ID (AT-01 검색 결과)"
+            },
+            "amount": {
+              "type": "integer",
+              "required": true,
+              "description": "이체 금액 (원 단위)",
+              "example": 50000
+            },
+            "source_account_id": {
+              "type": "string",
+              "required": false,
+              "description": "출금 계좌 ID. 미지정 시 주 출금 계좌 사용."
+            },
+            "memo": {
+              "type": "string",
+              "required": false,
+              "description": "이체 메모 (입금자명 적요)",
+              "max_length": 20
+            }
+          },
+          "response": {
+            "is_valid": "boolean — 이체 가능 여부",
+            "validation_errors": [
+              {
+                "error_code": "string — INSUFFICIENT_BALANCE | DAILY_LIMIT_EXCEEDED | RECIPIENT_NOT_FOUND | ACCOUNT_SUSPENDED",
+                "message": "string — 오류 메시지"
+              }
+            ],
+            "transfer_summary": {
+              "recipient_name": "string",
+              "bank_name": "string",
+              "masked_account": "string",
+              "amount": "integer",
+              "fee": "integer — 이체 수수료 (원)",
+              "total_deduction": "integer — 총 차감액",
+              "remaining_daily_limit": "integer — 당일 잔여 이체 한도 (원)"
+            }
+          }
+        },
+
+        {
+          "api_id": "AT-05",
+          "name": "이체 실행",
+          "method": "POST",
+          "endpoint": "/api/v1/transfer/execute",
+          "description": "검증(AT-04)이 완료된 이체 정보를 바탕으로 실제 이체를 실행한다. 인증 토큰 필수.",
+          "request": {
+            "recipient_id": {
+              "type": "string",
+              "required": true
+            },
+            "amount": {
+              "type": "integer",
+              "required": true
+            },
+            "source_account_id": {
+              "type": "string",
+              "required": false
+            },
+            "memo": {
+              "type": "string",
+              "required": false
+            },
+            "auth_token": {
+              "type": "string",
+              "required": true,
+              "description": "사용자 인증 토큰 (생체인증·PIN 완료 후 발급)"
+            },
+            "idempotency_key": {
+              "type": "string",
+              "format": "UUID v4",
+              "required": true,
+              "description": "중복 이체 방지 키"
+            }
+          },
+          "response": {
+            "transaction_id": "string — 이체 거래 고유 ID",
+            "status": "string — COMPLETED | FAILED",
+            "completed_at": "string — 처리 완료 시각 (ISO 8601)",
+            "receipt": {
+              "sender_account": "string",
+              "recipient_name": "string",
+              "recipient_account": "string",
+              "amount": "integer",
+              "fee": "integer",
+              "balance_after": "integer — 이체 후 잔액"
+            }
+          }
+        },
+
+        {
+          "api_id": "AT-06",
+          "name": "별명 등록·수정",
+          "method": "PUT",
+          "endpoint": "/api/v1/transfer/recipients/{recipient_id}/alias",
+          "description": "수신자 계좌에 별명을 등록하거나 수정한다.",
+          "request": {
+            "recipient_id": {
+              "type": "string",
+              "required": true,
+              "in": "path"
+            },
+            "alias": {
+              "type": "string",
+              "required": true,
+              "description": "등록할 별명 (e.g. '베프', '엄마')",
+              "max_length": 10
+            }
+          },
+          "response": {
+            "recipient_id": "string",
+            "alias": "string",
+            "updated_at": "string"
+          }
+        }
+      ]
+    },
+
+    "AI_CALCULATOR": {
+      "description": "AI 금융계산기 서비스. 예·적금 이자, 대출 상환, 환율 조회·변환, 목표 저축 금액 계산.",
+      "endpoints": [
+
+        {
+          "api_id": "AC-01",
+          "name": "예금 이자 계산",
+          "method": "POST",
+          "endpoint": "/api/v1/calculator/deposit",
+          "description": "정기예금 상품에 대해 원금·금리·기간 조건으로 만기 수령액과 이자를 계산한다.",
+          "request": {
+            "product_id": {
+              "type": "string",
+              "required": false,
+              "description": "카카오뱅크 예금 상품 ID. 미지정 시 custom_rate 필수.",
+              "example": "PRD-DEP-001"
+            },
+            "principal": {
+              "type": "integer",
+              "required": true,
+              "description": "예치 원금 (원 단위)",
+              "example": 12000000
+            },
+            "duration_months": {
+              "type": "integer",
+              "required": true,
+              "description": "예치 기간 (개월 수)",
+              "example": 12
+            },
+            "custom_rate": {
+              "type": "number",
+              "required": false,
+              "description": "사용자 지정 연 금리 (%). product_id 미지정 시 필수.",
+              "example": 3.8
+            },
+            "interest_type": {
+              "type": "string",
+              "required": false,
+              "enum": ["SIMPLE", "COMPOUND"],
+              "default": "SIMPLE",
+              "description": "이자 계산 방식 (단리/복리)"
+            },
+            "tax_type": {
+              "type": "string",
+              "required": false,
+              "enum": ["GENERAL", "TAX_FREE", "TAX_REDUCED"],
+              "default": "GENERAL",
+              "description": "과세 유형 (일반과세 15.4% / 비과세 / 세금우대)"
+            }
+          },
+          "response": {
+            "product_name": "string | null",
+            "principal": "integer",
+            "applied_rate": "number — 적용 연 금리 (%)",
+            "duration_months": "integer",
+            "gross_interest": "integer — 세전 이자 (원)",
+            "tax_amount": "integer — 세금 (원)",
+            "net_interest": "integer — 세후 이자 (원)",
+            "maturity_amount": "integer — 만기 수령액 (원)",
+            "calculation_basis": "string — 계산 기준 설명"
+          }
+        },
+
+        {
+          "api_id": "AC-02",
+          "name": "자유적금 이자 계산",
+          "method": "POST",
+          "endpoint": "/api/v1/calculator/savings/flexible",
+          "description": "자유적금(자유납입식 적금) 상품에 대해 월 납입액·기간·금리 조건으로 만기 수령액을 계산한다.",
+          "request": {
+            "product_id": {
+              "type": "string",
+              "required": false,
+              "description": "카카오뱅크 자유적금 상품 ID"
+            },
+            "monthly_amount": {
+              "type": "integer",
+              "required": true,
+              "description": "월 납입액 (원 단위)",
+              "example": 300000
+            },
+            "duration_months": {
+              "type": "integer",
+              "required": true,
+              "description": "납입 기간 (개월 수)",
+              "example": 36
+            },
+            "custom_rate": {
+              "type": "number",
+              "required": false,
+              "description": "사용자 지정 연 금리 (%)"
+            },
+            "tax_type": {
+              "type": "string",
+              "required": false,
+              "enum": ["GENERAL", "TAX_FREE", "TAX_REDUCED"],
+              "default": "GENERAL"
+            }
+          },
+          "response": {
+            "product_name": "string | null",
+            "total_principal": "integer — 총 납입 원금",
+            "applied_rate": "number",
+            "gross_interest": "integer",
+            "tax_amount": "integer",
+            "net_interest": "integer",
+            "maturity_amount": "integer",
+            "monthly_limit": "integer | null — 해당 상품 월 최대 납입 한도",
+            "limit_exceeded": "boolean — 입력 금액이 한도 초과 여부"
+          }
+        },
+
+        {
+          "api_id": "AC-03",
+          "name": "정기적금 이자 계산",
+          "method": "POST",
+          "endpoint": "/api/v1/calculator/savings/fixed",
+          "description": "정기납입 적금 상품에 대해 월 납입액·기간·금리 조건으로 만기 수령액을 계산한다.",
+          "request": {
+            "product_id": { "type": "string", "required": false },
+            "monthly_amount": { "type": "integer", "required": true, "example": 1000000 },
+            "duration_months": { "type": "integer", "required": true, "example": 12 },
+            "custom_rate": { "type": "number", "required": false },
+            "tax_type": { "type": "string", "required": false, "default": "GENERAL" }
+          },
+          "response": {
+            "product_name": "string | null",
+            "total_principal": "integer",
+            "applied_rate": "number",
+            "gross_interest": "integer",
+            "tax_amount": "integer",
+            "net_interest": "integer",
+            "maturity_amount": "integer"
+          }
+        },
+
+        {
+          "api_id": "AC-04",
+          "name": "세이프박스 이자 계산",
+          "method": "POST",
+          "endpoint": "/api/v1/calculator/safebox",
+          "description": "카카오뱅크 세이프박스 상품에 대해 예치 금액과 기간으로 이자를 계산한다. 예치일 단위 계산 지원.",
+          "request": {
+            "amount": {
+              "type": "integer",
+              "required": false,
+              "description": "예치 금액 (원 단위). target_interest 지정 시 생략 가능.",
+              "example": 100000000
+            },
+            "duration_days": {
+              "type": "integer",
+              "required": false,
+              "description": "예치 기간 (일 단위). target_interest 또는 target_days 계산 시 생략 가능.",
+              "example": 30
+            },
+            "target_interest": {
+              "type": "integer",
+              "required": false,
+              "description": "역산 모드: 받고 싶은 세후 이자 금액 (원). 이 경우 필요 예치금액 또는 기간을 계산.",
+              "example": 100000
+            },
+            "calculation_mode": {
+              "type": "string",
+              "required": false,
+              "enum": ["INTEREST_FROM_AMOUNT", "AMOUNT_FROM_INTEREST", "DAYS_FROM_AMOUNT_AND_INTEREST"],
+              "default": "INTEREST_FROM_AMOUNT",
+              "description": "계산 방향 (이자 계산 / 필요 원금 역산 / 필요 일수 역산)"
+            },
+            "tax_type": {
+              "type": "string",
+              "required": false,
+              "enum": ["GENERAL", "TAX_FREE"],
+              "default": "GENERAL"
+            }
+          },
+          "response": {
+            "applied_rate": "number — 현재 세이프박스 적용 금리 (%)",
+            "amount": "integer — 예치 금액 (역산 시 계산 결과값)",
+            "duration_days": "integer — 예치 일수 (역산 시 계산 결과값)",
+            "gross_interest": "integer",
+            "tax_amount": "integer",
+            "net_interest": "integer",
+            "minimum_deposit": "integer — 최소 가입 금액",
+            "calculation_note": "string — 계산 조건 설명"
+          }
+        },
+
+        {
+          "api_id": "AC-05",
+          "name": "목표 금액 달성 월 납입액 역산",
+          "method": "POST",
+          "endpoint": "/api/v1/calculator/savings/target",
+          "description": "목표 금액, 기간, 금리를 기반으로 매월 납입해야 하는 금액을 역산한다.",
+          "request": {
+            "target_amount": {
+              "type": "integer",
+              "required": true,
+              "description": "목표 저축 금액 (원)",
+              "example": 100000000
+            },
+            "duration_months": {
+              "type": "integer",
+              "required": true,
+              "description": "목표 달성 기간 (개월 수)",
+              "example": 36
+            },
+            "product_id": {
+              "type": "string",
+              "required": false,
+              "description": "카카오뱅크 적금 상품 ID (금리 자동 적용)"
+            },
+            "custom_rate": {
+              "type": "number",
+              "required": false,
+              "description": "사용자 지정 연 금리 (%)"
+            },
+            "savings_type": {
+              "type": "string",
+              "required": false,
+              "enum": ["FLEXIBLE", "FIXED"],
+              "default": "FLEXIBLE"
+            }
+          },
+          "response": {
+            "target_amount": "integer",
+            "duration_months": "integer",
+            "applied_rate": "number",
+            "required_monthly_amount": "integer — 필요 월 납입액 (원)",
+            "total_principal": "integer — 총 납입 원금",
+            "expected_interest": "integer — 예상 세후 이자",
+            "monthly_limit": "integer | null — 상품 월 납입 한도",
+            "limit_exceeded": "boolean — 필요 납입액이 한도 초과 여부",
+            "limit_exceeded_message": "string | null — 초과 시 안내 메시지"
+          }
+        },
+
+        {
+          "api_id": "AC-06",
+          "name": "대출 상환 계획 계산",
+          "method": "POST",
+          "endpoint": "/api/v1/calculator/loan/repayment",
+          "description": "대출 원금·금리·기간·상환 방식을 기반으로 월 납입액, 총 이자, 상환 일정을 계산한다.",
+          "request": {
+            "product_id": { "type": "string", "required": false },
+            "principal": {
+              "type": "integer",
+              "required": true,
+              "description": "대출 원금 (원 단위)",
+              "example": 30000000
+            },
+            "annual_rate": {
+              "type": "number",
+              "required": false,
+              "description": "연 금리 (%). product_id 미지정 시 필수."
+            },
+            "duration_months": {
+              "type": "integer",
+              "required": true,
+              "description": "대출 기간 (개월 수)",
+              "example": 60
+            },
+            "repayment_type": {
+              "type": "string",
+              "required": false,
+              "enum": ["EQUAL_PRINCIPAL_INTEREST", "EQUAL_PRINCIPAL", "BULLET"],
+              "default": "EQUAL_PRINCIPAL_INTEREST",
+              "description": "상환 방식 (원리금균등상환 / 원금균등상환 / 만기일시상환)"
+            },
+            "monthly_budget": {
+              "type": "integer",
+              "required": false,
+              "description": "역산 모드: 월 납입 가능 금액. 이 경우 대출 가능 원금을 역산."
+            }
+          },
+          "response": {
+            "principal": "integer",
+            "applied_rate": "number",
+            "duration_months": "integer",
+            "repayment_type": "string",
+            "monthly_payment": "integer — 월 납입액 (원리금균등 기준)",
+            "total_payment": "integer — 총 납입 금액",
+            "total_interest": "integer — 총 이자",
+            "max_loan_amount": "integer | null — monthly_budget 역산 시 대출 가능 원금",
+            "repayment_schedule": [
+              {
+                "month": "integer",
+                "principal": "integer",
+                "interest": "integer",
+                "remaining_balance": "integer"
+              }
+            ]
+          }
+        },
+
+        {
+          "api_id": "AC-07",
+          "name": "대출 중도상환 수수료 계산",
+          "method": "POST",
+          "endpoint": "/api/v1/calculator/loan/early-repayment",
+          "description": "대출 중도상환 시 발생하는 수수료를 계산한다.",
+          "request": {
+            "loan_id": {
+              "type": "string",
+              "required": false,
+              "description": "사용자 실제 대출 계약 ID (실계좌 연동 시 자동 조회)"
+            },
+            "original_principal": {
+              "type": "integer",
+              "required": true,
+              "description": "최초 대출 원금 (원)"
+            },
+            "remaining_principal": {
+              "type": "integer",
+              "required": true,
+              "description": "현재 잔여 원금 (원)"
+            },
+            "annual_rate": {
+              "type": "number",
+              "required": true,
+              "description": "대출 적용 금리 (%)"
+            },
+            "months_since_start": {
+              "type": "integer",
+              "required": true,
+              "description": "대출 실행 후 경과 개월 수"
+            },
+            "repayment_amount": {
+              "type": "integer",
+              "required": true,
+              "description": "중도상환 금액 (원)"
+            }
+          },
+          "response": {
+            "repayment_amount": "integer",
+            "early_repayment_fee": "integer — 중도상환 수수료 (원)",
+            "fee_rate": "number — 적용 수수료율 (%)",
+            "total_payment": "integer — 수수료 포함 총 납부액",
+            "remaining_after_repayment": "integer — 중도상환 후 잔여 원금"
+          }
+        },
+
+        {
+          "api_id": "AC-08",
+          "name": "환율 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/calculator/exchange-rate",
+          "description": "주요 12개 해외 통화에 대한 현재 환율 정보를 조회한다.",
+          "request": {
+            "currencies": {
+              "type": "array of string",
+              "required": false,
+              "description": "조회할 통화 코드 목록 (ISO 4217). 미지정 시 전체 12개 반환.",
+              "example": ["USD", "JPY", "EUR"]
+            }
+          },
+          "response": {
+            "base_currency": "KRW",
+            "rates": [
+              {
+                "currency_code": "string — ISO 4217 통화 코드",
+                "currency_name": "string — 통화명 (한국어)",
+                "buy_rate": "number — 살 때 환율 (KRW)",
+                "sell_rate": "number — 팔 때 환율 (KRW)",
+                "standard_rate": "number — 기준 환율",
+                "change_from_yesterday": "number — 전일 대비 변동",
+                "change_direction": "string — 'UP' | 'DOWN' | 'FLAT'"
+              }
+            ],
+            "updated_at": "string — 환율 기준 시각 (ISO 8601)"
+          }
+        },
+
+        {
+          "api_id": "AC-09",
+          "name": "통화 변환 계산",
+          "method": "POST",
+          "endpoint": "/api/v1/calculator/exchange-convert",
+          "description": "지정 통화 간 금액을 현재 환율 기준으로 변환한다. 카카오뱅크 해외송금 수수료 포함 계산도 지원.",
+          "request": {
+            "from_currency": {
+              "type": "string",
+              "required": true,
+              "description": "출발 통화 코드 (ISO 4217)",
+              "example": "KRW"
+            },
+            "to_currency": {
+              "type": "string",
+              "required": true,
+              "description": "도착 통화 코드",
+              "example": "JPY"
+            },
+            "amount": {
+              "type": "number",
+              "required": true,
+              "description": "변환할 금액",
+              "example": 1000000
+            },
+            "include_remittance_fee": {
+              "type": "boolean",
+              "required": false,
+              "default": false,
+              "description": "카카오뱅크 해외송금 수수료 포함 계산 여부"
+            }
+          },
+          "response": {
+            "from_currency": "string",
+            "to_currency": "string",
+            "input_amount": "number",
+            "converted_amount": "number — 변환 결과 금액",
+            "applied_rate": "number — 적용 환율",
+            "remittance_fee": "number | null — 송금 수수료",
+            "final_receive_amount": "number | null — 수수료 차감 후 수령액",
+            "rate_updated_at": "string"
+          }
+        },
+
+        {
+          "api_id": "AC-10",
+          "name": "금융 상품 목록 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/calculator/products",
+          "description": "계산기에서 사용 가능한 카카오뱅크 금융 상품 목록과 현재 금리를 반환한다.",
+          "request": {
+            "product_type": {
+              "type": "string",
+              "required": false,
+              "enum": ["DEPOSIT", "SAVINGS_FIXED", "SAVINGS_FLEXIBLE", "SAFEBOX", "LOAN_CREDIT", "LOAN_MORTGAGE", "ALL"],
+              "default": "ALL"
+            }
+          },
+          "response": {
+            "products": [
+              {
+                "product_id": "string",
+                "product_name": "string",
+                "product_type": "string",
+                "base_rate": "number — 기본 금리 (%)",
+                "max_rate": "number — 최대 우대 금리 (%)",
+                "duration_options_months": "array of integer | null",
+                "monthly_min": "integer | null",
+                "monthly_max": "integer | null",
+                "is_calculable": "boolean — 계산기 지원 여부"
+              }
+            ]
+          }
+        }
+      ]
+    },
+
+    "AI_GROUP_TREASURER": {
+      "description": "AI 모임총무 서비스. 카카오뱅크 모임통장의 회비·지출 내역 분석 및 총무 업무 자동화.",
+      "endpoints": [
+
+        {
+          "api_id": "AG-01",
+          "name": "모임통장 기본 정보 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/group-account/summary",
+          "description": "사용자의 카카오뱅크 모임통장 기본 정보(모임명, 잔액, 멤버 수, 회비 설정)를 반환한다.",
+          "request": {
+            "group_account_id": {
+              "type": "string",
+              "required": true,
+              "description": "모임통장 고유 ID"
+            }
+          },
+          "response": {
+            "group_account_id": "string",
+            "group_name": "string — 모임명",
+            "balance": "integer — 현재 잔액 (원)",
+            "member_count": "integer — 모임 멤버 수",
+            "dues_amount": "integer | null — 월 회비 설정 금액",
+            "dues_cycle": "string | null — 'MONTHLY' | 'CUSTOM'",
+            "created_at": "string",
+            "is_treasurer": "boolean — 조회 사용자가 총무인지 여부"
+          }
+        },
+
+        {
+          "api_id": "AG-02",
+          "name": "현재 잔액 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/group-account/balance",
+          "description": "모임통장의 현재 잔액 및 이번 달 입출금 요약을 반환한다.",
+          "request": {
+            "group_account_id": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response": {
+            "balance": "integer — 현재 잔액 (원)",
+            "this_month_income": "integer — 이번 달 총 입금액",
+            "this_month_expense": "integer — 이번 달 총 출금액",
+            "last_updated_at": "string"
+          }
+        },
+
+        {
+          "api_id": "AG-03",
+          "name": "회비 납부 현황 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/group-account/dues/status",
+          "description": "지정 기간(월 단위)의 회비 납부 현황을 조회한다. 납부 완료/미납 멤버 구분, 납부 금액 합계 포함.",
+          "request": {
+            "group_account_id": {
+              "type": "string",
+              "required": true
+            },
+            "year_month": {
+              "type": "string",
+              "format": "YYYY-MM",
+              "required": false,
+              "description": "조회 대상 연월. 미지정 시 당월.",
+              "example": "2026-03"
+            },
+            "start_year_month": {
+              "type": "string",
+              "format": "YYYY-MM",
+              "required": false,
+              "description": "기간 조회 시 시작 연월 (year_month 대신 사용)"
+            },
+            "end_year_month": {
+              "type": "string",
+              "format": "YYYY-MM",
+              "required": false,
+              "description": "기간 조회 시 종료 연월"
+            }
+          },
+          "response": {
+            "period": "string — 조회 기간",
+            "dues_amount": "integer — 설정 회비 금액",
+            "paid_count": "integer — 납부 완료 멤버 수",
+            "paid_total": "integer — 납부 완료 총액",
+            "unpaid_count": "integer — 미납 멤버 수",
+            "paid_members": [
+              {
+                "member_id": "string",
+                "member_name": "string",
+                "paid_amount": "integer",
+                "paid_at": "string"
+              }
+            ],
+            "unpaid_members": [
+              {
+                "member_id": "string",
+                "member_name": "string"
+              }
+            ],
+            "late_payer": {
+              "member_id": "string | null",
+              "member_name": "string | null",
+              "paid_at": "string | null",
+              "description": "가장 늦게 납부한 멤버"
+            }
+          }
+        },
+
+        {
+          "api_id": "AG-04",
+          "name": "회비 납부 처리",
+          "method": "POST",
+          "endpoint": "/api/v1/group-account/dues/pay",
+          "description": "모임통장으로 회비를 납부한다. 이미 납부한 경우 중복 납부 여부를 안내하고 추가 납부 여부를 확인한다.",
+          "request": {
+            "group_account_id": {
+              "type": "string",
+              "required": true
+            },
+            "year_month": {
+              "type": "string",
+              "format": "YYYY-MM",
+              "required": false,
+              "description": "납부 대상 연월. 미지정 시 당월.",
+              "example": "2026-03"
+            },
+            "amount": {
+              "type": "integer",
+              "required": false,
+              "description": "납부 금액. 미지정 시 설정 회비 금액 자동 적용."
+            },
+            "source_account_id": {
+              "type": "string",
+              "required": false,
+              "description": "출금 계좌 ID. 미지정 시 주 계좌 사용."
+            },
+            "force_duplicate": {
+              "type": "boolean",
+              "required": false,
+              "default": false,
+              "description": "이미 납부한 월에 추가 납부 진행 여부"
+            },
+            "auth_token": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response": {
+            "transaction_id": "string",
+            "status": "string — COMPLETED | ALREADY_PAID | FAILED",
+            "already_paid": "boolean — 해당 월 기납부 여부",
+            "paid_amount": "integer",
+            "paid_at": "string",
+            "balance_after": "integer — 모임통장 잔액"
+          }
+        },
+
+        {
+          "api_id": "AG-05",
+          "name": "지출 내역 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/group-account/expenditures",
+          "description": "모임통장의 지출 내역을 기간·카테고리 필터로 조회한다. 최근 1년 이내 데이터만 제공.",
+          "request": {
+            "group_account_id": {
+              "type": "string",
+              "required": true
+            },
+            "period": {
+              "type": "string",
+              "required": false,
+              "enum": ["THIS_MONTH", "LAST_MONTH", "LAST_3_MONTHS", "LAST_6_MONTHS", "LAST_1_YEAR", "CUSTOM"],
+              "default": "THIS_MONTH"
+            },
+            "start_date": {
+              "type": "string",
+              "format": "YYYY-MM-DD",
+              "required": false,
+              "description": "period=CUSTOM 시 시작일"
+            },
+            "end_date": {
+              "type": "string",
+              "format": "YYYY-MM-DD",
+              "required": false,
+              "description": "period=CUSTOM 시 종료일"
+            },
+            "category": {
+              "type": "string",
+              "required": false,
+              "description": "카테고리 필터 (e.g. 'FOOD', 'ACCOMMODATION', 'TRANSPORT')"
+            },
+            "limit": {
+              "type": "integer",
+              "required": false,
+              "default": 50
+            }
+          },
+          "response": {
+            "period_label": "string — 조회 기간 설명",
+            "total_count": "integer — 총 거래 건수",
+            "total_amount": "integer — 총 지출 금액 (원)",
+            "expenditures": [
+              {
+                "transaction_id": "string",
+                "date": "string — 거래일 (ISO 8601)",
+                "description": "string — 거래 내역명",
+                "amount": "integer",
+                "category": "string",
+                "is_atm": "boolean"
+              }
+            ]
+          }
+        },
+
+        {
+          "api_id": "AG-06",
+          "name": "지출 패턴 분석",
+          "method": "GET",
+          "endpoint": "/api/v1/group-account/expenditures/analysis",
+          "description": "모임통장의 지출 내역을 다차원으로 분석한다. 카테고리별, 월별, 요일별(평일/주말) 분석 지원.",
+          "request": {
+            "group_account_id": {
+              "type": "string",
+              "required": true
+            },
+            "analysis_type": {
+              "type": "string",
+              "required": true,
+              "enum": ["CATEGORY", "MONTHLY", "WEEKDAY_VS_WEEKEND", "TOP_N"],
+              "description": "분석 유형 (카테고리별 / 월별 / 평일-주말 비교 / 상위 N건)"
+            },
+            "period": {
+              "type": "string",
+              "required": false,
+              "enum": ["THIS_YEAR", "LAST_6_MONTHS", "LAST_1_YEAR", "CUSTOM"],
+              "default": "THIS_YEAR"
+            },
+            "top_n": {
+              "type": "integer",
+              "required": false,
+              "default": 5,
+              "description": "analysis_type=TOP_N 시 상위 N개 항목 수"
+            },
+            "start_date": {
+              "type": "string",
+              "format": "YYYY-MM-DD",
+              "required": false
+            },
+            "end_date": {
+              "type": "string",
+              "format": "YYYY-MM-DD",
+              "required": false
+            }
+          },
+          "response": {
+            "analysis_type": "string",
+            "period_label": "string",
+            "total_amount": "integer",
+            "breakdown": [
+              {
+                "label": "string — 항목명 (카테고리명 / 월 / '평일'·'주말' / 사용처명)",
+                "amount": "integer",
+                "count": "integer",
+                "ratio": "number — 전체 대비 비율 (%)"
+              }
+            ],
+            "insight": "string | null — AI 생성 요약 인사이트"
+          }
+        },
+
+        {
+          "api_id": "AG-07",
+          "name": "모임통장 상품·서비스 정책 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/group-account/policy",
+          "description": "모임통장 관련 상품 정책 정보를 조회한다. (최대 멤버 수, 체크카드 혜택, 이체 한도 등)",
+          "request": {
+            "query_topic": {
+              "type": "string",
+              "required": false,
+              "description": "조회 주제 (e.g. 'member_limit', 'card_benefits', 'transfer_limit'). 미지정 시 전체 반환."
+            }
+          },
+          "response": {
+            "policies": [
+              {
+                "topic": "string",
+                "topic_label": "string — 정책 항목명",
+                "content": "string — 정책 내용",
+                "last_updated": "string"
+              }
+            ]
+          }
+        },
+
+        {
+          "api_id": "AG-08",
+          "name": "멤버 목록 조회",
+          "method": "GET",
+          "endpoint": "/api/v1/group-account/members",
+          "description": "모임통장 멤버 목록과 각 멤버의 회비 납부 이력 요약을 반환한다.",
+          "request": {
+            "group_account_id": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response": {
+            "members": [
+              {
+                "member_id": "string",
+                "member_name": "string",
+                "role": "string — 'TREASURER' | 'MEMBER'",
+                "joined_at": "string",
+                "dues_paid_count": "integer — 납부 완료 회차 수 (최근 1년)",
+                "dues_unpaid_count": "integer — 미납 회차 수 (최근 1년)"
+              }
+            ],
+            "total_count": "integer"
+          }
+        }
+      ]
+    }
+  }
+}

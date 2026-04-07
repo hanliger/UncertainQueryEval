@@ -1,0 +1,3146 @@
+{
+  "_meta": {
+    "title": "카카오뱅크 AI 챗봇 모호성 벤치마크 — 대화 시나리오 45선 (v3)",
+    "taxonomy_matrix": "5(정보 양상) × 3(QA 시스템 요소) = 15 유형 × 3 시나리오",
+    "modalities": [
+      "결핍(Emptiness)",
+      "모순(Clash)",
+      "다중성(Multiplicity)",
+      "포괄성(Generality)",
+      "유동성(Fluidity)"
+    ],
+    "elements": [
+      "사용자 발화(User Utterance)",
+      "대화 문맥(Dialogue Context)",
+      "지식 베이스(Knowledge Base)"
+    ],
+    "total_scenarios": 45,
+    "note": "각 시나리오는 최소 7턴 이상의 대화로 구성되며, 마지막 사용자 발화가 해당 taxonomy의 모호 쿼리임."
+  },
+  "scenarios": [
+    {
+      "scenario_id": "E-UU-1",
+      "taxonomy": {
+        "modality": "결핍(Emptiness)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "E×UU"
+      },
+      "service": "AI_TRANSFER",
+      "title": "생일 축하금 이체 — 핵심 서술어 완전 생략",
+      "ambiguity_description": "수신자·금액 등 이체 조건은 모두 갖춰졌으나 '이체해줘', '보내줘' 등 행위 서술어가 생략되어 이체 실행 요청인지 단순 확인인지 판단 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "안녕하세요, 친구 생일이 내일인데 선물 대신 현금으로 보내주려고 해요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "안녕하세요! AI 이체 서비스로 도와드릴게요. 보내실 분이 이미 이체 이력에 등록된 분인가요? 이름이나 별명으로 검색이 가능합니다."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "네, 예전에 몇 번 보낸 적 있어요. 이름은 김지수예요. 얼마가 적당할지 모르겠어서요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "김지수 님 이체 이력이 확인됐어요. 카카오뱅크 계좌로 등록되어 있습니다. 생일 축하 금액은 보통 친밀도에 따라 3만 원에서 10만 원 사이를 많이 보내시더라고요. 원하시는 금액을 말씀해 주시면 바로 진행해 드릴게요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그냥 5만 원 정도면 좋겠는데, 생일 당일에 딱 맞춰 가면 더 좋겠죠? 내일 오전 중으로요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "현재 AI 이체는 예약 이체 기능은 지원하지 않아 즉시 이체만 가능합니다. 내일 직접 이체하시거나, 지금 바로 이체하시면 오늘 안으로 입금됩니다. 어떻게 진행하시겠어요?"
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "아 그렇군요. 그러면 김지수한테 5만 원, 메모는 '생일 축하해'로."
+        }
+      ],
+      "ambiguous_query": "그러면 김지수한테 5만 원, 메모는 '생일 축하해'로.",
+      "ambiguity_reason": "이체 조건(수신자: 김지수, 금액: 5만원, 메모)은 모두 명시됐으나, 문장에 '이체해줘', '보내줘' 등의 서술어가 완전히 생략됨. 이체 즉시 실행 요청인지, 이체 조건을 재확인하는 것인지, 정보 제공인지 행위 의도 판단 불가.",
+      "gold_api": {
+        "api_id": null,
+        "candidate_apis": [
+          {
+            "api_id": "AT-05",
+            "intent": "이체 즉시 실행",
+            "endpoint": "POST /api/v1/transfer/execute",
+            "parameters": {
+              "recipient_id": "RCPT-KIM-JISU-001",
+              "amount": 50000,
+              "memo": "생일 축하해",
+              "auth_token": "PENDING_USER_AUTH",
+              "idempotency_key": "PENDING"
+            }
+          },
+          {
+            "api_id": "AT-04",
+            "intent": "이체 정보 사전 확인",
+            "endpoint": "POST /api/v1/transfer/validate",
+            "parameters": {
+              "recipient_id": "RCPT-KIM-JISU-001",
+              "amount": 50000,
+              "memo": "생일 축하해"
+            }
+          },
+          {
+            "api_id": "AT-02",
+            "intent": "이체 이력 단순 조회",
+            "endpoint": "GET /api/v1/transfer/recipients/recent",
+            "parameters": {
+              "limit": 10,
+              "include_alias": true
+            }
+          }
+        ],
+        "undecidable_reason": "서술어('이체해줘', '보내줘', '확인해줘') 생략으로 실행할 API 자체가 미결정",
+        "common_known_params": {
+          "recipient_id": "RCPT-KIM-JISU-001",
+          "amount": 50000,
+          "memo": "생일 축하해"
+        },
+        "required_info": "사용자 행위 의도(즉시 이체 실행 / 이체 조건 확인 / 이체 이력 조회) 확인 필요"
+      }
+    },
+    {
+      "scenario_id": "E-UU-2",
+      "taxonomy": {
+        "modality": "결핍(Emptiness)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "E×UU"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "목돈 운용 상담 중 계산 행위 생략",
+      "ambiguity_description": "예치 조건(금액, 기간, 상품)은 모두 제시됐으나 '이자 계산해줘', '만기 수령액 알려줘' 등 원하는 계산 행위가 생략됨.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "퇴직금으로 받은 돈 3천만 원이 있는데, 어디다 굴리면 좋을지 상담 좀 해도 될까요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "물론이죠! 카카오뱅크 금융계산기로 도와드릴게요. 운용 기간이나 우선 목표가 있으신가요? 안정성 중시인지, 수익성 중시인지에 따라 추천 상품이 달라져요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "최대한 안전하게 가고 싶어요. 1년 정도는 묵혀도 괜찮고요. 예금이랑 세이프박스 중에 어느 게 나을까요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "두 상품 간단히 비교해 드릴게요. 정기예금은 1년 약정으로 현재 연 3.8% 기본 금리이고, 세이프박스는 수시 입출금이 자유롭지만 금리는 연 2.5% 수준이에요. 3천만 원, 1년 기준으로는 정기예금 쪽이 이자가 더 많이 나와요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그럼 정기예금 쪽이 낫겠네요. 혹시 비과세 혜택은 받을 수 있나요? 노인 기준이 있다고 들었는데요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "만 65세 이상이시거나 장애인, 기초생활수급자 등 해당되시면 이자소득세 15.4%가 전액 면제돼요. 해당되신다면 세후 수령액이 훨씬 늘어납니다."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "저는 만 67세라 해당되네요. 그러면 정기예금 3천만 원, 1년, 비과세로요."
+        }
+      ],
+      "ambiguous_query": "그러면 정기예금 3천만 원, 1년, 비과세로요.",
+      "ambiguity_reason": "계산 조건(상품: 정기예금, 원금: 3천만원, 기간: 1년, 과세유형: 비과세)은 모두 명시됐으나 '이자 계산해줘', '만기 수령액 알려줘', '가입해줘' 등 요청 동작이 완전히 생략됨. 이자 조회인지 상품 가입 신청인지 판단 불가.",
+      "gold_api": {
+        "api_id": null,
+        "candidate_apis": [
+          {
+            "api_id": "AC-01",
+            "intent": "예금 이자 계산",
+            "endpoint": "POST /api/v1/calculator/deposit",
+            "parameters": {
+              "product_id": "PRD-DEP-001",
+              "principal": 30000000,
+              "duration_months": 12,
+              "tax_type": "TAX_FREE"
+            }
+          },
+          {
+            "api_id": "AC-10",
+            "intent": "상품 가입 조건 조회 (가입 전 안내)",
+            "endpoint": "GET /api/v1/calculator/products",
+            "parameters": {
+              "product_type": "DEPOSIT"
+            }
+          }
+        ],
+        "undecidable_reason": "서술어('이자 계산해줘', '가입해줘', '얼마 받는지 알려줘') 생략으로 이자 계산인지 상품 가입 신청인지 실행 대상 API 미결정",
+        "common_known_params": {
+          "product_id": "PRD-DEP-001",
+          "principal": 30000000,
+          "duration_months": 12,
+          "tax_type": "TAX_FREE"
+        },
+        "required_info": "사용자 행위 의도(이자 조회 / 상품 가입 신청) 확인 필요"
+      }
+    },
+    {
+      "scenario_id": "E-DC-1",
+      "taxonomy": {
+        "modality": "결핍(Emptiness)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "E×DC"
+      },
+      "service": "AI_TRANSFER",
+      "title": "이체 한도 조회 후 맥락 없는 수신자 지칭",
+      "ambiguity_description": "이전 대화 전체가 이체 한도 정책에 관한 내용이었고, 특정 인물에 대한 언급이 전혀 없었는데 갑자기 '그 사람'이라는 지시 표현이 등장하여 참조 대상이 대화 이력에 존재하지 않음.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "카카오뱅크 AI 이체로 하루에 보낼 수 있는 최대 금액이 얼마예요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "AI 이체 서비스 기준 1일 최대 이체 한도는 200만 원입니다. 오늘 이미 이체하신 금액이 있다면 그만큼 차감됩니다."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "한 번에 200만 원이 최대고, 오늘 두 번 보내는 건 안 되나요? 각각 200만 원씩이요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "하루 전체 합산 기준 200만 원이 한도이기 때문에, 같은 날 두 번 나눠 보내더라도 합계가 200만 원을 넘으면 이체가 차단됩니다. 더 큰 금액을 보내셔야 한다면 일반 이체나 창구를 이용하시는 게 좋아요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그렇군요. 그럼 오늘 한도가 얼마나 남아 있는지도 확인할 수 있나요?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "지금 기준으로 오늘 남은 이체 한도는 200만 원입니다. 오늘 아직 이체하신 내역이 없으세요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "알겠어요. 그럼 그 사람한테 150만 원 보내줘요."
+        }
+      ],
+      "ambiguous_query": "알겠어요. 그럼 그 사람한테 150만 원 보내줘요.",
+      "ambiguity_reason": "대화 Turn 1~6은 이체 한도 정책에 관한 내용 전체. 어떠한 인물도 대화 이력에 등장한 적 없는데 '그 사람'이라는 지시 표현이 등장함. recipient의 선행사가 대화 맥락 어디에도 존재하지 않아 수신자 식별 불가(Context Emptiness).",
+      "gold_api": {
+        "api_id": "AT-01",
+        "endpoint": "GET /api/v1/transfer/recipients/search",
+        "parameters": {
+          "query": null,
+          "match_type": "FUZZY"
+        },
+        "ambiguous_slots": [
+          "query — AT-01의 검색어. '그 사람'의 선행사가 대화 이력에 없어 검색 불가"
+        ],
+        "missing_slots": [
+          "query — '그 사람'의 선행사가 대화 이력에 전혀 없음"
+        ]
+      }
+    },
+    {
+      "scenario_id": "E-DC-2",
+      "taxonomy": {
+        "modality": "결핍(Emptiness)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "E×DC"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "연간 지출 합계만 확인 후 '그달 내역' 지칭",
+      "ambiguity_description": "이전 대화에서 연간 합계 금액만 언급됐을 뿐, 특정 월(月)에 대한 언급이 전혀 없었는데 '그달'이라는 시간 지시어가 등장하여 참조 기간 식별 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "우리 모임통장에서 올해 지출 총액이 얼마나 됐어?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "2026년 기준 모임통장 총 지출은 2,340,000원이에요. 총 11건의 지출이 있었고요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "생각보다 많이 쓴 것 같은데. 혹시 카테고리별로도 나눠볼 수 있어?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "물론이죠! 카테고리별 분석 결과예요. 식비·회식 1,050,000원(45%), 숙박·여행 780,000원(33%), ATM 출금 360,000원(15%), 기타 150,000원(7%) 순이에요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "숙박·여행 비중이 꽤 크네. 언제 여행 갔는지 확인하고 싶은데, 숙박 결제가 언제 이루어졌는지 볼 수 있어?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "숙박 카테고리 지출 내역이에요. 2월 14일 펜션 결제 320,000원, 7월 22일 호텔 결제 460,000원으로 총 2건이 확인돼요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그달에 다른 지출 내역도 전부 다 알려줘."
+        }
+      ],
+      "ambiguous_query": "그달에 다른 지출 내역도 전부 다 알려줘.",
+      "ambiguity_reason": "Turn 6에서 2월과 7월 두 개의 숙박 건이 모두 언급됨. '그달'이 2월인지 7월인지 선행사 결정 불가. 또한 직전 발화(Turn 5~6)가 숙박 기간 확인 맥락이어서 어느 쪽이 더 화제(topic)인지 담화 구조로도 특정 불가(Context Emptiness — 참조 기간 이력 내 부재는 아니나, 복수 후보 중 단일 특정 불가).",
+      "gold_api": {
+        "api_id": "AG-05",
+        "endpoint": "GET /api/v1/group-account/expenditures",
+        "parameters": {
+          "group_account_id": "GA-001",
+          "period": "CUSTOM",
+          "start_date": null,
+          "end_date": null,
+          "category": null,
+          "limit": 50
+        },
+        "ambiguous_slots": [
+          "start_date",
+          "end_date"
+        ],
+        "missing_slots": [
+          "start_date — '그달'이 2월인지 7월인지 미결정",
+          "end_date"
+        ]
+      }
+    },
+    {
+      "scenario_id": "E-KB-1",
+      "taxonomy": {
+        "modality": "결핍(Emptiness)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "E×KB"
+      },
+      "service": "AI_TRANSFER",
+      "title": "이체 이력 없는 신규 수신자 이름으로 이체 요청",
+      "ambiguity_description": "사용자가 수신자 이름을 명확히 제시했으나, KB(이체 이력 데이터베이스)에 해당 인물의 계좌 정보가 전혀 없어 recipient_id를 매핑할 수 없음.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "AI 이체 쓰면 계좌번호 없이 이름만으로도 송금된다고 하던데, 맞아요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "네, 맞아요! 한 번이라도 이체한 적 있는 분이라면 이름이나 별명만으로 이체하실 수 있어요. 처음 보내시는 분이라면 계좌번호를 직접 입력하셔야 해요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "아, 그렇구나. 저 지금 돈 급하게 보내야 하는데, 대학 동기한테 보내야 해요. 예전에 카카오톡으로 보낸 적은 있는데 계좌이체는 처음이에요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "카카오톡 간편이체도 이체 이력에 포함돼요! 카카오뱅크 앱에서 카카오톡 간편이체로 보내신 분은 이름으로 검색이 가능합니다. 어떤 분인지 이름을 알려주시겠어요?"
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "이름은 정우진이에요. 저한테서 보낸 게 아니라 우리 다른 친구가 보낸 거라, 저 기준으로는 처음이긴 한데 혹시 있을까요?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "'정우진' 이름으로 검색해 볼게요. 잠시만요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "아, 결과 어때요? 있으면 거기다가 37만 5천 원 지금 바로 보내줘요. 오늘이 마감이라서 급해요."
+        }
+      ],
+      "ambiguous_query": "아, 결과 어때요? 있으면 거기다가 37만 5천 원 지금 바로 보내줘요. 오늘이 마감이라서 급해요.",
+      "ambiguity_reason": "AT-01 호출 시 '정우진' 검색 결과 candidates=[] (이체 이력 없음). KB에 recipient_id에 해당하는 데이터가 전혀 없어 AT-05의 필수 파라미터 recipient_id를 채울 수 없음. 사용자는 결과 존재 여부와 무관하게 조건부 이체를 요청하고 있어, KB 데이터 결핍 상태에서 이체 실행 명령이 들어온 구조.",
+      "gold_api": {
+        "api_id": "AT-01",
+        "endpoint": "GET /api/v1/transfer/recipients/search",
+        "parameters": {
+          "query": "정우진",
+          "match_type": "FUZZY"
+        },
+        "kb_result": "candidates: [] (이체 이력 없음 — KB 데이터 부재)",
+        "next_api": "AT-05 (실행 불가 — recipient_id 미결정)",
+        "missing_slots": [
+          "recipient_id — KB에 데이터 없음, 계좌번호 직접 입력 필요"
+        ]
+      }
+    },
+    {
+      "scenario_id": "E-KB-2",
+      "taxonomy": {
+        "modality": "결핍(Emptiness)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "E×KB"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "출시 예정 신상품으로 이자 계산 요청 — 금리 미적재",
+      "ambiguity_description": "사용자가 요청한 신상품이 KB 상품 목록에는 존재하지만 금리 데이터(base_rate)가 아직 적재되지 않아 이자 계산에 필요한 핵심 슬롯값이 부재함.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "카카오뱅크에서 '직장인 목돈 적금' 새로 나왔다고 앱 알림이 왔던데, 어떤 상품이에요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "네, '직장인 목돈 적금'은 재직 중인 직장인 대상 신규 출시 상품이에요. 자세한 금리 조건은 현재 시스템에 업데이트 중으로, 정확한 수치는 앱 상품 페이지에서 확인하시는 게 가장 정확해요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "그렇군요. 혹시 가입 기간이나 납입 방식은 알 수 있어요? 정기납입인지 자유납입인지요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "현재 확인되는 정보로는 월 정기납입 방식이고, 가입 기간은 12개월과 24개월 중 선택 가능해요. 납입 한도 등 세부 사항은 공식 페이지 참고를 권해드려요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "일단 어느 정도 이자를 기대할 수 있는지 감이라도 잡고 싶어서요. 비슷한 상품 기준으로 어림잡아도 되고요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "유사 정기적금 상품 기준으로 보면 연 3.0~3.5% 수준인 경우가 많아요. 정확한 금리가 적용되면 계산기 서비스에서 정확한 이자를 확인하실 수 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그냥 직장인 목돈 적금으로 계산해줘요. 월 30만 원씩 24개월 넣을 건데, 세후로 얼마나 받을 수 있는지요."
+        }
+      ],
+      "ambiguous_query": "그냥 직장인 목돈 적금으로 계산해줘요. 월 30만 원씩 24개월 넣을 건데, 세후로 얼마나 받을 수 있는지요.",
+      "ambiguity_reason": "product_id='PRD-JOB-SAVINGS-001'으로 AC-03 호출 시 KB의 base_rate 필드가 null(금리 미적재 상태). custom_rate도 사용자가 제공하지 않음. 필수 파라미터(금리)가 KB 내 부재하여 계산 실행 불가.",
+      "gold_api": {
+        "api_id": "AC-03",
+        "endpoint": "POST /api/v1/calculator/savings/fixed",
+        "parameters": {
+          "product_id": "PRD-JOB-SAVINGS-001",
+          "monthly_amount": 300000,
+          "duration_months": 24,
+          "custom_rate": null,
+          "tax_type": "GENERAL"
+        },
+        "kb_result": "base_rate: null (금리 데이터 미적재)",
+        "missing_slots": [
+          "base_rate 또는 custom_rate — KB 필수 파라미터 부재"
+        ]
+      }
+    },
+    {
+      "scenario_id": "C-UU-1",
+      "taxonomy": {
+        "modality": "모순(Clash)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "C×UU"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "이미 해지한 적금 만기 이자 재계산 요청",
+      "ambiguity_description": "'해지한' 적금(= 이미 존재하지 않는 계약)에 대해 '만기 수령액'을 계산해달라는 요청은 논리적으로 상충하는 속성이 동시에 활성화된 상태.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "저번에 24개월짜리 자유적금 중간에 해지했거든요. 아무래도 손해가 좀 됐겠죠?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "중도 해지의 경우 약정 금리 대신 중도해지 금리(보통 기본 금리의 일부)가 적용돼 이자가 줄어들게 돼요. 몇 개월 만에 해지하셨나요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "18개월 됐을 때 해지했어요. 매달 50만 원씩 넣었고요. 실제로 이자를 얼마나 받았는지는 기억이 잘 안 나서요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "18개월 중도 해지 시 보통 중도해지 금리가 적용돼 원래 금리의 30~50% 수준의 이자만 받게 돼요. 정확한 금액은 해지 당시 통장 거래 내역을 확인하시는 게 가장 정확합니다."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그냥 감이 궁금한 거예요. 그나저나, 만약 그 적금을 해지 안 하고 원래대로 24개월 유지했으면 얼마나 더 받았을지도 궁금하거든요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "비교 계산은 충분히 해드릴 수 있어요! 자유적금 월 50만 원, 24개월 기준으로 적용 금리를 알려주시면 만기 수령 시 받으실 수 있었던 금액을 계산해 드릴게요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "이미 해지한 적금인데, 그냥 그 상품으로 24개월 만기 이자를 계산해줘요. 지금도 그 적금 유지하고 있는 것처럼요."
+        }
+      ],
+      "ambiguous_query": "이미 해지한 적금인데, 그냥 그 상품으로 24개월 만기 이자를 계산해줘요. 지금도 그 적금 유지하고 있는 것처럼요.",
+      "ambiguity_reason": "'이미 해지한'(= 계약 종료, 현재 상태 없음)과 '지금도 유지하고 있는 것처럼'(= 계약 유효 상태 가정)이라는 논리적으로 상충하는 전제가 동시에 명시됨. 해지=사실 명시, 유지=가상 가정이 혼재. 가상 시나리오 계산(AC-03)으로 처리 가능하나 사용자가 실제 계좌 기반인지 가상 계산인지 명확하게 구분하지 않아 실행 전 의도 확인 필요.",
+      "gold_api": {
+        "api_id": "AC-02",
+        "endpoint": "POST /api/v1/calculator/savings/flexible",
+        "parameters": {
+          "product_id": "PRD-SAV-FREE-001",
+          "monthly_amount": 500000,
+          "duration_months": 24,
+          "custom_rate": null,
+          "tax_type": "GENERAL"
+        },
+        "clash_elements": [
+          "'이미 해지한' (계약 종료) AND '유지하고 있는 것처럼' (계약 유효) — 논리적 전제 충돌"
+        ],
+        "resolution": "가상 시나리오 계산임을 명확히 확인 후 진행"
+      }
+    },
+    {
+      "scenario_id": "C-UU-2",
+      "taxonomy": {
+        "modality": "모순(Clash)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "C×UU"
+      },
+      "service": "AI_TRANSFER",
+      "title": "1일 한도 확인 직후 한도 초과 금액 이체 요청",
+      "ambiguity_description": "직전 발화에서 1일 이체 한도(200만 원)를 명시적으로 인지한 상태('그럼')임에도 한도를 초과하는 금액(230만 원)의 이체를 요청하여 시스템 규정과 발화 의도가 충돌.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "월세를 지인 계좌로 보내야 하는데, AI 이체로 큰 금액도 보낼 수 있나요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "AI 이체는 1일 최대 200만 원까지 가능해요. 그 이상은 일반 이체나 인터넷뱅킹을 이용하셔야 해요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "아, 200만 원이군요. 제 월세가 딱 200만 원이라 가능은 하겠네요. 받는 분은 이미 이체 이력이 있어요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "이체 이력이 있으면 이름이나 별명으로 빠르게 검색할 수 있어요. 보내실 분 성함이나 별명을 알려주시겠어요?"
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "이름은 박민수예요. 그런데 이번 달 이삿짐 비용도 같이 부탁드려야 해서, 관리비 포함하면 30만 원 정도 추가돼요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "박민수 님 이체 이력 확인됐어요. 총 230만 원이 필요하신 거라면 AI 이체 한도(200만 원)를 초과해서 한 번에 처리가 어려워요. 200만 원은 AI 이체로, 나머지 30만 원은 따로 이체하시는 방법이 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그럼 그냥 박민수한테 230만 원 한 번에 보내줘요. 어떻게든 되지 않을까요?"
+        }
+      ],
+      "ambiguous_query": "그럼 그냥 박민수한테 230만 원 한 번에 보내줘요. 어떻게든 되지 않을까요?",
+      "ambiguity_reason": "Turn 6에서 한도 초과(230만 원 > 200만 원)임을 명시적으로 안내받았음에도 '어떻게든 되지 않을까요?'라는 표현으로 한도 초과 이체를 재요청. '그럼'이라는 접속사로 한도를 인지했음을 나타내면서도 초과 이체를 요청하는 자기 모순적 구조.",
+      "gold_api": {
+        "api_id": "AT-04",
+        "endpoint": "POST /api/v1/transfer/validate",
+        "parameters": {
+          "recipient_id": "RCPT-PARK-001",
+          "amount": 2300000,
+          "source_account_id": null,
+          "memo": null
+        },
+        "clash_elements": [
+          "amount(2,300,000) > daily_limit(2,000,000) — 규정과 충돌"
+        ],
+        "expected_error": "DAILY_LIMIT_EXCEEDED",
+        "resolution": "한도 초과 명확히 재안내, 분할 이체 또는 일반 이체 채널 안내 필요"
+      }
+    },
+    {
+      "scenario_id": "C-DC-1",
+      "taxonomy": {
+        "modality": "모순(Clash)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "C×DC"
+      },
+      "service": "AI_TRANSFER",
+      "title": "이체 완료 확인 후 '방금 이체 취소' 요청",
+      "ambiguity_description": "대화 이력에서 이체 완료(COMPLETED) 상태가 명확히 확인됐는데, 바로 다음 발화에서 '방금 이체 취소해줘'라고 요청하여 이미 합의된 이체 완료 사실과 현재 발화가 배치됨.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "이지은한테 10만 원 이체해줘요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "이지은 님(카카오뱅크, 110-****-5678) 계좌로 100,000원 이체할까요? 확인해 주시면 바로 진행할게요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "네, 맞아요. 진행해주세요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "이체가 완료됐어요! 거래 ID: TRX-20260401-0342. 이지은 님 계좌로 100,000원이 이체됐고, 이체 후 내 잔액은 820,000원입니다."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "이체 내역 캡쳐하면 어디서 볼 수 있어요?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "이체 내역은 앱 하단 '거래내역'에서 확인하실 수 있어요. 방금 완료된 거래도 바로 확인 가능해요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "아, 잠깐요. 방금 그 이체 취소해줘요. 잘못 보낸 것 같아요."
+        }
+      ],
+      "ambiguous_query": "아, 잠깐요. 방금 그 이체 취소해줘요. 잘못 보낸 것 같아요.",
+      "ambiguity_reason": "Turn 4에서 이체 COMPLETED가 확인됐고 Turn 3에서 사용자가 명시적으로 진행 동의. 그러나 Turn 7에서 '취소해줘'라고 요청하여 이전에 합의된 '이체 완료 사실'과 정면 배치. 완료된 이체는 시스템상 즉시 취소 불가이며, 상황 안내 후 반환 이체 방법 제시가 필요한 상태.",
+      "gold_api": {
+        "api_id": "AT-05",
+        "endpoint": "POST /api/v1/transfer/execute",
+        "parameters": {
+          "recipient_id": "RCPT-LEE-JIEUN-001",
+          "amount": 100000,
+          "source_account_id": null,
+          "memo": "착오 반환 요청",
+          "auth_token": "PENDING_USER_AUTH",
+          "idempotency_key": "PENDING-REVERSAL"
+        },
+        "clash_elements": [
+          "Turn 4: status=COMPLETED, Turn 7: 취소 요청 — 완료된 이체 취소 불가"
+        ],
+        "resolution": "완료된 이체 취소 불가 안내 후 반환 이체(역방향 이체) 진행 의사 재확인 필요"
+      }
+    },
+    {
+      "scenario_id": "C-DC-2",
+      "taxonomy": {
+        "modality": "모순(Clash)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "C×DC"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "36개월로 계산 완료 후 '방금 24개월 기준' 잘못 지칭",
+      "ambiguity_description": "직전 턴에서 36개월 기준으로 계산이 완료됐는데, 바로 다음 발화에서 '방금 24개월로 계산한 거'라고 틀린 사실을 전제로 새 계산을 요청하여 대화 공통 기반이 붕괴.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "3년 안에 1억 모으고 싶은데, 자유적금으로 매달 얼마씩 넣어야 해요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "목표 금액 1억 원, 36개월, 자유적금 금리 연 2.8% 기준으로 역산하면 매월 약 267만 원을 납입하셔야 해요. 다만 카카오뱅크 자유적금은 월 최대 300만 원까지 가능해요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "267만 원이면 좀 빠듯하긴 한데, 할 수는 있겠어요. 혹시 금리 우대 조건 받으면 조금 줄어들 수 있나요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "우대 금리 최대 연 3.2%까지 적용 가능한데요, 그 경우 매월 약 261만 원으로 조금 줄어들어요. 우대 조건은 앱 가입 및 카드 실적 등으로 충족 가능해요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그렇군요. 그럼 만약 목표를 1억 5천으로 올리면 어떻게 돼요?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "목표 1억 5천만 원, 36개월, 연 2.8% 기준으로는 매월 약 401만 원이 필요한데, 자유적금 월 납입 한도 300만 원을 초과해서 이 상품만으로는 달성이 어렵습니다."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "아 그렇구나. 아까 24개월로 계산한 거 있잖아요, 그 기간에 납입 금액만 200만 원으로 바꿔서 다시 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "아까 24개월로 계산한 거 있잖아요, 그 기간에 납입 금액만 200만 원으로 바꿔서 다시 계산해줘요.",
+      "ambiguity_reason": "Turn 2~6의 계산은 모두 36개월 기준이었으나, Turn 7에서 '24개월로 계산한 거'라고 잘못된 사실을 전제로 참조. duration_months 값이 대화 이력(36개월)과 현재 발화의 전제(24개월) 사이에 충돌. 36개월로 재계산해야 하는지, 실제로 24개월 기준 새 계산인지 불명확.",
+      "gold_api": {
+        "api_id": "AC-05",
+        "endpoint": "POST /api/v1/calculator/savings/target",
+        "parameters": {
+          "target_amount": 100000000,
+          "duration_months": null,
+          "product_id": "PRD-SAV-FREE-001",
+          "savings_type": "FLEXIBLE"
+        },
+        "clash_elements": [
+          "대화 이력: duration=36개월",
+          "Turn 7 전제: '24개월로 계산한 거' — 사실과 불일치"
+        ],
+        "missing_slots": [
+          "duration_months — 36개월 기준인지 24개월 새 계산인지 확인 필요",
+          "monthly_amount 방향 (역산 vs 직접 계산) 확인 필요"
+        ]
+      }
+    },
+    {
+      "scenario_id": "C-KB-1",
+      "taxonomy": {
+        "modality": "모순(Clash)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "C×KB"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "판매 종료 상품으로 신규 가입 계산 요청",
+      "ambiguity_description": "사용자가 요청한 상품이 KB 내 status='DISCONTINUED'로 등록된 판매 종료 상품인데, 신규 가입 기준으로 이자를 계산해달라고 요청하여 데이터 현실과 충돌.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "예전에 카카오뱅크에서 '희망 적금' 상품 있었는데, 지금도 있나요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "'희망 적금'은 현재 신규 가입이 종료된 상품이에요. 기존 가입자분들은 만기까지 유지되지만, 새로 가입하실 수는 없어요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "아, 아쉽다. 금리가 꽤 좋았던 상품이었는데. 혹시 그거 금리가 어느 정도였어요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "희망 적금은 기본 금리 연 4.5%, 우대 금리 포함 시 최대 연 5.0%까지 적용됐던 상품이에요. 지금은 유사 조건의 상품이 없어서 아쉽긴 하죠."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그 정도면 정말 좋은 금리였네요. 지금 그런 비슷한 금리 상품은 없는 건가요?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "현재 판매 중인 상품 중 가장 금리가 높은 건 정기적금으로 최대 연 3.5% 정도예요. 희망 적금만큼 높은 상품은 지금 없는 상태예요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그래도 혹시 몰라서요, 희망 적금에 월 20만 원씩 12개월 가입하면 이자가 얼마나 되는지 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "그래도 혹시 몰라서요, 희망 적금에 월 20만 원씩 12개월 가입하면 이자가 얼마나 되는지 계산해줘요.",
+      "ambiguity_reason": "Turn 2에서 '신규 가입 종료'(KB status=DISCONTINUED)임을 명확히 안내받았으나, Turn 7에서 신규 가입 전제로 이자 계산 요청. KB의 상품 상태(판매 불가)와 요청 내용(신규 가입 시 이자)이 정면 충돌. 가상 비교 계산인지, 상태를 모르는 채 요청한 것인지 의도 확인 필요.",
+      "gold_api": {
+        "api_id": "AC-03",
+        "endpoint": "POST /api/v1/calculator/savings/fixed",
+        "parameters": {
+          "product_id": "PRD-HOPE-SAVINGS-001",
+          "monthly_amount": 200000,
+          "duration_months": 12,
+          "custom_rate": 4.5,
+          "tax_type": "GENERAL"
+        },
+        "kb_clash": "product status=DISCONTINUED — 신규 가입 불가 상품으로 가입 시나리오 계산 요청",
+        "resolution": "판매 종료 상품임을 재확인하고, 가상 비교 계산 목적임을 확인한 뒤 진행"
+      }
+    },
+    {
+      "scenario_id": "C-KB-2",
+      "taxonomy": {
+        "modality": "모순(Clash)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "C×KB"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "모임통장 미보유자가 지출 분석 요청",
+      "ambiguity_description": "사용자가 모임통장과 관련한 상세 지출 분석을 요청하지만, KB에서 해당 사용자의 group_account_id 레코드가 존재하지 않아 서비스 이용 요건과 요청 내용이 충돌.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "AI 모임총무라는 기능이 있던데, 어떤 걸 할 수 있어요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "AI 모임총무는 카카오뱅크 모임통장을 가진 총무분들이 회비·지출 내역을 자동 분석해 볼 수 있는 서비스예요. 회비 현황 조회, 미납자 확인, 지출 패턴 분석 등이 가능해요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "오 편리하겠네요. 저는 동호회 총무인데, 회비 관리가 항상 힘들었거든요. 지출 분석 같은 거 어떻게 보여줘요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "카테고리별, 월별, 평일·주말 비교 등 다양한 방식으로 보여드려요. 최근 1년 이내 데이터를 기반으로 분석하고, 간단한 질문으로 원하는 항목을 바로 확인하실 수 있어요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그거 쓰려면 모임통장이 꼭 있어야 하나요? 저는 다른 은행 통장으로 관리하고 있어서요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "네, AI 모임총무는 카카오뱅크 모임통장을 보유한 경우에만 이용 가능해요. 모임통장은 카카오뱅크 앱에서 무료로 개설하실 수 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "일단 한번 써볼게요. 우리 모임 이번 달이랑 지난달 지출 비교해서 어느 달에 더 많이 썼는지 분석해줘요."
+        }
+      ],
+      "ambiguous_query": "일단 한번 써볼게요. 우리 모임 이번 달이랑 지난달 지출 비교해서 어느 달에 더 많이 썼는지 분석해줘요.",
+      "ambiguity_reason": "Turn 6에서 모임통장 보유 필요 조건이 명시됐으나, AG-06 호출 시 KB에서 해당 사용자의 group_account_id=null(모임통장 미보유). '일단 한번 써볼게요'는 개설 의사 표현이나 계좌 개설 완료 여부가 불분명. 서비스 이용 필수 조건이 KB에서 충족되지 않은 상태에서 분석 요청이 들어옴.",
+      "gold_api": {
+        "api_id": "AG-06",
+        "endpoint": "GET /api/v1/group-account/expenditures/analysis",
+        "parameters": {
+          "group_account_id": null,
+          "analysis_type": "MONTHLY",
+          "period": "LAST_3_MONTHS"
+        },
+        "kb_clash": "group_account_id=null — 모임통장 미보유 상태. 서비스 이용 요건 미충족.",
+        "missing_slots": [
+          "group_account_id — KB에 데이터 없음"
+        ],
+        "resolution": "모임통장 개설 후 서비스 이용 안내"
+      }
+    },
+    {
+      "scenario_id": "M-UU-1",
+      "taxonomy": {
+        "modality": "다중성(Multiplicity)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "M×UU"
+      },
+      "service": "AI_TRANSFER",
+      "title": "이체 대상·금액 열거 구문의 파싱 트리 분기",
+      "ambiguity_description": "'부모님이랑 동생한테 각각 다른 금액으로'라는 문장이 각자 다른 금액을 보내는 건지, 총액을 나누는 건지, 어느 대상에 어느 금액인지 통사 구조상 복수의 해석 경로로 분기.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "이번 달 부모님이랑 동생한테 용돈 드리려고 하는데, AI 이체로 한꺼번에 보낼 수 있나요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "AI 이체는 1건씩 처리되지만 연속으로 빠르게 진행하실 수 있어요. 부모님과 동생 모두 이체 이력이 있으신가요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "네, 다 있어요. 아버지는 매달 20만 원씩 드리고 있고, 어머니랑 동생은 이번에 처음 드리는 거예요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "아버지 이체 이력 확인됐어요. 어머니와 동생은 각각 이름으로 검색해 드릴게요. 어머니와 동생 성함을 알려주시겠어요?"
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "어머니는 이정숙, 동생은 김준호예요. 두 분 다 카카오뱅크예요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "이정숙 님, 김준호 님 이체 이력이 각각 확인됐어요. 세 분 모두 이체 준비가 됐습니다. 각각 보내실 금액을 알려주시겠어요?"
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "아버지는 원래대로 20만 원이고요, 어머니랑 동생한테 각각 10만 원이랑 5만 원 이체해줘요."
+        }
+      ],
+      "ambiguous_query": "아버지는 원래대로 20만 원이고요, 어머니랑 동생한테 각각 10만 원이랑 5만 원 이체해줘요.",
+      "ambiguity_reason": "Parse A: [어머니→10만원] + [동생→5만원] / Parse B: [어머니→5만원] + [동생→10만원]. '어머니랑 동생한테 각각 10만 원이랑 5만 원'이라는 구문에서 '각각'의 대응 순서가 어머니=10만원·동생=5만원인지, 어머니=5만원·동생=10만원인지 통사 구조만으로 결정 불가. 금액 배분의 대상 귀속이 분기.",
+      "gold_api": {
+        "api_id": "AT-05",
+        "endpoint": "POST /api/v1/transfer/execute",
+        "parameters_parse_A": [
+          {
+            "recipient_id": "RCPT-DAD-001",
+            "amount": 200000
+          },
+          {
+            "recipient_id": "RCPT-MOM-001",
+            "amount": 100000
+          },
+          {
+            "recipient_id": "RCPT-BROTHER-001",
+            "amount": 50000
+          }
+        ],
+        "parameters_parse_B": [
+          {
+            "recipient_id": "RCPT-DAD-001",
+            "amount": 200000
+          },
+          {
+            "recipient_id": "RCPT-MOM-001",
+            "amount": 50000
+          },
+          {
+            "recipient_id": "RCPT-BROTHER-001",
+            "amount": 100000
+          }
+        ],
+        "ambiguous_slots": [
+          "amount per recipient — 어머니와 동생 금액 귀속 순서"
+        ],
+        "resolution": "어머니 10만원, 동생 5만원 맞는지 명시적 확인 필요"
+      }
+    },
+    {
+      "scenario_id": "M-UU-2",
+      "taxonomy": {
+        "modality": "다중성(Multiplicity)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "M×UU"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기",
+      "ambiguity_description": "'예금이랑 적금 각각 이자 계산'이라는 접속 구문이 두 상품을 독립적으로 각각 계산하는 것인지, 두 상품을 조합하는 혼합 운용 시나리오인지 통사 구조상 분기.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "퇴직하고 목돈 5천만 원이 생겼어요. 예금이랑 적금 중에 어떻게 나눠 운용하는 게 좋을지 고민이에요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "두 상품 모두 안정성이 높은 상품이에요. 일반적으로 목돈은 정기예금으로 한 번에 예치하고, 여유 자금은 적금으로 분산하는 방식을 많이 사용해요. 어떤 방식을 원하세요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "3천만 원은 예금으로 묶어두고, 남은 2천만 원은 매달 나눠 적금 넣으면 어떨까요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "좋은 전략이에요! 3천만 원 정기예금과 월 납입 적금을 병행하는 거군요. 기간은 얼마나 생각하고 계세요?"
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "예금은 1년 단기로 보고, 적금은 24개월 정도 생각하고 있어요. 금리는 현재 기준으로 해주세요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "정기예금 1년(12개월), 정기적금 24개월로 준비할게요. 적금은 2천만 원을 24개월로 나누면 월 약 83만 원이 되네요. 이 기준으로 진행할까요?"
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "네, 그 기준으로 예금이랑 적금 각각 이자 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "네, 그 기준으로 예금이랑 적금 각각 이자 계산해줘요.",
+      "ambiguity_reason": "Parse A: AC-01(예금 3천만원 1년) + AC-03(적금 월 83만원 24개월) 독립적으로 각 1회 호출. Parse B: '각각'이 두 상품을 하나의 통합 시나리오로 묶어 혼합 운용 총 수익을 계산하는 단일 호출. 또한 '예금이랑 적금'의 접속 범위가 독립 계산인지 합산 계산인지 통사적으로 결정 불가.",
+      "gold_api": {
+        "parse_A_api_1": {
+          "api_id": "AC-01",
+          "endpoint": "POST /api/v1/calculator/deposit",
+          "parameters": {
+            "principal": 30000000,
+            "duration_months": 12,
+            "tax_type": "GENERAL"
+          }
+        },
+        "parse_A_api_2": {
+          "api_id": "AC-03",
+          "endpoint": "POST /api/v1/calculator/savings/fixed",
+          "parameters": {
+            "monthly_amount": 833333,
+            "duration_months": 24,
+            "tax_type": "GENERAL"
+          }
+        },
+        "ambiguous_slots": [
+          "계산 방식 (독립 2건 vs 합산 단일)",
+          "monthly_amount (정확한 적금 납입액)"
+        ],
+        "resolution": "두 상품 각각 따로 계산 후 합산 여부 확인"
+      }
+    },
+    {
+      "scenario_id": "M-DC-1",
+      "taxonomy": {
+        "modality": "다중성(Multiplicity)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "M×DC"
+      },
+      "service": "AI_TRANSFER",
+      "title": "동명이인 두 '베프' 등장 후 이체 요청",
+      "ambiguity_description": "대화 이력에서 '베프'라는 별명이 부여된 수신자가 2명 등장하여, 이후 '베프한테 이체'라는 요청에서 recipient_id를 단일로 결정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "최근에 베프들한테 이체한 내역 좀 확인해줘요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "'베프' 별명으로 등록된 이체 이력이 2건 있어요. ① 베프(김이지, 카카오뱅크) — 지난달 3월 10일 50,000원 ② 베프(이아름, 신한은행) — 3월 22일 30,000원."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "아, 둘 다 있구나. 이아름한테는 제가 밥값 먼저 냈던 거고, 김이지한테는 여행 경비 정산한 거예요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "네, 각각 밥값과 여행 경비 정산으로 이체하셨군요. 다른 도움이 필요하신 게 있으신가요?"
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "이번에 베프 생일이 있어서 선물 대신 돈으로 드리려고요. 얼마가 적당할지 고민 중이에요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "친한 친구 생일에는 보통 5만 원에서 10만 원 사이를 많이 보내세요. 어느 분 생일인지 알려주시면 빠르게 이체를 도와드릴게요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "베프한테 7만 원 보내줘요, 생일 축하 메모로요."
+        }
+      ],
+      "ambiguous_query": "베프한테 7만 원 보내줘요, 생일 축하 메모로요.",
+      "ambiguity_reason": "Turn 2에서 '베프'라는 별명으로 김이지(RCPT-KIM-001)와 이아름(RCPT-LEE-001) 두 명이 동등하게 언급됨. Turn 5~6에서 어느 베프인지 특정할 수 있는 담화 단서 없이 이체 요청. is_ambiguous=true 상태에서 recipient_id 단일 결정 불가.",
+      "gold_api": {
+        "api_id": "AT-01",
+        "endpoint": "GET /api/v1/transfer/recipients/search",
+        "parameters": {
+          "query": "베프",
+          "match_type": "ALIAS"
+        },
+        "kb_result": "candidates: [RCPT-KIM-001 (김이지), RCPT-LEE-001 (이아름)], is_ambiguous: true",
+        "next_api_pending": "AT-05 (recipient_id 확정 후)",
+        "ambiguous_slots": [
+          "recipient_id — 동일 별명에 2명 매핑"
+        ]
+      }
+    },
+    {
+      "scenario_id": "M-DC-2",
+      "taxonomy": {
+        "modality": "다중성(Multiplicity)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "M×DC"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "두 적금 상품 비교 후 '그걸로 목표 계산' 지시",
+      "ambiguity_description": "대화 이력에서 자유적금과 정기적금 두 상품이 동등하게 비교·언급된 뒤, '그 상품으로 목표 계산'이라는 지시에서 '그 상품'의 선행사가 어느 쪽인지 결정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "2년 안에 3천만 원 모으고 싶은데, 카카오뱅크 적금 상품 중에 뭐가 제일 나을까요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "2년(24개월)이라면 자유적금과 정기적금 두 가지를 고려해 볼 수 있어요. 자유적금은 납입 금액을 자유롭게 조절할 수 있고, 정기적금은 매달 고정 금액으로 더 규칙적인 저축이 가능해요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "수익률은 어떻게 달라요? 어느 게 이자가 더 많이 붙나요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "정기적금이 보통 금리가 약간 높아요. 자유적금은 연 2.8%, 정기적금은 연 3.0% 기준이에요. 3천만 원 목표, 24개월 기준으로 계산하면 자유적금은 월 약 123만 원, 정기적금은 월 약 121만 원 납입이 필요해요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "생각보다 비슷하네요. 자유적금은 납입을 자유롭게 조절할 수 있다는 장점이 있고, 정기적금은 금리가 조금 더 높은 거군요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "맞아요. 급여 변동이 있거나 지출이 불규칙하다면 자유적금이 편하고, 규칙적으로 저축하고 싶다면 정기적금을 추천드려요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그 상품으로 목표 금액을 5천만 원으로 올리면 매달 얼마씩 넣어야 하는지 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "그 상품으로 목표 금액을 5천만 원으로 올리면 매달 얼마씩 넣어야 하는지 계산해줘요.",
+      "ambiguity_reason": "Turn 2~6에서 자유적금(AC-02, PRD-SAV-FREE-001)과 정기적금(AC-03, PRD-SAV-FIXED-001)이 균형있게 비교됨. '그 상품'이 어느 쪽을 가리키는지 담화 구조상 우선 선행사가 없어 product_id 결정 불가. Turn 6에서 두 상품의 장단점이 동등하게 마무리됐기 때문에 화제 연속성 단서도 없음.",
+      "gold_api": {
+        "candidates": [
+          {
+            "api_id": "AC-05",
+            "product": "자유적금",
+            "parameters": {
+              "target_amount": 50000000,
+              "duration_months": 24,
+              "product_id": "PRD-SAV-FREE-001",
+              "savings_type": "FLEXIBLE"
+            }
+          },
+          {
+            "api_id": "AC-05",
+            "product": "정기적금",
+            "parameters": {
+              "target_amount": 50000000,
+              "duration_months": 24,
+              "product_id": "PRD-SAV-FIXED-001",
+              "savings_type": "FIXED"
+            }
+          }
+        ],
+        "ambiguous_slots": [
+          "product_id (자유적금 vs 정기적금 — '그 상품'의 선행사 불결정)"
+        ],
+        "resolution": "어느 상품 기준 계산인지 명시 요청"
+      }
+    },
+    {
+      "scenario_id": "M-KB-1",
+      "taxonomy": {
+        "modality": "다중성(Multiplicity)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "M×KB"
+      },
+      "service": "AI_TRANSFER",
+      "title": "동일 별명 '엄마' — KB에 복수 수신자 매핑",
+      "ambiguity_description": "사용자의 이체 이력 KB에서 '엄마'라는 별명에 두 개의 수신자 레코드가 매핑되어 있어 단일 recipient_id 특정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "이번 달 엄마한테 용돈 아직 못 드렸어요. AI 이체로 보내고 싶은데요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "'엄마' 별명으로 이체 이력을 검색해 드릴게요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "혹시 등록된 사람이 두 명 나오면, 친어머니 계좌예요. 예전에 시어머니도 등록한 적 있거든요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "'엄마' 별명으로 2개의 이체 이력이 확인됐어요. ① 엄마(이정숙, 국민은행, 최근 이체 2월 20일) ② 엄마(박순자, 카카오뱅크, 최근 이체 1월 5일). 말씀하신 친어머니 성함을 알려주시면 정확히 찾아드릴 수 있어요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "이정숙이 친어머니예요. 맞죠?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "이정숙 님(국민은행) 계좌로 확인됐어요. 보내실 금액을 알려주시겠어요?"
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "네, 이번 달 용돈이랑 지난 달 못 드린 것까지 해서 엄마한테 40만 원 이체해줘요."
+        }
+      ],
+      "ambiguous_query": "네, 이번 달 용돈이랑 지난 달 못 드린 것까지 해서 엄마한테 40만 원 이체해줘요.",
+      "ambiguity_reason": "Turn 4에서 '엄마' 별명에 이정숙(국민은행)과 박순자(카카오뱅크) 두 KB 엔티티가 매핑됨. Turn 5~6에서 이정숙으로 좁혀진 맥락이 있으나, Turn 7에서 다시 '엄마'라는 별명으로 재지칭하여 KB 검색 시 is_ambiguous=true 상태로 재진입. 에이전트가 Turn 6의 맥락을 유지하는지, 새 검색을 실행하는지에 따라 recipient_id 결정 방식이 달라짐.",
+      "gold_api": {
+        "api_id": "AT-05",
+        "endpoint": "POST /api/v1/transfer/execute",
+        "parameters": {
+          "recipient_id": "RCPT-LEE-JUNGSU-001",
+          "amount": 400000,
+          "source_account_id": null,
+          "memo": null,
+          "auth_token": "PENDING_USER_AUTH",
+          "idempotency_key": "PENDING"
+        },
+        "kb_result": "AT-01 candidates: 2건 (이정숙, 박순자), is_ambiguous: true — 대화 맥락(Turn 5~6)으로 이정숙 유력하나 재확인 권장",
+        "ambiguous_slots": [
+          "recipient_id — KB 복수 엔티티, 맥락 기반 추론 필요"
+        ]
+      }
+    },
+    {
+      "scenario_id": "M-KB-2",
+      "taxonomy": {
+        "modality": "다중성(Multiplicity)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "M×KB"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "'세이프박스' 검색 시 복수 버전 상품 KB 반환",
+      "ambiguity_description": "사용자가 '세이프박스'로 계산을 요청했으나 KB에 일반(PRD-SAFE-001, 연 2.5%)과 프리미엄(PRD-SAFE-002, 연 3.0%) 두 가지 상품 엔티티가 존재한다. AC-04는 product_id를 파라미터로 받지 않고 시스템이 계정 등급에 따라 applied_rate를 내부 결정하므로, 사용자 계정이 어느 등급에 해당하는지 확인되지 않으면 어느 금리로 계산될지 예측 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "세이프박스라는 상품이 정확히 어떤 건지 설명해줘요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "세이프박스는 카카오뱅크의 수시 입출금 저축 상품이에요. 일반 세이프박스는 금리 연 2.5%, 프리미엄 세이프박스는 우대 고객 기준 연 3.0%가 적용돼요. 언제든 자유롭게 입출금할 수 있고, 최소 1원부터 예치 가능해요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "오, 종류가 두 개군요. 프리미엄은 어떤 고객이 해당돼요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "프리미엄 세이프박스는 카카오뱅크 주거래 고객이나 특정 카드 실적 충족 시 자동 적용되는 우대 상품이에요. 앱에서 내 계좌 조회 시 적용 여부를 확인하실 수 있어요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "저는 카카오뱅크 카드를 쓰고 있는데, 아마 프리미엄이 해당될 것 같기도 하고. 정확히는 모르겠어요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "앱 내에서 확인이 가장 정확하지만, 일단 계산 목적이라면 일반(2.5%)과 프리미엄(3.0%) 두 기준 모두 보여드릴 수 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그러면 세이프박스에 5천만 원 예치하면 한 달에 이자가 얼마나 나오는지 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "그러면 세이프박스에 5천만 원 예치하면 한 달에 이자가 얼마나 나오는지 계산해줘요.",
+      "ambiguity_reason": "AC-04 호출 시 'SAFEBOX' 검색 결과 KB에서 PRD-SAFE-001(일반, 2.5%)과 PRD-SAFE-002(프리미엄, 3.0%) 두 엔티티 반환. 사용자가 Turn 5에서 적용 여부를 확실히 몰라 어느 product_id 기준으로 계산할지 KB 다중 엔티티 결정 불가.",
+      "gold_api": {
+        "api_id": null,
+        "undecidable_reason": "AC-04는 product_id를 파라미터로 받지 않으며, applied_rate는 시스템이 계정 등급(일반/프리미엄)에 따라 내부 결정함. KB에 두 등급 상품이 존재하나 현재 사용자의 등급이 확인되지 않아 어느 금리(2.5% vs 3.0%)가 적용될지 결정 불가.",
+        "pre_call_ambiguity": {
+          "issue": "계정 등급 미확인으로 applied_rate 예측 불가",
+          "kb_candidates": [
+            {
+              "product_id": "PRD-SAFE-001",
+              "label": "일반 세이프박스",
+              "applied_rate": 2.5
+            },
+            {
+              "product_id": "PRD-SAFE-002",
+              "label": "프리미엄 세이프박스",
+              "applied_rate": 3.0
+            }
+          ]
+        },
+        "target_api": {
+          "api_id": "AC-04",
+          "endpoint": "POST /api/v1/calculator/safebox",
+          "known_parameters": {
+            "amount": 50000000,
+            "duration_days": 30,
+            "calculation_mode": "INTEREST_FROM_AMOUNT",
+            "tax_type": "GENERAL"
+          },
+          "undetermined_output": "applied_rate — 계정 등급 확인 전까지 미결정 (2.5% 또는 3.0%)"
+        },
+        "required_info": "사용자 계정의 세이프박스 등급(일반 vs 프리미엄) 확인 후 API 호출",
+        "resolution": "앱 내 계정 등급 조회 또는 두 금리 기준 결과 모두 제시"
+      }
+    },
+    {
+      "scenario_id": "G-UU-1",
+      "taxonomy": {
+        "modality": "포괄성(Generality)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "G×UU"
+      },
+      "service": "AI_TRANSFER",
+      "title": "'돈 좀 처리해줘' — 행위 유형 전혀 미지정",
+      "ambiguity_description": "이체 관련 상황임은 맥락으로 파악되나 '처리해줘'라는 추상 동사가 이체, 취소, 조회, 예약 등 어느 구체적 행위인지 실행 타겟을 특정할 수 없을 만큼 추상적.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "친구들끼리 여행 정산을 해야 하는데, 제가 총무라 좀 복잡해졌어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "여행 정산 도와드릴게요! 여러 명에게 나눠서 이체하셔야 하는 상황인가요, 아니면 받으셔야 하는 상황인가요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "제가 숙소랑 교통비를 다 먼저 결제했고, 총 60만 원인데 4명이 나눠야 해서 각자 15만 원씩 걷어야 해요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "그렇군요! 친구들에게 15만 원씩 이체 받으셔야 하는 상황이네요. 카카오뱅크 AI 이체로는 받기는 어렵고, 보내는 것만 가능해요. 친구분들께 계좌 공유해서 직접 보내달라고 하시거나, 카카오페이 정산 기능도 활용해 볼 수 있어요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "아 그렇구나. 그러면 제가 이미 낸 친구가 한 명 있어요. 그 친구 빼고 나머지 두 명한테 달라고 해야 하는데요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "이미 정산한 친구가 한 명 계시군요. 나머지 두 분에게 요청하시면 되겠네요. 두 분 계좌로 이체 받으시려면 본인 계좌번호를 공유하시고, AI 이체 기능으로 다른 걸 도와드릴 건 없으신가요?"
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "아 그냥 이미 낸 친구한테 남은 돈 좀 처리해줘요. 제 계좌에서요."
+        }
+      ],
+      "ambiguous_query": "아 그냥 이미 낸 친구한테 남은 돈 좀 처리해줘요. 제 계좌에서요.",
+      "ambiguity_reason": "'처리해줘'라는 추상 동사가 이체(AT-05), 잔액 조회(AT-03), 이체 취소 등 어느 구체적 행위인지 특정 불가. '이미 낸 친구'도 대화 이력에서 이름·계좌 정보 없이 상황만 언급되어 recipient_id 불명. '남은 돈'도 금액 계산 방식이 불명확(60만원-15만원=45만원인지, 이미 낸 1명의 15만원인지).",
+      "gold_api": {
+        "api_id": null,
+        "candidate_apis": [
+          {
+            "api_id": "AT-05",
+            "intent": "이체 실행",
+            "endpoint": "POST /api/v1/transfer/execute",
+            "parameters": {
+              "recipient_id": null,
+              "amount": null,
+              "auth_token": "PENDING_USER_AUTH",
+              "idempotency_key": "PENDING"
+            }
+          },
+          {
+            "api_id": "AT-04",
+            "intent": "이체 가능 여부 사전 검증",
+            "endpoint": "POST /api/v1/transfer/validate",
+            "parameters": {
+              "recipient_id": null,
+              "amount": null
+            }
+          },
+          {
+            "api_id": "AT-03",
+            "intent": "출금 계좌 잔액 조회",
+            "endpoint": "GET /api/v1/transfer/accounts/balance",
+            "parameters": {
+              "account_type_filter": "CHECKING"
+            }
+          }
+        ],
+        "undecidable_reason": "'처리해줘'라는 추상 동사로 이체 실행·검증·조회 중 어느 API인지 미결정. 수신자·금액도 미특정으로 공통 파라미터도 결정 불가",
+        "common_known_params": {},
+        "missing_params": {
+          "recipient_id": "수신자 미특정",
+          "amount": "'남은 돈'의 정확한 금액 미결정"
+        },
+        "required_info": "행위 의도(이체 실행 / 잔액 확인) + 수신자 + 금액 모두 확인 필요"
+      }
+    },
+    {
+      "scenario_id": "G-UU-2",
+      "taxonomy": {
+        "modality": "포괄성(Generality)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "G×UU"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "'노후 준비 계산해줘' — 계산 대상과 방식 모두 추상적",
+      "ambiguity_description": "'노후 준비'라는 추상 목표로 인해 어떤 상품의, 어떤 조건으로, 어떤 방식의 계산을 요청하는 것인지 완전히 미지정 상태.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "요즘 노후 준비를 시작해야 할 것 같다는 생각이 드는데, 어디서부터 시작해야 할지 모르겠어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "노후 준비는 이르면 이를수록 좋아요. 카카오뱅크 금융계산기로 목표 금액을 설정하고 필요한 월 납입액을 역산해 드릴 수도 있어요. 현재 연령이나 목표 연금 월액이 있으신가요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "저 만 35세이고, 65세에 은퇴하면 30년이 남았네요. 매달 200만 원 정도 받고 싶어요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "30년간 월 200만 원 수령을 목표로 하시면 총 필요 금액은 약 7억 2천만 원이에요(물가 상승 미반영 단순 계산). 이걸 지금부터 30년간 모으려면 매월 얼마를 저축해야 할지 계산해 드릴 수 있어요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "7억이나요? 생각보다 크네요. 적금으로만 하면 힘들겠죠? 다른 방법도 있나요?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "적금 외에도 예금 단기 운용, 연금저축 등을 병행하는 방법이 있어요. 카카오뱅크에서는 예적금 이자 계산과 목표 금액 역산 계산기를 지원하고 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "일단 제 상황에서 노후 준비 얼마나 해야 하는지 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "일단 제 상황에서 노후 준비 얼마나 해야 하는지 계산해줘요.",
+      "ambiguity_reason": "'노후 준비 얼마나 해야 하는지'라는 질의가 월 납입액 역산(AC-05)인지, 목표 금액 기준 이자 계산(AC-01/AC-03)인지, 전체 필요 자산 산출인지 계산 방식 미결정. '제 상황'이라는 표현도 Turn 3의 조건(35세, 30년, 월 200만원)을 그대로 사용하는지 새 조건인지 불명확. 상품 종류, 금리, 기간도 추상적 요청으로 특정 불가.",
+      "gold_api": {
+        "api_id": "AC-05",
+        "endpoint": "POST /api/v1/calculator/savings/target",
+        "parameters": {
+          "target_amount": 720000000,
+          "duration_months": 360,
+          "product_id": null,
+          "custom_rate": null,
+          "savings_type": null
+        },
+        "missing_slots": [
+          "product_id/savings_type",
+          "custom_rate",
+          "실제 계산 방향 (월 납입 역산 vs 총자산 계산)"
+        ]
+      }
+    },
+    {
+      "scenario_id": "G-DC-1",
+      "taxonomy": {
+        "modality": "포괄성(Generality)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "G×DC"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "여러 모임 관련 질문 후 '다 정리해줘'",
+      "ambiguity_description": "대화에서 회비, 지출, 잔액 등 여러 모임통장 관련 주제가 폭넓게 거론된 뒤, '다 정리해줘'라는 포괄적 요청으로 대화 초점이 흐려져 어떤 API를 어떤 순서·범위로 호출할지 특정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "우리 모임 총무인데요, 오늘 모임 때 정산을 해야 해서 미리 상황 파악을 좀 하고 싶어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "도와드릴게요! 회비 현황, 지출 내역, 모임통장 잔액 등 어떤 부분을 먼저 확인하시겠어요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "이번 달 회비 안 낸 사람이 있는지가 제일 궁금하고요, 지난 분기 지출도 어떻게 됐는지 보고 싶어요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "이번 달 미납자는 2명(김이지, 박준혁)이 있고, 지난 분기(1~3월) 총 지출은 780,000원입니다. 주요 지출은 식비 320,000원, 회식 260,000원, 기타 200,000원이에요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "잔액은요? 지금 얼마나 남아 있는지도 봐야 할 것 같아서요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "현재 모임통장 잔액은 435,000원이에요. 이번 달 회비 미납 2명분(100,000원)이 들어오면 535,000원이 될 예정이에요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "오케이, 그러면 오늘 모임 전에 지금까지 얘기한 거 다 정리해서 한 번에 보여줘요."
+        }
+      ],
+      "ambiguous_query": "오케이, 그러면 오늘 모임 전에 지금까지 얘기한 거 다 정리해서 한 번에 보여줘요.",
+      "ambiguity_reason": "'다 정리해줘'라는 포괄적 요청이 Turn 4(회비 미납+지출)와 Turn 6(잔액) 내용의 단순 반복인지, 새로운 통합 조회인지 불명확. AG-02(잔액), AG-03(회비 현황), AG-05(지출 내역), AG-06(분석)을 각각 호출하는지, 특정 API 한 번 호출로 충분한지, 호출 순서·범위도 '다'라는 포괄 표현으로 결정 불가.",
+      "gold_api": {
+        "candidate_apis": [
+          "AG-02",
+          "AG-03",
+          "AG-05",
+          "AG-06"
+        ],
+        "parameters": {
+          "group_account_id": "GA-001"
+        },
+        "missing_slots": [
+          "API 선택 및 호출 순서",
+          "'다'의 구체적 범위 (이미 조회한 내용 반복인지, 새 조회인지)"
+        ],
+        "resolution": "이미 조회된 정보 재요약인지, 최신 데이터로 재조회인지 확인 필요"
+      }
+    },
+    {
+      "scenario_id": "G-DC-2",
+      "taxonomy": {
+        "modality": "포괄성(Generality)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "G×DC"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "여러 상품 비교 후 '제일 유리한 걸로 해줘'",
+      "ambiguity_description": "대화에서 3가지 상품의 조건이 비교된 뒤, '제일 유리한 걸로'라는 포괄적 지시가 어떤 기준(금리, 유동성, 납입 편의성 등)의 유리함인지 맥락이 흐려져 상품·API 특정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "1천만 원이 생겼는데 6개월 정도 굴릴 수 있는 상품이 뭐가 있어요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "6개월 단기 운용이라면 정기예금(6개월), 세이프박스, 자유적금 세 가지가 주요 선택지예요. 정기예금은 약정 금리로 확정 이자, 세이프박스는 수시 입출금 자유, 자유적금은 납입 유연성이 장점이에요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "각각 이자가 얼마나 나오는지 비교해줄 수 있어요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "1천만 원, 6개월 기준 세후 이자 비교예요. 정기예금(연 3.5%): 약 148,000원 / 세이프박스(연 2.5%): 약 106,000원 / 자유적금 월 166만 원 납입(연 2.8%): 약 66,000원이에요. 수익성 기준으로는 정기예금이 가장 유리해요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그렇군요. 정기예금이 이자는 제일 많긴 한데, 중간에 급히 쓸 일이 생기면 어떻게 돼요?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "정기예금은 중도 해지 시 이자가 크게 줄어요. 유동성이 필요하다면 세이프박스가 적합해요. 언제든 입출금이 자유롭고 이자는 조금 낮지만 안정적이에요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "음, 잘 모르겠는데. 그냥 제 상황에서 제일 유리한 걸로 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "음, 잘 모르겠는데. 그냥 제 상황에서 제일 유리한 걸로 계산해줘요.",
+      "ambiguity_reason": "'제일 유리한'이라는 기준이 수익성(이자 최대)인지 유동성(입출금 자유)인지 맥락에서 명확히 결정되지 않음. Turn 5~6에서 수익성과 유동성 사이에서 고민 중임을 표현했으나 최종 선택 없이 '모르겠는데'로 판단을 에이전트에게 위임. 어느 상품(API)으로 계산할지 맥락이 과도하게 넓어 특정 불가.",
+      "gold_api": {
+        "candidates": [
+          {
+            "api_id": "AC-01",
+            "product": "정기예금(6개월)",
+            "reason": "수익성 기준 최우선"
+          },
+          {
+            "api_id": "AC-04",
+            "product": "세이프박스",
+            "reason": "유동성 기준 최우선"
+          }
+        ],
+        "parameters_pending": {
+          "principal_or_amount": 10000000,
+          "duration": "6개월 또는 180일"
+        },
+        "missing_slots": [
+          "'유리함'의 기준 (수익성 vs 유동성 vs 복합)",
+          "product 선택"
+        ]
+      }
+    },
+    {
+      "scenario_id": "G-KB-1",
+      "taxonomy": {
+        "modality": "포괄성(Generality)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "G×KB"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "'대출 이자 계산해줘' — 상위 분류명으로 KB 검색 범위 과다",
+      "ambiguity_description": "사용자가 '대출'이라는 상위 분류명(Hypernym)을 사용하여 KB 검색 결과 신용대출·전월세대출·마이너스통장 등 다수 상품이 반환되고, 어느 product_id·annual_rate를 적용할지 결정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "내년에 이사를 앞두고 있는데, 부족한 금액을 대출로 충당하려고요. 카카오뱅크 대출 가능한 상품이 뭐가 있나요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "카카오뱅크 대출 상품은 크게 신용대출, 전월세보증금 대출, 마이너스통장(한도 대출) 세 가지예요. 신용대출은 신용도 기반, 전월세대출은 보증금 담보 기반이에요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "이사 보증금이 부족한 거라 전월세 대출이 맞겠네요. 그런데 친구는 신용대출이 금리가 낮을 수 있다고 하던데요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "신용등급에 따라 다르지만, 일반적으로 전월세보증금 대출은 보증기관 보증을 활용해 금리가 상대적으로 낮은 경우가 많아요. 개인 신용 점수에 따라 신용대출이 유리할 수도 있어요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "제 신용점수가 800점대인데, 그럼 어느 쪽이 더 나을까요?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "800점대면 신용대출도 괜찮은 금리로 받으실 수 있을 것 같아요. 정확한 금리는 실제 대출 신청 시 산출되니, 두 상품 모두 시뮬레이션해 보시는 걸 권해드려요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그러면 일단 대출 3천만 원 받았을 때 매달 이자가 얼마인지 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "그러면 일단 대출 3천만 원 받았을 때 매달 이자가 얼마인지 계산해줘요.",
+      "ambiguity_reason": "AC-06 호출 시 'product_type=LOAN' 검색 결과 KB에서 LOAN_CREDIT(신용대출), LOAN_JEONSE(전월세), LOAN_OVERDRAFT(마이너스통장) 다수 반환. '대출'이라는 상위 분류명으로 세부 product_id와 입도 불일치. annual_rate도 상품·신용도에 따라 상이하여 특정 불가. duration_months도 미지정.",
+      "gold_api": {
+        "api_id": null,
+        "undecidable_reason": "AC-06 호출 전 AC-10으로 대출 상품을 먼저 검색해야 하나, '대출'이라는 상위 분류명으로 AC-10을 조회하면 LOAN_CREDIT / LOAN_JEONSE / LOAN_OVERDRAFT 등 다수 상품이 반환됨. 어느 product_id와 annual_rate를 AC-06에 전달해야 할지 결정 불가.",
+        "pre_call_search": {
+          "api_id": "AC-10",
+          "endpoint": "GET /api/v1/calculator/products",
+          "parameters": {
+            "product_type": "ALL"
+          },
+          "kb_result": "LOAN_CREDIT(신용대출), LOAN_JEONSE(전월세대출), LOAN_OVERDRAFT(마이너스통장) 등 다수 반환 — 입도 불일치"
+        },
+        "target_api": {
+          "api_id": "AC-06",
+          "endpoint": "POST /api/v1/calculator/loan/repayment",
+          "known_parameters": {
+            "principal": 30000000,
+            "repayment_type": "EQUAL_PRINCIPAL_INTEREST"
+          },
+          "undetermined_parameters": {
+            "product_id": "★ null — 대출 종류 미결정",
+            "annual_rate": "★ null — 상품별 금리 상이",
+            "duration_months": "★ null — 미지정"
+          }
+        },
+        "missing_slots": [
+          "product_id (대출 종류)",
+          "annual_rate",
+          "duration_months"
+        ],
+        "resolution": "대출 종류(신용/전월세/마이너스통장) 및 상환 기간 확인 후 진행"
+      }
+    },
+    {
+      "scenario_id": "G-KB-2",
+      "taxonomy": {
+        "modality": "포괄성(Generality)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "G×KB"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "'지출 내역' 포괄 요청 — KB 필터 범위 과다",
+      "ambiguity_description": "사용자가 카테고리·기간 필터 없이 '지출 내역'이라는 상위 분류명으로 조회를 요청하여 AG-05 호출 시 period, category 필드 없이 KB 검색 범위가 과도하게 광범위해짐.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "우리 모임 돈이 생각보다 빨리 빠져나가는 것 같아서, 어디에 쓰는지 파악해보고 싶어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "지출 내역 분석을 도와드릴게요! 특정 기간이나 카테고리를 정해주시면 더 정확히 볼 수 있어요. 어느 기간을 보고 싶으세요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "그냥 전체적으로 다 보고 싶어요. 최근에 많이 쓴 것들 위주로요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "최근 3개월 기준 지출 총액은 1,240,000원이에요. 주요 항목은 식비/회식 450,000원, 숙박 380,000원, ATM 출금 240,000원, 기타 170,000원이에요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "ATM 출금이 꽤 많네요. 현금으로 어디 쓰는지 파악이 잘 안 되는 게 좀 아쉽고요. 앞으로는 카드 결제 위주로 하려고 해요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "ATM 출금은 현금 사용이라 용도 파악이 어렵죠. 카드 결제로 전환하시면 카테고리별 분석이 훨씬 정확해져요. 다른 항목들은 더 살펴보실 것 있으세요?"
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "아무튼 지출 내역 전반적으로 좀 뽑아줘요, 쭉."
+        }
+      ],
+      "ambiguous_query": "아무튼 지출 내역 전반적으로 좀 뽑아줘요, 쭉.",
+      "ambiguity_reason": "'지출 내역'이라는 상위 분류명에 '전반적으로', '쭉'이라는 포괄 부사 결합. period(THIS_MONTH/LAST_3_MONTHS/LAST_1_YEAR 등), category, limit 등 AG-05의 모든 필터 파라미터가 미지정. Turn 4에서 이미 최근 3개월 요약을 제공했으나 그것의 반복인지 더 긴 기간 상세 내역인지도 불명확.",
+      "gold_api": {
+        "api_id": "AG-05",
+        "endpoint": "GET /api/v1/group-account/expenditures",
+        "parameters": {
+          "group_account_id": "GA-001",
+          "period": null,
+          "category": null,
+          "limit": null
+        },
+        "kb_result": "period/category 미지정 시 기본값 THIS_MONTH + limit=50 적용 — 사용자 의도와 불일치 가능성 높음",
+        "missing_slots": [
+          "period ('전반적으로'의 기간 범위)",
+          "이미 본 3개월 요약의 반복인지 새 조회인지 의도 확인"
+        ]
+      }
+    },
+    {
+      "scenario_id": "F-UU-1",
+      "taxonomy": {
+        "modality": "유동성(Fluidity)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "F×UU"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "'지금 환율로 바꾸면' — 발화 시점 의존 환율의 유동성",
+      "ambiguity_description": "'지금 환율로'라는 표현이 발화 순간의 실시간 환율에 고착되어 있어, 조회 시점(t)과 실제 환전 시점 사이의 환율 변동으로 인해 결과값의 확정성이 없음.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "다음 달 일본 여행을 계획 중인데, 엔화로 환전을 얼마나 해야 할지 모르겠어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "여행 경비 계획에 따라 다르죠. 일본 여행 평균 하루 경비는 숙박 포함 5만 엔 내외로 보는 경우가 많아요. 며칠 일정이세요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "5박 6일 일정이에요. 숙박은 에어비앤비로 따로 결제하고, 식비·교통·쇼핑 등 현지 경비만 환전할 거예요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "현지 경비 기준으로 5박 6일이면 15만~20만 엔 정도 준비하는 분들이 많아요. 오늘 기준 엔화 환율은 1엔당 9.12원이니, 15만 엔이면 약 1,368,000원이에요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "요즘 엔화가 많이 올랐다고 하던데, 좀 더 기다리는 게 나을까요?"
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "환율 예측은 어렵지만, 최근 엔화 강세 추세가 이어지고 있어요. 다음 달까지 어떻게 변할지는 불확실해요. 여유가 있으시다면 조금씩 나눠서 환전하는 분할 환전 전략도 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그냥 지금 당장 환율로 20만 엔 환전하면 원화로 얼마가 필요한지, 카카오뱅크 해외송금 수수료까지 포함해서 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "그냥 지금 당장 환율로 20만 엔 환전하면 원화로 얼마가 필요한지, 카카오뱅크 해외송금 수수료까지 포함해서 계산해줘요.",
+      "ambiguity_reason": "'지금 당장 환율'이 AC-08 호출 시점(t_query)에 고착되나, 환율은 수초 단위로 변동하여 AC-09 계산 결과가 사용자가 실제 환전하는 시점(t_action)과 다를 수 있음. '지금'이 정확히 어느 t를 의미하는지 발화만으로 확정 불가. 또한 '환전'과 '해외송금'은 환율 적용 방식(매매기준율 vs 송금환율)이 달라 어느 rate를 적용해야 하는지 추가 모호성 발생.",
+      "gold_api": {
+        "api_id_1": "AC-08",
+        "endpoint_1": "GET /api/v1/calculator/exchange-rate",
+        "api_id_2": "AC-09",
+        "endpoint_2": "POST /api/v1/calculator/exchange-convert",
+        "parameters": {
+          "from_currency": "KRW",
+          "to_currency": "JPY",
+          "amount": 200000,
+          "include_remittance_fee": true
+        },
+        "fluidity_note": "applied_rate는 AC-08 호출 시각(t)에 고착. 실제 환전 시 환율 재확인 필수.",
+        "additional_ambiguity": "buy_rate(환전) vs sell_rate(송금) 중 어느 rate 적용인지 확인 필요",
+        "resolution": "조회 시각과 적용 환율 함께 고지, 환전 시점 재확인 안내"
+      }
+    },
+    {
+      "scenario_id": "F-UU-2",
+      "taxonomy": {
+        "modality": "유동성(Fluidity)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "F×UU"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "'요즘 금리로 계산해줘' — 주관적 현재 금리의 시점 의존성",
+      "ambiguity_description": "'요즘 금리'라는 표현이 특정 날짜가 아닌 주관적 현재에 고착되어 있어, 기준금리 변동이 잦은 시기에는 어느 시점의 금리를 적용해야 하는지 확정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "최근에 기준금리가 또 바뀌었다는 뉴스를 봤는데, 그러면 적금 금리도 바뀌는 건가요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "네, 기준금리 변동에 따라 예적금 금리도 조정되는 경우가 많아요. 카카오뱅크도 기준금리 변동 후 일정 기간 내에 상품 금리를 재산정해요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "그러면 지금 카카오뱅크 정기적금 금리가 정확히 어떻게 돼요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "현재 정기적금 기본 금리는 연 3.2%예요. 우대 조건(앱 가입, 카드 실적 등) 충족 시 최대 연 3.5%까지 받으실 수 있어요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "3.2%면 나쁘지 않네요. 전에는 2.8%였던 것 같은데, 많이 올랐어요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "네, 기준금리 인상 영향으로 최근 예적금 금리가 전반적으로 올랐어요. 추가 인상 여부에 따라 또 변동이 있을 수 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그럼 요즘 금리 기준으로 정기적금에 월 30만 원씩 3년 넣으면 만기에 얼마나 받을 수 있는지 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "그럼 요즘 금리 기준으로 정기적금에 월 30만 원씩 3년 넣으면 만기에 얼마나 받을 수 있는지 계산해줘요.",
+      "ambiguity_reason": "'요즘 금리'는 현재 시점(t_now)의 금리를 의미하나, 금리는 정기적으로 재산정되어 t에 따라 달라짐. Turn 4에서 '현재 3.2%'라고 했으나, 이는 Turn 4 시점의 값이며 에이전트가 AC-03을 호출하는 t_api 시점에 AC-10을 통해 재조회 시 값이 달라질 수 있음. '요즘'이 평균값인지 최신 산정값인지도 불명확.",
+      "gold_api": {
+        "api_id": "AC-03",
+        "endpoint": "POST /api/v1/calculator/savings/fixed",
+        "parameters": {
+          "product_id": "PRD-SAV-FIXED-001",
+          "monthly_amount": 300000,
+          "duration_months": 36,
+          "custom_rate": null,
+          "tax_type": "GENERAL"
+        },
+        "fluidity_note": "custom_rate 미지정 시 AC-10(금리 조회) 결과를 t_api 시점에서 가져옴. Turn 4의 3.2%와 다를 수 있음.",
+        "resolution": "AC-10으로 현재 금리 재조회 후 적용, 조회 시각과 금리 함께 명시"
+      }
+    },
+    {
+      "scenario_id": "F-DC-1",
+      "taxonomy": {
+        "modality": "유동성(Fluidity)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "F×DC"
+      },
+      "service": "AI_TRANSFER",
+      "title": "이체 진행 중 잔여 한도가 실시간 감소 — \"지금 남은 금액 전부\" 지칭 대상 이동",
+      "ambiguity_description": "세션 내에서 이체가 잇달아 실행되면서 1일 이체 한도 잔액(remaining_daily_limit)이 실시간으로 줄어드는 상황. 마지막 발화에서 '지금 남은 금액 전부'라는 지시 표현이 가리키는 값이 조회 시점(t)마다 달라지므로, 에이전트가 AT-04로 잔여 한도를 조회하는 순간과 AT-05로 이체를 실행하는 순간 사이에도 값이 변할 수 있어 이체 금액을 확정할 수 없음.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "오늘 여기저기 정산이 많아요. 지금 AI 이체 한도 얼마나 남아 있는지 확인해줘요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "오늘 현재 남은 이체 한도는 2,000,000원이에요. 아직 오늘 이체 내역이 없으세요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "우선 박민수한테 60만 원 이체해줘요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "박민수 님께 600,000원 이체 완료됐어요. 오늘 남은 이체 한도는 1,400,000원이에요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그리고 이지은한테 75만 원도 보내줘요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "이지은 님께 750,000원 이체 완료됐어요. 오늘 남은 이체 한도는 650,000원이에요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "김지수한테 지금 남은 이체 한도 전부 보내줘요."
+        }
+      ],
+      "ambiguous_query": "김지수한테 지금 남은 이체 한도 전부 보내줘요.",
+      "ambiguity_reason": "'지금 남은 이체 한도'는 AT-04 또는 AT-03을 통해 조회되는 remaining_daily_limit(t) 값으로, Turn 6 응답 시점에는 650,000원이지만 이후 다른 채널(모바일 앱, 인터넷뱅킹 등)에서 추가 이체가 발생하면 즉시 다른 값이 됨. '지금'이라는 지시어의 지칭 대상이 외부 트랜잭션 발생에 따라 계속 이동하므로, amount 파라미터로 확정할 수 있는 고정값이 존재하지 않음. 유동성의 핵심: 지칭 대상 자체가 실시간 외부 변수에 의해 연속 이동 중.",
+      "gold_api": {
+        "api_id": "AT-04",
+        "endpoint": "POST /api/v1/transfer/validate",
+        "parameters": {
+          "recipient_id": "RCPT-KIM-JISU-001",
+          "amount": null,
+          "source_account_id": null,
+          "memo": null
+        },
+        "ambiguous_slots": [
+          "amount — '지금 남은 이체 한도 전부' = remaining_daily_limit(t), 실시간 변동값"
+        ],
+        "fluidity_note": "remaining_daily_limit는 t마다 달라지는 실시간 외부 변수. 조회(t1)와 실행(t2) 사이에 다른 채널 이체 발생 시 t1≠t2. '전부'라는 표현이 가리키는 amount가 연속적으로 이동.",
+        "resolution": "AT-04로 t_now 기준 remaining_daily_limit 재조회 후 이체 실행. 단, 실행 전 재확인 고지 필요"
+      }
+    },
+    {
+      "scenario_id": "F-DC-2",
+      "taxonomy": {
+        "modality": "유동성(Fluidity)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "F×DC"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "모임 현장에서 회비 실시간 납부 중 — \"지금까지 걷힌 금액\" 지칭 대상 이동",
+      "ambiguity_description": "정기 모임 현장에서 멤버들이 실시간으로 회비를 납부하는 상황. 모임총무가 챗봇에 질문하는 사이에도 새 납부가 계속 들어오기 때문에, AG-03의 paid_total이 매 순간 달라짐. '지금까지 걷힌 금액으로'라는 지시 표현의 지칭 대상이 외부 납부 이벤트에 따라 연속적으로 이동하므로 확정값 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "오늘 정기 모임이에요. 지금 현장에서 회비 걷고 있는데, 지금까지 몇 명이 냈는지 확인해줘요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "현재 기준 7명 중 3명 납부 완료, 총 150,000원이 걷혔어요. 미납: 이아름, 박준혁, 최다운, 임지호 님."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "방금 이아름이 냈는데, 확인됐나요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "이아름 님 납부가 확인됐어요! 현재 4명 납부, 총 200,000원이에요. 미납: 박준혁, 최다운, 임지호 님."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "박준혁이도 지금 내고 있는 것 같은데, 잠깐요. 오늘 회식을 어디서 할지 예산을 정해야 해서요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "지금 이 순간 기준으로 납부 총액은 200,000원이에요. 박준혁 님 납부가 완료되면 250,000원으로 늘어날 거예요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "지금까지 걷힌 금액으로 오늘 회식 1인당 예산이 얼마나 되는지 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "지금까지 걷힌 금액으로 오늘 회식 1인당 예산이 얼마나 되는지 계산해줘요.",
+      "ambiguity_reason": "'지금까지 걷힌 금액'은 AG-03의 paid_total(t)로, 모임원들의 납부가 들어올 때마다 실시간으로 증가함. Turn 6에서 200,000원이었으나 박준혁 님이 납부 중(Turn 5)이라 조회 시점에 따라 200,000원(3인) / 250,000원(4인+) 등 다른 값이 반환될 수 있음. '지금까지'라는 시간 지시어의 지칭 대상이 외부 납부 이벤트에 의해 연속 이동 중. 에이전트가 AG-03을 호출하는 t_query 시점에 따라 분모가 달라져 1인당 예산값이 확정 불가.",
+      "gold_api": {
+        "api_id": "AG-03",
+        "endpoint": "GET /api/v1/group-account/dues/status",
+        "parameters": {
+          "group_account_id": "GA-001",
+          "year_month": "2026-04"
+        },
+        "ambiguous_slots": [
+          "paid_total — 'AG-03 응답의 paid_total(t)', 실시간 납부 이벤트에 따라 연속 증가"
+        ],
+        "fluidity_note": "paid_total은 외부 납부 이벤트 발생 시마다 즉시 갱신되는 실시간 변수. AG-03 호출 t_query마다 다른 값 반환. '지금까지 걷힌 금액'이 가리키는 대상이 연속적으로 이동 중.",
+        "resolution": "AG-03 호출 직후 paid_total 값으로 계산. 단, 납부가 진행 중임을 고지하고 확정 시점 재확인 권장"
+      }
+    },
+    {
+      "scenario_id": "F-KB-1",
+      "taxonomy": {
+        "modality": "유동성(Fluidity)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "F×KB"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "실시간 달러 환율 기준 환전 계산 — t 의존 결과값",
+      "ambiguity_description": "달러 환율이 실시간으로 변동하는 데이터이므로, 동일한 계산 요청이라도 AC-08 API 호출 시점(t)에 따라 결과값이 달라지며 '현재 환율' 기준의 계산 결과가 고착되는 순간 이미 시효가 지남.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "해외 직구로 미국 사이트에서 물건을 살 예정인데, 달러로 결제해야 해서요. 환율 좀 확인해볼 수 있어요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "물론이죠! 현재 달러(USD) 환율은 1달러당 1,342원이에요(기준 환율, 오전 10:32 기준)."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "1,342원이요. 아까 친구가 1,338원이라고 했는데 이미 올랐네요. 자주 바뀌나요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "네, 외환 시장이 열려 있는 평일 낮에는 실시간으로 변동해요. 하루에도 수십 원씩 움직이는 경우도 있어요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그렇군요. 제가 살 물건이 299달러짜리예요. 배송비까지 합치면 약 330달러 정도 될 것 같은데요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "330달러면 현재 환율 기준으로 약 442,860원이에요. 카드 결제 시 해외 결제 수수료 1~1.5%가 추가될 수 있으니 약 450,000원 정도 준비하시면 여유 있을 것 같아요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "방금 얘기한 330달러, 지금 현재 환율로 정확히 원화로 얼마인지 다시 계산해줘요. 카카오뱅크 해외송금 수수료 포함해서요."
+        }
+      ],
+      "ambiguous_query": "방금 얘기한 330달러, 지금 현재 환율로 정확히 원화로 얼마인지 다시 계산해줘요. 카카오뱅크 해외송금 수수료 포함해서요.",
+      "ambiguity_reason": "AC-08 재호출 시 applied_rate는 새 호출 시각(t_now)의 환율로 고착됨. Turn 2(1,342원)와 Turn 6(442,860원)은 이전 t 기준값이며, 사용자가 요청한 '지금 현재'는 또 다른 t. 실시간 데이터가 t마다 다른 값을 반환하여 '정확한' 현재 환율의 확정성이 없음. 또한 '해외송금 수수료'와 '해외 카드 결제 수수료'는 다른 개념으로 어느 수수료인지도 모호.",
+      "gold_api": {
+        "api_id_1": "AC-08",
+        "endpoint_1": "GET /api/v1/calculator/exchange-rate",
+        "parameters_1": {
+          "currencies": [
+            "USD"
+          ]
+        },
+        "api_id_2": "AC-09",
+        "endpoint_2": "POST /api/v1/calculator/exchange-convert",
+        "parameters_2": {
+          "from_currency": "KRW",
+          "to_currency": "USD",
+          "amount": 330,
+          "include_remittance_fee": true
+        },
+        "fluidity_note": "AC-08 호출 시각(t)마다 rate 상이. '현재'는 조회 즉시 과거가 됨.",
+        "additional_ambiguity": "해외송금 수수료(remittance_fee) vs 해외 카드 결제 수수료 중 어느 것인지 확인 필요",
+        "resolution": "조회 시각·환율 명시, 실제 결제 시 재확인 안내"
+      }
+    },
+    {
+      "scenario_id": "F-KB-2",
+      "taxonomy": {
+        "modality": "유동성(Fluidity)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "F×KB"
+      },
+      "service": "AI_TRANSFER",
+      "title": "\"첫 이체 직전 잔액\" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음",
+      "ambiguity_description": "사용자가 오늘 첫 이체를 실행하기 직전의 계좌 잔액(t_past 스냅샷)을 기준으로 남은 잔액 계산을 요청함. AT-03은 현재(t_now) 잔액만 반환하며, 특정 과거 시점의 잔액 이력은 KB에 저장되어 있지 않아 제공 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "오늘 이체를 몇 건 했는데, 처음 이체하기 전 잔액이 얼마였는지 기억이 안 나요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "현재 잔액은 확인해드릴 수 있어요. 오늘 이체 내역도 보여드릴게요. 현재 잔액은 820,000원이에요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "오늘 세 건 이체했는데, 각각 60만, 75만, 얼마인지 까먹은 게 하나 더 있어요. 총 얼마를 이체한 건지 합산이 안 돼서요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "오늘 이체 내역을 확인하면 각 건의 금액과 합계를 알 수 있어요. 오늘 이체한 총합은 1,580,000원이에요(600,000 + 750,000 + 230,000)."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그럼 오늘 이체 전 잔액이 820,000 + 1,580,000이면 2,400,000원이 맞는 건가요? 계산을 검증하고 싶어서요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "현재 잔액 820,000원에 오늘 이체 총액 1,580,000원을 더하면 이체 전 잔액은 약 2,400,000원으로 추산돼요. 다만 오늘 입금이나 다른 출금이 있었다면 달라질 수 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "오늘 첫 번째 이체(60만 원) 실행 직전 시점의 정확한 계좌 잔액을 조회해줘요."
+        }
+      ],
+      "ambiguous_query": "오늘 첫 번째 이체(60만 원) 실행 직전 시점의 정확한 계좌 잔액을 조회해줘요.",
+      "ambiguity_reason": "사용자가 요구하는 것은 오늘 첫 이체 직전 t_past 시점의 계좌 잔액 스냅샷. AT-03은 현재(t_now) 잔액만 반환하며, 과거 특정 거래 시점의 잔액 이력은 KB(잔액 DB)에 저장되어 있지 않아 조회 자체가 불가. 거래 내역(이체 금액 합산)으로 역산할 수는 있으나, 그 사이 입금이나 다른 출금이 있었다면 정확한 값을 보장할 수 없음. F×KB의 핵심: 잔액 데이터는 t_now 상태만 KB에 고착되어 있어, 사용자가 원하는 t_past 스냅샷을 제공할 수 없는 KB 구조적 한계.",
+      "gold_api": {
+        "api_id": "AT-03",
+        "endpoint": "GET /api/v1/transfer/accounts/balance",
+        "parameters": {
+          "account_type_filter": "CHECKING"
+        },
+        "kb_mismatch": "AT-03 반환값: t_now 기준 820,000원  ↔  사용자 요청: t_past(첫 이체 직전) 기준 잔액 — KB는 t_past 스냅샷 미보유",
+        "fluidity_note": "잔액 KB는 t_now 상태만 저장. 과거 특정 거래 시점의 잔액 이력(스냅샷)은 제공 불가. 계속 업데이트되는 잔액 데이터의 특정 t_past 상태를 요구하는 전형적 F×KB.",
+        "resolution": "현재 잔액 + 이체 내역 합산으로 역산 가능하나, 그 사이 입출금 여부에 따라 정확도 보장 불가 안내"
+      }
+    },
+    {
+      "scenario_id": "E-UU-3",
+      "taxonomy": {
+        "modality": "결핍(Emptiness)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "E×UU"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "모임 회비 미납자 독촉 요청 — 행위 대상·수단 생략",
+      "ambiguity_description": "미납자 정보는 대화에서 충분히 파악됐으나, '좀 해줘요'라는 발화에 행위 대상(누구에게)과 수단(어떤 방식으로)이 모두 생략되어 실행 의도를 알 수 없음.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "우리 모임 이번 달 회비 납부 현황이 어때요? 저 총무인데 좀 파악해두고 싶어서요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "이번 달(2026년 4월) 회비 현황이에요. 납부 완료: 4명(200,000원) / 미납: 2명 — 최다운, 임지호 님이 아직 납부 전입니다."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "벌써 중순인데 두 명이나 안 냈네요. 최다운은 맨날 늦게 내던 사람이고, 임지호는 이번 달 처음 늦는 거예요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "최다운 님은 지난 6개월 기준 3회 납부 지연 이력이 있어요. 임지호 님은 이번 달이 첫 지연이고요. 미납 사유를 별도로 확인하거나 독촉 안내가 필요하시면 말씀해 주세요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "아, 임지호는 그냥 깜빡한 것 같으니까 괜찮고요. 최다운은 좀 신경 쓰이네요. 지난번에도 제가 직접 연락했었거든요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "최다운 님 기준으로 이번 달 미납 회비는 50,000원이에요. 총무님이 직접 연락하시거나, 앱 내 회비 요청 기능을 활용하실 수도 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "최다운 미납 건 좀 해줘요."
+        }
+      ],
+      "ambiguous_query": "최다운 미납 건 좀 해줘요.",
+      "ambiguity_reason": "목적어('최다운 미납 건')는 명시됐으나 서술어('독촉해줘', '확인해줘', '납부 처리해줘', '내역 보여줘')가 완전히 생략됨. AG-03(현황 재조회), AG-04(대납 처리), AG-08(멤버 상세 조회) 중 어느 API를 호출해야 할지 행위 의도 판단 불가.",
+      "gold_api": {
+        "api_id": null,
+        "candidate_apis": [
+          {
+            "api_id": "AG-03",
+            "intent": "미납 현황 상세 재조회",
+            "endpoint": "GET /api/v1/group-account/dues/status",
+            "parameters": {
+              "group_account_id": "GA-001",
+              "year_month": "2026-04"
+            }
+          },
+          {
+            "api_id": "AG-08",
+            "intent": "미납 멤버 상세 정보 조회",
+            "endpoint": "GET /api/v1/group-account/members",
+            "parameters": {
+              "group_account_id": "GA-001"
+            }
+          },
+          {
+            "api_id": "AG-04",
+            "intent": "총무가 대신 회비 납부 처리",
+            "endpoint": "POST /api/v1/group-account/dues/pay",
+            "parameters": {
+              "group_account_id": "GA-001",
+              "year_month": "2026-04",
+              "amount": 50000,
+              "force_duplicate": false,
+              "auth_token": "PENDING_USER_AUTH"
+            }
+          }
+        ],
+        "undecidable_reason": "서술어('해줘')만 있고 구체적 행위(독촉 확인 / 멤버 조회 / 대납 처리) 완전 생략으로 실행할 API 미결정",
+        "common_known_params": {
+          "group_account_id": "GA-001",
+          "target_member": "최다운",
+          "year_month": "2026-04"
+        },
+        "required_info": "사용자 행위 의도(미납 현황 재조회 / 멤버 상세 조회 / 대납 처리) 확인 필요"
+      }
+    },
+    {
+      "scenario_id": "E-DC-3",
+      "taxonomy": {
+        "modality": "결핍(Emptiness)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "E×DC"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "환율 상담 중 갑작스러운 적금 지시어 등장",
+      "ambiguity_description": "이전 대화 전체가 달러 환율에 관한 것이었는데, 갑자기 '그 상품'이라는 지시어로 적금 계산을 요청하여 지시 대상이 대화 이력에 전혀 존재하지 않음.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "요즘 달러 환율이 많이 오른 것 같은데, 해외 주식 사기 전에 환율 추이 좀 확인하고 싶어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "현재 달러 기준 환율은 1달러당 1,345원이에요(오전 11:02 기준). 최근 3개월간 1,300원대 초반에서 1,350원대 사이를 오가고 있어요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "1,345원이면 꽤 높네요. 혹시 엔화나 유로화도 함께 볼 수 있어요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "물론이죠! 현재 환율이에요. 엔화(JPY): 1엔당 9.08원 / 유로(EUR): 1유로당 1,462원입니다."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "유로가 생각보다 강하네요. 유럽 ETF도 고려해볼 만하겠어요. 환율 리스크는 좀 있겠지만요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "유로 강세 시기에 유럽 자산에 투자하면 환차손 리스크가 있어요. 반대로 이후 유로가 약세가 되면 환차익도 기대할 수 있고요. 장기 분산 투자 관점에서 접근하시는 게 좋아요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "맞아요. 그나저나 그 상품으로 월 20만 원씩 2년 이자 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "맞아요. 그나저나 그 상품으로 월 20만 원씩 2년 이자 계산해줘요.",
+      "ambiguity_reason": "Turn 1~6 전체가 환율 조회·분석 대화였으며, 어떤 저축 상품도 언급된 적 없음. '그 상품'의 선행사가 대화 이력 어디에도 존재하지 않는 Context Emptiness. product_id 및 계산 API(AC-01/02/03) 특정 불가.",
+      "gold_api": {
+        "api_id": "AC-02",
+        "endpoint": "POST /api/v1/calculator/savings/flexible",
+        "parameters": {
+          "product_id": null,
+          "monthly_amount": 200000,
+          "duration_months": 24,
+          "custom_rate": null,
+          "tax_type": "GENERAL"
+        },
+        "ambiguous_slots": [
+          "product_id"
+        ],
+        "missing_slots": [
+          "product_id — '그 상품'의 선행사가 대화 이력에 존재하지 않음"
+        ]
+      }
+    },
+    {
+      "scenario_id": "E-KB-3",
+      "taxonomy": {
+        "modality": "결핍(Emptiness)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "E×KB"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "회비 금액 미설정 상태에서 납부 요청",
+      "ambiguity_description": "사용자가 이번 달 회비 납부를 요청하지만, 해당 모임통장 KB 레코드에 dues_amount가 설정되어 있지 않아 amount 슬롯을 자동으로 채울 수 없음.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "저희 산악 동호회 모임통장 총무를 맡았는데요, AI 모임총무 기능을 처음 써봐요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "환영해요! AI 모임총무로 회비 현황, 지출 내역, 잔액 조회 등을 도와드릴 수 있어요. 먼저 모임통장 기본 정보를 확인해 드릴까요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "네, 좋아요. 그리고 매달 회비를 걷고 있는데, 이번 달 분도 제가 먼저 납부해두려고요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "모임통장 기본 정보를 확인했어요. 산악 동호회 모임통장, 현재 잔액 132,500원, 멤버 7명이 확인되네요. 이번 달 회비 납부를 도와드릴게요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "저희 회비가 매달 조금씩 달라지는 편이에요. 등산 코스나 비용에 따라 그때그때 정해서요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "아, 그렇군요. 모임통장 설정에 고정 회비가 등록되어 있지 않은 상태예요. 이번 달 회비 금액을 말씀해 주시면 납부를 진행해 드릴게요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "이번 달 회비 납부해줘요. 제 주 계좌에서 빠져나가면 돼요."
+        }
+      ],
+      "ambiguous_query": "이번 달 회비 납부해줘요. 제 주 계좌에서 빠져나가면 돼요.",
+      "ambiguity_reason": "AG-04 호출 시 amount 슬롯을 KB의 dues_amount로 자동 채우려 하나 dues_amount=null(미설정). Turn 6에서 금액을 물어봤음에도 Turn 7에서 금액 없이 납부 요청. 필수 파라미터 amount를 KB에서도, 사용자 발화에서도 얻을 수 없어 실행 불가.",
+      "gold_api": {
+        "api_id": "AG-04",
+        "endpoint": "POST /api/v1/group-account/dues/pay",
+        "parameters": {
+          "group_account_id": "GA-HIKING-001",
+          "year_month": "2026-04",
+          "amount": null,
+          "source_account_id": "PRIMARY",
+          "force_duplicate": false,
+          "auth_token": "PENDING_USER_AUTH"
+        },
+        "kb_result": "dues_amount: null (고정 회비 미설정)",
+        "missing_slots": [
+          "amount — KB dues_amount 부재, 사용자도 금액 미제공"
+        ]
+      }
+    },
+    {
+      "scenario_id": "C-UU-3",
+      "taxonomy": {
+        "modality": "모순(Clash)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "C×UU"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "만기 전 전액 출금하면서 만기 이자 동시 요구",
+      "ambiguity_description": "'중도 해지'(만기 전 전액 출금)와 '만기 이자 전액 수령'이라는 두 속성이 동일 문장 안에 공존하여 논리적으로 상충.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "작년에 가입한 정기적금이 6개월 남은 상태인데, 갑자기 목돈이 급하게 필요해졌어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "정기적금을 중도 해지하시면 약정 금리 대신 중도해지 금리(일반적으로 기본 금리의 50~60% 수준)가 적용되어 이자가 줄어들어요. 얼마나 급하게 필요하신지에 따라 방법이 달라질 수 있어요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "사실 일부만 빼는 게 가능하면 그게 낫겠죠? 전부 해지하긴 아까워서요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "정기적금은 부분 인출이 불가해요. 전액 해지하거나 만기까지 유지하는 것 중 하나를 선택하셔야 해요. 필요한 금액에 따라 마이너스통장이나 소액 신용대출로 임시 방편을 쓰시는 분들도 있어요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "마이너스통장은 한도 문제가 있을 것 같고요. 가입 당시 조건이 연 3.5%, 24개월이었는데, 지금까지 18개월 넣었어요. 월 50만 원씩이고요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "18개월 납입(총 원금 900만 원) 기준 중도해지 시 중도해지 금리 적용 이자를 계산해 드릴 수 있어요. 아니면 6개월 더 유지했을 때 만기 수령액과 비교해 드릴 수도 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "지금 전액 해지하되, 만기까지 유지했을 때 이자를 다 받는 걸로 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "지금 전액 해지하되, 만기까지 유지했을 때 이자를 다 받는 걸로 계산해줘요.",
+      "ambiguity_reason": "'지금 전액 해지'(= 중도해지, 만기 전 종료)와 '만기까지 유지했을 때 이자를 다 받는 걸로'(= 만기 이자 전액 적용)는 상호 배타적 전제. 중도해지이면 만기 이자 불가, 만기 이자이면 해지 불가. 두 조건이 동시에 명시된 논리적 충돌.",
+      "gold_api": {
+        "api_id": "AC-03",
+        "endpoint": "POST /api/v1/calculator/savings/fixed",
+        "parameters": {
+          "product_id": "PRD-SAV-FIXED-001",
+          "monthly_amount": 500000,
+          "duration_months": 24,
+          "custom_rate": 3.5,
+          "tax_type": "GENERAL"
+        },
+        "clash_elements": [
+          "'지금 전액 해지'(중도해지 금리 적용) AND '만기 이자 전액 수령'(약정 금리 적용) — 상호 배타적 전제 충돌"
+        ],
+        "resolution": "중도해지 계산(실제 수령액)과 만기 유지 계산(비교용)을 각각 제시하는 방식으로 의도 확인 필요"
+      }
+    },
+    {
+      "scenario_id": "C-DC-3",
+      "taxonomy": {
+        "modality": "모순(Clash)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "C×DC"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "지출 없다고 확인 후 '지난달 지출 내역' 재요청",
+      "ambiguity_description": "직전 대화에서 특정 기간 지출 내역이 없다고 명확히 확인됐는데, 바로 다음 발화에서 같은 기간 지출 내역을 요청하여 대화 공통 기반이 붕괴.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "우리 모임이 지난달에 지출이 좀 있었던 것 같은데, 확인 좀 해줄 수 있어요?"
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "지난달(2026년 3월) 모임통장 지출 내역을 확인했어요. 3월에는 출금 거래가 전혀 없었어요. 잔액은 기초와 동일하게 유지됐고요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "어, 정말요? 분명 회식 한 번 했었는데. 혹시 다른 계좌에서 결제한 건지 모르겠어요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "모임통장 기준으로는 3월 지출이 없어요. 개인 카드나 다른 계좌에서 결제하셨다면 모임통장엔 반영이 안 돼요. 2월 내역도 확인해 드릴까요?"
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "2월은요? 2월에 뭔가 나간 게 있었는지 볼게요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "2026년 2월 지출 내역이에요. 2월 14일 음식점 결제 87,000원, 2월 28일 ATM 출금 50,000원으로 총 2건, 137,000원이에요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "아 그렇구나. 그럼 3월 지출 내역 상세하게 뽑아줘요."
+        }
+      ],
+      "ambiguous_query": "아 그렇구나. 그럼 3월 지출 내역 상세하게 뽑아줘요.",
+      "ambiguity_reason": "Turn 2에서 '3월 지출 없음'이 명확히 확인됐음. 그러나 Turn 7에서 '3월 지출 내역 상세 조회'를 재요청하여 이미 합의된 사실(지출 없음)과 현재 발화가 배치됨. AG-05 호출 시 결과가 빈 배열로 예측되나, 사용자가 다른 의도(새 지출 발생 후 재확인? 착각?)인지 불분명하여 단순 실행 불가.",
+      "gold_api": {
+        "api_id": "AG-05",
+        "endpoint": "GET /api/v1/group-account/expenditures",
+        "parameters": {
+          "group_account_id": "GA-001",
+          "period": "CUSTOM",
+          "start_date": "2026-03-01",
+          "end_date": "2026-03-31",
+          "category": null,
+          "limit": 50
+        },
+        "clash_elements": [
+          "Turn 2: 3월 지출 = 0건",
+          "Turn 7: 3월 지출 내역 상세 조회 요청 — 대화 사실과 충돌"
+        ],
+        "resolution": "3월 지출 없음 재안내 후 재조회 의도(새 지출 발생 가능성) 또는 다른 월 확인 여부 확인"
+      }
+    },
+    {
+      "scenario_id": "C-KB-3",
+      "taxonomy": {
+        "modality": "모순(Clash)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "C×KB"
+      },
+      "service": "AI_TRANSFER",
+      "title": "본인 계좌로 이체 요청 — KB 수신 계좌 = 출금 계좌 충돌",
+      "ambiguity_description": "사용자가 지정한 수신 계좌가 KB에서 본인의 출금 계좌와 동일하여, 자기 자신에게 이체하는 논리적으로 무의미한 작업이 요청됨.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "카카오뱅크 앱에 제 계좌가 여러 개 있는데, 이 중에 하나로 돈을 옮기고 싶어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "카카오뱅크 계좌 간 이체는 AI 이체 서비스로 가능해요! 보내실 계좌와 받으실 계좌, 그리고 금액을 알려주시면 바로 진행해 드릴게요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "출금 계좌는 입출금 통장으로 하고, 지금 파킹통장이나 다른 데 넣어둘까 하는데, 어느 쪽이 나을지 모르겠어요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "단기 여유 자금이라면 파킹통장(세이프박스)이, 일정 기간 묶어둘 수 있다면 정기예금이 좋아요. 지금 얼마를 옮기실 예정인가요?"
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "100만 원 정도요. 파킹이 편하긴 한데, 그냥 이 입출금 통장에 좀 더 쌓아두는 것도 나쁘지 않을 것 같고요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "입출금 통장에 그냥 두시는 것도 물론 가능해요. 파킹통장으로 옮기시면 소액이지만 이자를 받으실 수 있고요. 어느 계좌로 이체할지 결정되시면 알려주세요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그냥 지금 이 입출금 통장으로 100만 원 이체해줘요."
+        }
+      ],
+      "ambiguous_query": "그냥 지금 이 입출금 통장으로 100만 원 이체해줘요.",
+      "ambiguity_reason": "AT-04 검증 시 KB에서 source_account_id(입출금 통장)와 destination_account(이 입출금 통장)가 동일 계좌로 확인됨. 자기 계좌로 자기 계좌에 이체하는 것은 금융 시스템상 의미 없는 작업이며 규정 충돌. 다른 계좌를 의도했으나 잘못 지칭한 것인지 확인 필요.",
+      "gold_api": {
+        "api_id": "AT-04",
+        "endpoint": "POST /api/v1/transfer/validate",
+        "parameters": {
+          "recipient_id": "ACC-CHECKING-001",
+          "amount": 1000000,
+          "source_account_id": "ACC-CHECKING-001",
+          "memo": null
+        },
+        "kb_clash": "source_account_id == destination_account_id — 동일 계좌 자기이체 규정 충돌",
+        "expected_error": "SAME_ACCOUNT_TRANSFER",
+        "resolution": "출금 계좌와 수신 계좌가 동일함을 안내하고 실제 수신 계좌 재확인 필요"
+      }
+    },
+    {
+      "scenario_id": "M-UU-3",
+      "taxonomy": {
+        "modality": "다중성(Multiplicity)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "M×UU"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "'대출이랑 적금 이자 비교' — 접속 구조 범위 분기",
+      "ambiguity_description": "'대출 이자랑 적금 이자 비교'라는 구문이 두 이자를 독립 계산 후 비교하는 것인지, 대출 상환 중 적금 병행 시 순이익을 계산하는 것인지 통사적으로 분기.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "지금 신용대출이 2천만 원 남아 있는 상태에서 적금을 새로 드는 게 맞는 건지 모르겠어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "좋은 고민이에요! 대출 이자율이 적금 금리보다 높으면 대출 상환을 먼저 하는 게 수학적으로 유리하지만, 저축 습관 형성이나 긴급 자금 확보 측면에서 병행하는 경우도 많아요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "대출 금리가 연 5.2%이고, 적금 금리가 연 3.2%니까 단순 비교로는 대출 갚는 게 낫겠죠?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "맞아요. 대출 이자율(5.2%)이 적금 금리(3.2%)보다 높아서, 같은 금액을 적금 납입하는 것보다 대출 상환에 쓰는 게 수익률이 높아요. 세후 기준으로 차이가 더 벌어지기도 해요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "그렇군요. 그래도 매달 30만 원씩은 적금을 넣고 싶거든요. 심리적으로 저축이 되는 느낌이 있어서요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "그 마음 충분히 이해해요. 30만 원 적금 납입하면서 나머지는 대출 상환에 집중하는 혼합 전략도 괜찮아요. 어느 쪽이 더 유리한지 수치로 비교해 드릴 수 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "대출 2천만 원에 연 5.2%, 60개월 상환이랑 적금 월 30만 원 24개월 연 3.2% 이자 비교해줘요."
+        }
+      ],
+      "ambiguous_query": "대출 2천만 원에 연 5.2%, 60개월 상환이랑 적금 월 30만 원 24개월 연 3.2% 이자 비교해줘요.",
+      "ambiguity_reason": "Parse A: AC-06(대출 상환 계획)과 AC-02(적금 이자)를 각각 독립 계산 후 비교 → 2회 호출. Parse B: 대출 상환하면서 적금 병행 시 '순 손익'을 하나의 시뮬레이션으로 계산 → 통합 단일 계산. '비교'라는 동사가 두 독립 결과의 나열인지 차액 계산인지 통사적으로 분기.",
+      "gold_api": {
+        "parse_A_api_1": {
+          "api_id": "AC-06",
+          "endpoint": "POST /api/v1/calculator/loan/repayment",
+          "parameters": {
+            "principal": 20000000,
+            "annual_rate": 5.2,
+            "duration_months": 60,
+            "repayment_type": "EQUAL_PRINCIPAL_INTEREST"
+          }
+        },
+        "parse_A_api_2": {
+          "api_id": "AC-02",
+          "endpoint": "POST /api/v1/calculator/savings/flexible",
+          "parameters": {
+            "monthly_amount": 300000,
+            "duration_months": 24,
+            "custom_rate": 3.2,
+            "tax_type": "GENERAL"
+          }
+        },
+        "ambiguous_slots": [
+          "계산 방식 (독립 2건 비교 vs 병행 순손익 통합 계산)"
+        ],
+        "resolution": "각각 독립 계산 후 비교 제시, 순손익 계산 여부 추가 확인"
+      }
+    },
+    {
+      "scenario_id": "M-DC-3",
+      "taxonomy": {
+        "modality": "다중성(Multiplicity)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "M×DC"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "두 기간 지출 비교 후 '그때' 재지칭",
+      "ambiguity_description": "대화에서 2월과 3월 두 기간의 지출이 동등하게 비교된 뒤, '그때 지출 상세 내역'이라는 표현에서 '그때'가 어느 월인지 대화 맥락상 선행사가 두 개로 분기.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "우리 모임 최근 두 달 지출을 비교해보고 싶어요. 2월이랑 3월이요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "2월 vs 3월 지출 비교예요. 2월: 총 5건, 합계 437,000원 / 3월: 총 3건, 합계 620,000원. 3월이 건수는 적지만 금액이 더 컸어요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "3월에 한 번에 많이 쓴 게 있나 보네요. 2월은 골고루 썼던 것 같고요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "맞아요. 3월은 3월 22일 숙박 결제 한 건이 480,000원으로 지출 대부분을 차지해요. 2월은 식비·교통·소모품 등 소액이 골고루 분포되어 있고요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "2월은 어떤 항목들이 있었어요? 카테고리별로 보면요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "2월 카테고리별 내역이에요. 식비 180,000원(2건), 교통비 87,000원(1건), 소모품 구입 92,000원(1건), ATM 출금 78,000원(1건)이에요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그때 지출 상세 내역 전체를 날짜 순으로 뽑아줘요."
+        }
+      ],
+      "ambiguous_query": "그때 지출 상세 내역 전체를 날짜 순으로 뽑아줘요.",
+      "ambiguity_reason": "Turn 2에서 2월과 3월이 동등하게 비교됨. Turn 4~6에서 2월과 3월이 번갈아 화제가 됨. Turn 6 직전(Turn 5~6)이 2월 조회였으나, '그때'가 가장 최근 화제(2월)인지, 가장 높은 지출이 있던 달(3월)인지, 처음 비교 요청의 기준(2월)인지 담화 구조상 결정 불가.",
+      "gold_api": {
+        "api_id": "AG-05",
+        "endpoint": "GET /api/v1/group-account/expenditures",
+        "parameters": {
+          "group_account_id": "GA-001",
+          "period": "CUSTOM",
+          "start_date": null,
+          "end_date": null,
+          "category": null,
+          "limit": 50
+        },
+        "ambiguous_slots": [
+          "start_date",
+          "end_date"
+        ],
+        "missing_slots": [
+          "'그때' 기준 월 — 2월(Turn 6 직전 화제) vs 3월(대액 지출) 결정 불가"
+        ]
+      }
+    },
+    {
+      "scenario_id": "M-KB-3",
+      "taxonomy": {
+        "modality": "다중성(Multiplicity)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "M×KB"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "'청년 적금' 검색 시 복수 KB 상품 엔티티 반환",
+      "ambiguity_description": "'청년 적금'이라는 검색어로 KB를 조회하면 청년 대상 적금 상품이 여러 개 반환되어 단일 product_id 특정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "저 만 27세인데, 청년 대상 적금 상품이 따로 있나요? 금리 우대 같은 게 있다고 들었는데요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "네, 카카오뱅크에 청년 대상 적금 상품이 있어요! 가입 연령 조건과 금리 우대 혜택이 다르니, 조건을 좀 더 확인해 드릴게요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "금리가 얼마나 되는지, 그리고 납입 한도는 어떻게 되는지 궁금해요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "청년 대상 상품은 조건에 따라 다른데요. '청년희망 적금'은 연 최대 5.0%(정부 지원 포함), 월 최대 50만 원 한도예요. '청년 자유적금'은 연 3.5%, 월 최대 30만 원으로 납입이 자유로워요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "청년희망 적금이 금리가 높네요. 근데 정부 지원이 따로 있다는 게 복잡해 보이기도 하고요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "청년희망 적금은 정부 지원 이자가 별도로 붙어서 실제 수령 시 추가 이익이 있지만, 근로·사업소득 증빙 등 가입 요건이 있어요. 청년 자유적금은 요건이 더 간단해요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "일단 청년 적금으로 월 30만 원씩 2년 넣으면 만기 수령액이 얼마인지 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "일단 청년 적금으로 월 30만 원씩 2년 넣으면 만기 수령액이 얼마인지 계산해줘요.",
+      "ambiguity_reason": "KB 검색어 '청년 적금'으로 AC-10 조회 시 PRD-YOUTH-HOPE(청년희망 적금, 5.0%)와 PRD-YOUTH-FREE(청년 자유적금, 3.5%) 두 엔티티 반환. Turn 4~6에서 두 상품이 동등하게 소개됐고 사용자가 어느 쪽인지 최종 선택 없이 '청년 적금'이라는 상위 표현으로 재지칭. product_id 결정 불가.",
+      "gold_api": {
+        "api_id": "AC-03",
+        "endpoint": "POST /api/v1/calculator/savings/fixed",
+        "parameters": {
+          "product_id": null,
+          "monthly_amount": 300000,
+          "duration_months": 24,
+          "custom_rate": null,
+          "tax_type": "GENERAL"
+        },
+        "kb_result": "candidates: [PRD-YOUTH-HOPE(5.0%), PRD-YOUTH-FREE(3.5%)], is_ambiguous: true",
+        "ambiguous_slots": [
+          "product_id — 청년 적금 복수 KB 엔티티"
+        ],
+        "resolution": "두 상품 중 어느 쪽 기준 계산인지 선택 요청, 또는 두 결과 모두 제시"
+      }
+    },
+    {
+      "scenario_id": "G-UU-3",
+      "taxonomy": {
+        "modality": "포괄성(Generality)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "G×UU"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "'모임통장 관리해줘' — 행위 유형과 대상 모두 추상적",
+      "ambiguity_description": "'관리해줘'라는 초추상적 동사가 회비 납부, 지출 분석, 잔액 조회, 멤버 관리 등 어느 구체적 행위인지 특정할 수 없을 만큼 광범위.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "다음 주에 정기 모임이 있어서 미리 모임통장 상황을 점검하고 싶어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "물론이죠! 잔액 확인, 회비 현황, 지출 내역 등 어떤 부분부터 확인할까요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "일단 잔액이랑 이번 달 회비 미납자 현황이 제일 급해요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "현재 잔액 215,000원이에요. 이번 달 회비 미납자는 3명 — 박재현, 오수진, 한동훈 님이에요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "3명이나 미납이면 좀 부담이네요. 다음 주 모임 회식 예산이 30만 원 정도 잡혀 있는데 부족할 것 같아요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "지금 잔액 215,000원에 미납 3명분 회비가 들어오면 최대 365,000원까지 확보 가능해요. 30만 원 예산은 어느 정도 맞출 수 있지만 빠듯해요. 미납자에게 독촉하거나 추가 납입을 고려해 보실 수 있어요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그냥 모임통장 관리 좀 해줘요."
+        }
+      ],
+      "ambiguous_query": "그냥 모임통장 관리 좀 해줘요.",
+      "ambiguity_reason": "'관리'라는 초추상 동사가 AG-01(기본 정보), AG-02(잔액), AG-03(회비), AG-04(납부), AG-05(지출), AG-06(분석), AG-08(멤버) 중 어느 것도 아닌 포괄적 지시. Turn 1~6의 대화 맥락에서 잔액·미납·예산이 모두 언급됐으나 '관리'가 이 중 특정 항목을 가리키는지, 전체를 통합 처리하는지, 새 행위인지 실행 타겟 특정 불가.",
+      "gold_api": {
+        "candidate_apis": [
+          "AG-02",
+          "AG-03",
+          "AG-04",
+          "AG-05"
+        ],
+        "parameters": {
+          "group_account_id": "GA-001"
+        },
+        "missing_slots": [
+          "action_type — '관리'의 구체적 행위 유형 미결정"
+        ],
+        "resolution": "원하는 작업(미납 독촉, 지출 정리, 잔액 재확인 등) 구체적으로 확인 필요"
+      }
+    },
+    {
+      "scenario_id": "G-DC-3",
+      "taxonomy": {
+        "modality": "포괄성(Generality)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "G×DC"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "여러 계산 조건 논의 후 '좋은 쪽으로 해줘'",
+      "ambiguity_description": "대화에서 예금·세이프박스·적금 세 상품의 조건과 장단점이 넓게 거론된 뒤, '좋은 쪽으로'라는 주관적·포괄적 지시로 대화 초점이 완전히 흐려져 어느 상품을 어떤 조건으로 계산할지 특정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "곧 상여금이 500만 원 들어올 것 같은데, 어디에 넣어두면 좋을지 고민이에요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "500만 원 단기 운용이라면 세이프박스(수시 입출금), 정기예금(약정 기간), 자유적금(월 분할) 세 가지가 선택지예요. 기간을 얼마나 묶어두실 수 있어요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "6개월~1년 정도는 안 써도 될 것 같아요. 긴급 상황이 생길 수도 있으니 너무 오래 묶긴 싫고요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "그렇다면 6개월 정기예금(연 3.5%)이 안정적으로 높은 이자를 드릴 수 있어요. 세이프박스는 유동성은 좋지만 금리가 낮고, 자유적금은 월 분할이라 500만 원 전부를 바로 운용하기엔 비효율적이에요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "예금이 그나마 낫겠네요. 혹시 세이프박스도 한번 비교해 볼 수 있어요? 긴급 상황에서 유리할 것 같아서요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "500만 원 6개월 기준이에요. 정기예금(3.5%): 세후 이자 약 88,000원 / 세이프박스(2.5%): 세후 이자 약 52,800원(180일). 수익성은 예금이 우세해요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "음, 딱히 모르겠어요. 그냥 좋은 쪽으로 계산해줘요."
+        }
+      ],
+      "ambiguous_query": "음, 딱히 모르겠어요. 그냥 좋은 쪽으로 계산해줘요.",
+      "ambiguity_reason": "'좋은 쪽'의 기준이 수익성(예금 우세)인지 유동성(세이프박스 우세)인지 대화 맥락에서 결정되지 않음. Turn 5에서 유동성 필요성을 언급했으나 Turn 6에서 수익성 기준 비교 후 '모르겠다'며 판단을 에이전트에 위임. 어느 API(AC-01 vs AC-04)를, 어떤 파라미터로 호출할지 대화 초점이 완전히 흐려져 결정 불가.",
+      "gold_api": {
+        "candidates": [
+          {
+            "api_id": "AC-01",
+            "product": "정기예금 6개월",
+            "reason": "수익성 기준 최우선"
+          },
+          {
+            "api_id": "AC-04",
+            "product": "세이프박스 180일",
+            "reason": "유동성 기준 최우선"
+          }
+        ],
+        "parameters_pending": {
+          "amount": 5000000,
+          "duration": "6개월/180일"
+        },
+        "missing_slots": [
+          "'좋음'의 기준 (수익성 vs 유동성)",
+          "product 선택 — 맥락 초점 소실"
+        ]
+      }
+    },
+    {
+      "scenario_id": "G-KB-3",
+      "taxonomy": {
+        "modality": "포괄성(Generality)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "G×KB"
+      },
+      "service": "AI_TRANSFER",
+      "title": "'최근 이체 내역' 포괄 조회 — KB 필터 범위 과다",
+      "ambiguity_description": "사용자가 기간·금액·수신자 등 구체적 필터 없이 '최근 이체 내역'이라는 상위 수준의 요청을 하여 AT-02 호출 시 limit, 기간 등 검색 범위가 지나치게 광범위해짐.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "지난 몇 달간 여기저기 보낸 돈이 좀 많았던 것 같아서, 전체적으로 어떻게 됐는지 보고 싶어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "최근 이체 내역 조회를 도와드릴게요! 기간이나 금액 기준이 있으신가요?"
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "딱히 기준은 없어요. 그냥 얼마나 보냈는지 감을 잡고 싶어서요. 특히 큰 금액들이요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "최근 3개월 기준으로 보여드릴까요? 아니면 더 긴 기간을 원하세요?"
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "3개월이면 좀 짧은 것 같고요, 올해 들어서 전부 다 보고 싶어요. 1월부터 지금까지요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "올해 1월부터 현재까지 이체 내역을 확인해 드릴게요. 잠시만요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "아, 근데 그냥 최근 이체 내역 쭉 뽑아줘요."
+        }
+      ],
+      "ambiguous_query": "아, 근데 그냥 최근 이체 내역 쭉 뽑아줘요.",
+      "ambiguity_reason": "Turn 5에서 '1월부터 지금까지' 기간 조회를 명시했는데, Turn 7에서 다시 '그냥 최근'이라는 포괄적 표현으로 번복. AT-02의 limit 파라미터(기본 20건)가 Turn 5의 연초 기준과 맞는지, 기본값으로 가장 최근 20건만 반환하는 건지, 기간이 Turn 5 기준으로 유지되는지 모두 불명확. '최근'이라는 상위 시간 표현으로 KB 검색 범위가 과다하게 열림.",
+      "gold_api": {
+        "api_id": "AT-02",
+        "endpoint": "GET /api/v1/transfer/recipients/recent",
+        "parameters": {
+          "limit": null,
+          "include_alias": true
+        },
+        "missing_slots": [
+          "limit — '최근'의 범위가 기본값 20건인지, Turn 5에서 요청한 '연초(1월)부터 전체'인지 미결정. AT-02는 limit(건수)만 지원하며 날짜 기반 필터는 없음."
+        ],
+        "kb_note": "AT-02는 limit(최대 건수)와 include_alias만 지원. 날짜 범위 필터가 없어 '연초부터 전체' 조회는 AT-02로 불가. limit=None 기본값(20건)이 Turn 5의 '연초 기준' 의도와 불일치."
+      }
+    },
+    {
+      "scenario_id": "F-UU-3",
+      "taxonomy": {
+        "modality": "유동성(Fluidity)",
+        "element": "사용자 발화(User Utterance)",
+        "code": "F×UU"
+      },
+      "service": "AI_TRANSFER",
+      "title": "'오늘 남은 한도로' — 잔여 이체 한도의 실시간 가변성",
+      "ambiguity_description": "'오늘 남은 이체 한도만큼'이라는 표현이 조회 시점(t)의 remaining_daily_limit에 고착되어 있어, 이체 금액이 실시간으로 변동하는 값에 의존하여 확정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "오늘 이미 친구한테 50만 원 이체했는데, 오늘 한도가 얼마나 남았는지 확인해줘요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "오늘 이미 500,000원 이체하셨고, 1일 한도 200만 원 기준으로 오늘 남은 한도는 1,500,000원이에요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "150만 원이 남아 있군요. 부모님께 각각 용돈 드리려고 하는데, 두 분 합해서 딱 떨어지게 드리고 싶어요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "부모님 두 분께 나눠서 드리려면 150만 원을 어떻게 나눌지 알려주시면 바로 진행해 드릴게요. 두 분 모두 이체 이력이 있으신가요?"
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "네, 두 분 다 있어요. 아버지는 좀 더 드리고 싶고, 어머니는 조금 적게 드리려고요. 비율은 아직 모르겠어요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "예를 들어 아버지 100만 원, 어머니 50만 원 비율도 가능하고 자유롭게 조절하실 수 있어요. 원하시는 금액 비율을 정해 주시면 두 건을 순차로 처리해 드릴게요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그냥 오늘 남은 한도 전부를 아버지랑 어머니한테 7:3 비율로 이체해줘요."
+        }
+      ],
+      "ambiguous_query": "그냥 오늘 남은 한도 전부를 아버지랑 어머니한테 7:3 비율로 이체해줘요.",
+      "ambiguity_reason": "'오늘 남은 한도'는 AT-04 검증 시점(t_validate)의 remaining_daily_limit에 고착. Turn 2 조회 시점(1,500,000원)과 실제 이체 실행 시점(t_execute) 사이에 다른 이체가 발생하면 값이 달라짐. 또한 '전부'라는 표현이 t_validate 시점 값(가변)을 기준으로 하므로 amount가 실시간 변동에 종속.",
+      "gold_api": {
+        "api_id": "AT-04",
+        "endpoint": "POST /api/v1/transfer/validate",
+        "parameters": {
+          "recipient_id": "RCPT-DAD-001",
+          "amount": null,
+          "source_account_id": null,
+          "memo": null
+        },
+        "fluidity_note": "remaining_daily_limit는 t_validate 시점에 고착. Turn 2의 1,500,000원은 이미 과거 값으로 현재와 다를 수 있음.",
+        "ambiguous_slots": [
+          "amount — '오늘 남은 한도' 전부 = t 의존 가변값"
+        ],
+        "resolution": "AT-04 재조회로 현재 잔여 한도 확인 후 7:3 비율 계산(1,050,000원 / 450,000원) 적용, 조회 시각 고지"
+      }
+    },
+    {
+      "scenario_id": "F-DC-3",
+      "taxonomy": {
+        "modality": "유동성(Fluidity)",
+        "element": "대화 문맥(Dialogue Context)",
+        "code": "F×DC"
+      },
+      "service": "AI_CALCULATOR",
+      "title": "세이프박스 이자 실시간 누적 중 — \"지금 쌓인 이자만큼\" 지칭 대상 이동",
+      "ambiguity_description": "세이프박스 이자는 일 단위로 계산되어 매일 조금씩 누적됨. '지금 쌓인 이자만큼 출금해줘'라는 발화에서 지칭 대상인 누적 이자(AC-04 계산값)가 날짜가 지날수록 계속 늘어나는 외부 시간 변수에 의존하므로, 질문 시점과 실행 시점 사이에도 값이 달라져 amount 확정 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "세이프박스에 5천만 원 넣어뒀는데, 이자가 얼마나 쌓이고 있는지 궁금해요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "연 2.5% 기준으로 5천만 원을 예치하면 하루 이자는 세후 약 2,897원이에요. 매일 이만큼씩 누적돼요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "지금 이번 달 들어서 며칠이 지났는지에 따라 이자가 다를 텐데, 현재까지 이번 달에 쌓인 이자가 얼마예요?"
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "오늘까지 이번 달 18일이 경과했어요. 18일치 세후 이자는 약 52,146원이에요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "내일이 되면 또 하루치가 더 붙는 거죠? 이자가 생각보다 천천히 쌓이네요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "네, 매일 약 2,897원씩 추가돼요. 한 달(30일) 전체 기준 세후 이자는 약 86,910원이에요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "지금까지 쌓인 이자 금액만큼 세이프박스에서 꺼내서 이체하고 싶어요. 지금 기준으로 얼마예요?"
+        }
+      ],
+      "ambiguous_query": "지금까지 쌓인 이자 금액만큼 세이프박스에서 꺼내서 이체하고 싶어요. 지금 기준으로 얼마예요?",
+      "ambiguity_reason": "'지금까지 쌓인 이자'는 날짜가 지날수록 매일 약 2,897원씩 증가하는 연속 변수. Turn 4에서 18일치 52,146원이라고 했으나, 자정이 지나면 19일치 55,043원이 되고 이후에도 계속 늘어남. 에이전트가 AC-04로 이자를 계산하는 t_query 시점의 duration_days에 따라 결과값이 달라짐. '지금'이라는 지시어의 지칭 대상이 외부 시간 변수(날짜 경과)에 의해 연속적으로 이동 중. 이를 기반으로 AT-05의 amount를 확정할 수 없음.",
+      "gold_api": {
+        "api_id": "AC-04",
+        "endpoint": "POST /api/v1/calculator/safebox",
+        "parameters": {
+          "amount": 50000000,
+          "duration_days": null,
+          "calculation_mode": "INTEREST_FROM_AMOUNT",
+          "tax_type": "GENERAL"
+        },
+        "ambiguous_slots": [
+          "duration_days — '지금까지'의 경과 일수 = 외부 시간 변수에 따라 연속 이동"
+        ],
+        "fluidity_note": "duration_days는 API 호출 시각(t)의 date에 의존. 자정 경계를 넘으면 값이 달라짐. '지금까지 쌓인 이자'가 가리키는 금액이 연속적으로 이동 중.",
+        "next_api": "AT-05 (출금 실행, amount = AC-04 결과값에 의존)",
+        "resolution": "AC-04로 t_now 기준 경과일 계산 후 이자액 확정. 자정 전후 시점 주의 안내"
+      }
+    },
+    {
+      "scenario_id": "F-KB-3",
+      "taxonomy": {
+        "modality": "유동성(Fluidity)",
+        "element": "지식 베이스(Knowledge Base)",
+        "code": "F×KB"
+      },
+      "service": "AI_GROUP_TREASURER",
+      "title": "\"모임통장 개설 당시 잔액\" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음",
+      "ambiguity_description": "사용자가 모임통장을 처음 개설했을 당시의 초기 잔액(t_past 스냅샷)을 기준으로 현재까지의 변동을 파악하려 함. AG-02는 현재(t_now) 잔액만 반환하며, 개설 시점의 잔액 이력은 KB에 저장되어 있지 않아 제공 불가.",
+      "conversation": [
+        {
+          "turn": 1,
+          "role": "user",
+          "content": "우리 모임통장을 만든 지 1년이 됐어요. 그동안 돈이 어떻게 흘러갔는지 전체적으로 파악하고 싶어요."
+        },
+        {
+          "turn": 2,
+          "role": "assistant",
+          "content": "현재 모임통장 잔액은 435,000원이에요. 최근 1년 지출 총액은 2,340,000원, 입금 총액은 회비 기준 3,600,000원이에요."
+        },
+        {
+          "turn": 3,
+          "role": "user",
+          "content": "처음 만들었을 때 초기 잔액이 있었는지도 궁금한데요. 친구가 시드머니를 넣었다고 했는데요."
+        },
+        {
+          "turn": 4,
+          "role": "assistant",
+          "content": "현재 기준으로는 지금 잔액과 최근 1년 거래 내역만 확인 가능해요. 개설 당시 초기 입금 기록은 시스템 보관 범위에 따라 달라져요."
+        },
+        {
+          "turn": 5,
+          "role": "user",
+          "content": "만약 처음 잔액을 알 수 있으면, 1년 동안 순수하게 얼마나 모이고 썼는지 정확히 계산할 수 있을 것 같아서요."
+        },
+        {
+          "turn": 6,
+          "role": "assistant",
+          "content": "1년 기준 총 입금(회비+기타)과 총 지출의 차이로 순 변동액을 계산해드릴 수 있어요. 다만 개설 당시 초기 잔액까지 포함한 정확한 비교는 초기 값이 있어야 해요."
+        },
+        {
+          "turn": 7,
+          "role": "user",
+          "content": "그럼 1년 전 모임통장을 처음 개설했을 때의 초기 잔액을 조회해줘요."
+        }
+      ],
+      "ambiguous_query": "그럼 1년 전 모임통장을 처음 개설했을 때의 초기 잔액을 조회해줘요.",
+      "ambiguity_reason": "사용자가 요구하는 것은 1년 전 모임통장 개설 시점(t_past)의 잔액 스냅샷. AG-02는 현재(t_now) 잔액(435,000원)만 반환하며, 개설 당시 t_past의 잔액 상태는 KB(잔액 이력)에 저장되어 있지 않음. 잔액 DB는 '현재 상태'만 고착하여 보유하는 구조이므로, 과거 특정 시점의 스냅샷(개설 당시 0원 또는 시드머니 금액)을 조회하는 것이 불가. F×KB의 핵심: 계속 갱신되는 잔액 데이터가 t_now에 고착되어 있어, 사용자가 원하는 t_past의 초기 잔액 상태를 KB에서 가져올 수 없음.",
+      "gold_api": {
+        "api_id": "AG-02",
+        "endpoint": "GET /api/v1/group-account/balance",
+        "parameters": {
+          "group_account_id": "GA-001"
+        },
+        "kb_mismatch": "AG-02 반환값: t_now 기준 435,000원  ↔  사용자 요청: t_past(개설 당시) 기준 초기 잔액 — KB는 t_past 스냅샷 미보유",
+        "fluidity_note": "모임통장 잔액 KB는 t_now 상태만 보유. 개설 당시 초기 잔액(t_past) 스냅샷은 보관되지 않음. 계속 업데이트되는 잔액 데이터의 특정 과거 상태를 요구하는 전형적 F×KB.",
+        "resolution": "최근 1년 거래 내역 역산으로 추정 가능하나, 1년 이전 거래 이력 부재 시 정확한 개설 당시 잔액 제공 불가 안내"
+      }
+    }
+  ]
+}

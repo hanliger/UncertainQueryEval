@@ -1,0 +1,258 @@
+{
+  "E-DC-1": {
+    "ambiguity_score": 0.5603,
+    "clarity_score": 0.4397,
+    "dimension_ambiguity_scores": {
+      "information_sufficiency": 0.6667,
+      "context_determinacy": 0.4964
+    }
+  },
+  "E-DC-2": {
+    "ambiguity_score": 0.1783,
+    "clarity_score": 0.8217,
+    "dimension_ambiguity_scores": {
+      "information_sufficiency": 0.1944,
+      "context_determinacy": 0.1686
+    }
+  },
+  "C-UU-1": {
+    "ambiguity_score": 0.0543,
+    "clarity_score": 0.9457,
+    "dimension_ambiguity_scores": {
+      "information_coherence": 0.0417,
+      "utterance_completeness": 0.0619
+    }
+  },
+  "C-UU-2": {
+    "ambiguity_score": 0.1652,
+    "clarity_score": 0.8348,
+    "dimension_ambiguity_scores": {
+      "information_coherence": 0.25,
+      "utterance_completeness": 0.1143
+    }
+  },
+  "C-DC-1": {
+    "ambiguity_score": 0.3125,
+    "clarity_score": 0.6875,
+    "dimension_ambiguity_scores": {
+      "information_coherence": 0.25,
+      "context_determinacy": 0.35
+    }
+  },
+  "C-DC-2": {
+    "ambiguity_score": 0.375,
+    "clarity_score": 0.625,
+    "dimension_ambiguity_scores": {
+      "information_coherence": 0.125,
+      "context_determinacy": 0.525
+    }
+  },
+  "C-KB-1": {
+    "ambiguity_score": 0.5871,
+    "clarity_score": 0.4129,
+    "dimension_ambiguity_scores": {
+      "information_coherence": 0.4583,
+      "kb_alignment": 0.6643
+    }
+  },
+  "C-KB-2": {
+    "ambiguity_score": 0.4688,
+    "clarity_score": 0.5312,
+    "dimension_ambiguity_scores": {
+      "information_coherence": 0.125,
+      "kb_alignment": 0.675
+    }
+  },
+  "M-UU-1": {
+    "ambiguity_score": 0.216,
+    "clarity_score": 0.784,
+    "dimension_ambiguity_scores": {
+      "interpretation_singularity": 0.27,
+      "utterance_completeness": 0.1619
+    }
+  },
+  "M-UU-2": {
+    "ambiguity_score": 0.2917,
+    "clarity_score": 0.7083,
+    "dimension_ambiguity_scores": {
+      "interpretation_singularity": 0.3833,
+      "utterance_completeness": 0.2
+    }
+  },
+  "G-UU-1": {
+    "ambiguity_score": 0.5179,
+    "clarity_score": 0.4821,
+    "dimension_ambiguity_scores": {
+      "request_specificity": 1,
+      "utterance_completeness": 0.2286
+    }
+  },
+  "G-UU-2": {
+    "ambiguity_score": 0.1853,
+    "clarity_score": 0.8147,
+    "dimension_ambiguity_scores": {
+      "request_specificity": 0.3571,
+      "utterance_completeness": 0.0821
+    }
+  },
+  "G-DC-1": {
+    "ambiguity_score": 0.2946,
+    "clarity_score": 0.7054,
+    "dimension_ambiguity_scores": {
+      "request_specificity": 0.369,
+      "context_determinacy": 0.25
+    }
+  },
+  "G-DC-2": {
+    "ambiguity_score": 0.1835,
+    "clarity_score": 0.8165,
+    "dimension_ambiguity_scores": {
+      "request_specificity": 0.0893,
+      "context_determinacy": 0.24
+    }
+  },
+  "G-KB-1": {
+    "ambiguity_score": 0.9115,
+    "clarity_score": 0.0885,
+    "dimension_ambiguity_scores": {
+      "request_specificity": 1,
+      "kb_alignment": 0.8583
+    }
+  },
+  "G-KB-2": {
+    "ambiguity_score": 0.5246,
+    "clarity_score": 0.4754,
+    "dimension_ambiguity_scores": {
+      "request_specificity": 0.7857,
+      "kb_alignment": 0.3679
+    }
+  },
+  "F-DC-1": {
+    "ambiguity_score": 0.5094,
+    "clarity_score": 0.4906,
+    "dimension_ambiguity_scores": {
+      "temporal_determinacy": 0.9167,
+      "context_determinacy": 0.265
+    }
+  },
+  "F-DC-2": {
+    "ambiguity_score": 0.8344,
+    "clarity_score": 0.1656,
+    "dimension_ambiguity_scores": {
+      "temporal_determinacy": 1,
+      "context_determinacy": 0.735
+    }
+  },
+  "F-KB-2": {
+    "ambiguity_score": 0.4382,
+    "clarity_score": 0.5618,
+    "dimension_ambiguity_scores": {
+      "temporal_determinacy": 0.6667,
+      "kb_alignment": 0.3012
+    }
+  },
+  "E-UU-3": {
+    "ambiguity_score": 0.1104,
+    "clarity_score": 0.8896,
+    "dimension_ambiguity_scores": {
+      "information_sufficiency": 0.1991,
+      "utterance_completeness": 0.0571
+    }
+  },
+  "E-DC-3": {
+    "ambiguity_score": 0.25,
+    "clarity_score": 0.75,
+    "dimension_ambiguity_scores": {
+      "information_sufficiency": 0.1667,
+      "context_determinacy": 0.3
+    }
+  },
+  "E-KB-3": {
+    "ambiguity_score": 0.6858,
+    "clarity_score": 0.3142,
+    "dimension_ambiguity_scores": {
+      "information_sufficiency": 0.662,
+      "kb_alignment": 0.7
+    }
+  },
+  "C-UU-3": {
+    "ambiguity_score": 0.1057,
+    "clarity_score": 0.8943,
+    "dimension_ambiguity_scores": {
+      "information_coherence": 0.0833,
+      "utterance_completeness": 0.119
+    }
+  },
+  "C-KB-3": {
+    "ambiguity_score": 0.3594,
+    "clarity_score": 0.6406,
+    "dimension_ambiguity_scores": {
+      "information_coherence": 0.2083,
+      "kb_alignment": 0.45
+    }
+  },
+  "M-DC-3": {
+    "ambiguity_score": 0.3324,
+    "clarity_score": 0.6676,
+    "dimension_ambiguity_scores": {
+      "interpretation_singularity": 0.2333,
+      "context_determinacy": 0.4314
+    }
+  },
+  "M-KB-3": {
+    "ambiguity_score": 0.6637,
+    "clarity_score": 0.3363,
+    "dimension_ambiguity_scores": {
+      "interpretation_singularity": 0.7667,
+      "kb_alignment": 0.5607
+    }
+  },
+  "G-UU-3": {
+    "ambiguity_score": 0.2634,
+    "clarity_score": 0.7366,
+    "dimension_ambiguity_scores": {
+      "request_specificity": 0.3214,
+      "utterance_completeness": 0.2286
+    }
+  },
+  "G-DC-3": {
+    "ambiguity_score": 0.1656,
+    "clarity_score": 0.8344,
+    "dimension_ambiguity_scores": {
+      "request_specificity": 0.0476,
+      "context_determinacy": 0.2364
+    }
+  },
+  "G-KB-3": {
+    "ambiguity_score": 0.5089,
+    "clarity_score": 0.4911,
+    "dimension_ambiguity_scores": {
+      "request_specificity": 0.619,
+      "kb_alignment": 0.4429
+    }
+  },
+  "F-UU-3": {
+    "ambiguity_score": 0.5513,
+    "clarity_score": 0.4487,
+    "dimension_ambiguity_scores": {
+      "temporal_determinacy": 0.7639,
+      "utterance_completeness": 0.4238
+    }
+  },
+  "F-DC-3": {
+    "ambiguity_score": 0.5938,
+    "clarity_score": 0.4062,
+    "dimension_ambiguity_scores": {
+      "temporal_determinacy": 0.9167,
+      "context_determinacy": 0.4
+    }
+  },
+  "F-KB-3": {
+    "ambiguity_score": 0.5841,
+    "clarity_score": 0.4159,
+    "dimension_ambiguity_scores": {
+      "temporal_determinacy": 0.8333,
+      "kb_alignment": 0.4345
+    }
+  }
+}

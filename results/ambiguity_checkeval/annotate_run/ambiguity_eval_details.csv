@@ -1,0 +1,379 @@
+mode,scenario_id,dimension,taxonomy_code,taxonomy_modality,taxonomy_element,expected_questions,answered_count,yes_count,score,parse_ok,title
+matched,E-UU-1,information_sufficiency,E×UU,결핍(Emptiness),사용자 발화(User Utterance),6,6,6,1,True,생일 축하금 이체 — 핵심 서술어 완전 생략
+matched,E-UU-1,information_sufficiency,E×UU,결핍(Emptiness),사용자 발화(User Utterance),9,9,9,1,True,생일 축하금 이체 — 핵심 서술어 완전 생략
+matched,E-UU-1,information_sufficiency,E×UU,결핍(Emptiness),사용자 발화(User Utterance),8,8,5,0.625,True,생일 축하금 이체 — 핵심 서술어 완전 생략
+matched,E-UU-1,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,생일 축하금 이체 — 핵심 서술어 완전 생략
+matched,E-UU-1,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),6,6,6,1,True,생일 축하금 이체 — 핵심 서술어 완전 생략
+matched,E-UU-1,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),7,7,7,1,True,생일 축하금 이체 — 핵심 서술어 완전 생략
+matched,E-UU-1,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),8,8,8,1,True,생일 축하금 이체 — 핵심 서술어 완전 생략
+matched,E-UU-1,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,생일 축하금 이체 — 핵심 서술어 완전 생략
+matched,E-UU-2,information_sufficiency,E×UU,결핍(Emptiness),사용자 발화(User Utterance),6,6,4,0.6666666666666666,True,목돈 운용 상담 중 계산 행위 생략
+matched,E-UU-2,information_sufficiency,E×UU,결핍(Emptiness),사용자 발화(User Utterance),9,9,8,0.8888888888888888,True,목돈 운용 상담 중 계산 행위 생략
+matched,E-UU-2,information_sufficiency,E×UU,결핍(Emptiness),사용자 발화(User Utterance),8,8,5,0.625,True,목돈 운용 상담 중 계산 행위 생략
+matched,E-UU-2,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),7,7,3,0.42857142857142855,True,목돈 운용 상담 중 계산 행위 생략
+matched,E-UU-2,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),6,6,6,1,True,목돈 운용 상담 중 계산 행위 생략
+matched,E-UU-2,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),7,7,7,1,True,목돈 운용 상담 중 계산 행위 생략
+matched,E-UU-2,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),8,8,7,0.875,True,목돈 운용 상담 중 계산 행위 생략
+matched,E-UU-2,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),7,7,7,1,True,목돈 운용 상담 중 계산 행위 생략
+matched,E-DC-1,information_sufficiency,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),6,6,6,1,True,이체 한도 조회 후 맥락 없는 수신자 지칭
+matched,E-DC-1,information_sufficiency,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),9,9,7,0.7777777777777778,True,이체 한도 조회 후 맥락 없는 수신자 지칭
+matched,E-DC-1,information_sufficiency,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),8,8,5,0.625,True,이체 한도 조회 후 맥락 없는 수신자 지칭
+matched,E-DC-1,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,이체 한도 조회 후 맥락 없는 수신자 지칭
+matched,E-DC-1,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),8,8,7,0.875,True,이체 한도 조회 후 맥락 없는 수신자 지칭
+matched,E-DC-1,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),5,5,5,1,True,이체 한도 조회 후 맥락 없는 수신자 지칭
+matched,E-DC-1,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),5,5,5,1,True,이체 한도 조회 후 맥락 없는 수신자 지칭
+matched,E-DC-1,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),4,4,4,1,True,이체 한도 조회 후 맥락 없는 수신자 지칭
+matched,E-DC-2,information_sufficiency,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),6,6,6,1,True,연간 지출 합계만 확인 후 '그달 내역' 지칭
+matched,E-DC-2,information_sufficiency,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),9,9,2,0.2222222222222222,True,연간 지출 합계만 확인 후 '그달 내역' 지칭
+matched,E-DC-2,information_sufficiency,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),8,8,5,0.625,True,연간 지출 합계만 확인 후 '그달 내역' 지칭
+matched,E-DC-2,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,연간 지출 합계만 확인 후 '그달 내역' 지칭
+matched,E-DC-2,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),8,8,5,0.625,True,연간 지출 합계만 확인 후 '그달 내역' 지칭
+matched,E-DC-2,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),5,5,5,1,True,연간 지출 합계만 확인 후 '그달 내역' 지칭
+matched,E-DC-2,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),5,5,5,1,True,연간 지출 합계만 확인 후 '그달 내역' 지칭
+matched,E-DC-2,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),4,4,4,1,True,연간 지출 합계만 확인 후 '그달 내역' 지칭
+matched,E-KB-1,information_sufficiency,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),6,6,6,1,True,이체 이력 없는 신규 수신자 이름으로 이체 요청
+matched,E-KB-1,information_sufficiency,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),9,9,8,0.8888888888888888,True,이체 이력 없는 신규 수신자 이름으로 이체 요청
+matched,E-KB-1,information_sufficiency,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),8,8,5,0.625,True,이체 이력 없는 신규 수신자 이름으로 이체 요청
+matched,E-KB-1,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),7,7,5,0.7142857142857143,True,이체 이력 없는 신규 수신자 이름으로 이체 요청
+matched,E-KB-1,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),8,8,0,0,True,이체 이력 없는 신규 수신자 이름으로 이체 요청
+matched,E-KB-1,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),8,8,4,0.5,True,이체 이력 없는 신규 수신자 이름으로 이체 요청
+matched,E-KB-1,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),6,6,6,1,True,이체 이력 없는 신규 수신자 이름으로 이체 요청
+matched,E-KB-1,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),6,6,1,0.16666666666666666,True,이체 이력 없는 신규 수신자 이름으로 이체 요청
+matched,E-KB-2,information_sufficiency,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),6,6,6,1,True,출시 예정 신상품으로 이자 계산 요청 — 금리 미적재
+matched,E-KB-2,information_sufficiency,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),9,9,6,0.6666666666666666,True,출시 예정 신상품으로 이자 계산 요청 — 금리 미적재
+matched,E-KB-2,information_sufficiency,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),8,8,5,0.625,True,출시 예정 신상품으로 이자 계산 요청 — 금리 미적재
+matched,E-KB-2,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),7,7,2,0.2857142857142857,True,출시 예정 신상품으로 이자 계산 요청 — 금리 미적재
+matched,E-KB-2,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),8,8,7,0.875,True,출시 예정 신상품으로 이자 계산 요청 — 금리 미적재
+matched,E-KB-2,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),8,8,8,1,True,출시 예정 신상품으로 이자 계산 요청 — 금리 미적재
+matched,E-KB-2,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),6,6,6,1,True,출시 예정 신상품으로 이자 계산 요청 — 금리 미적재
+matched,E-KB-2,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),6,6,1,0.16666666666666666,True,출시 예정 신상품으로 이자 계산 요청 — 금리 미적재
+matched,C-UU-1,information_coherence,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,6,0.75,True,이미 해지한 적금 만기 이자 재계산 요청
+matched,C-UU-1,information_coherence,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,5,0.625,True,이미 해지한 적금 만기 이자 재계산 요청
+matched,C-UU-1,information_coherence,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,3,0.375,True,이미 해지한 적금 만기 이자 재계산 요청
+matched,C-UU-1,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,이미 해지한 적금 만기 이자 재계산 요청
+matched,C-UU-1,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),6,6,6,1,True,이미 해지한 적금 만기 이자 재계산 요청
+matched,C-UU-1,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),7,7,7,1,True,이미 해지한 적금 만기 이자 재계산 요청
+matched,C-UU-1,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,2,0.25,True,이미 해지한 적금 만기 이자 재계산 요청
+matched,C-UU-1,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),7,7,1,0.14285714285714285,True,이미 해지한 적금 만기 이자 재계산 요청
+matched,C-UU-2,information_coherence,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,5,0.625,True,1일 한도 확인 직후 한도 초과 금액 이체 요청
+matched,C-UU-2,information_coherence,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,1,0.125,True,1일 한도 확인 직후 한도 초과 금액 이체 요청
+matched,C-UU-2,information_coherence,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,3,0.375,True,1일 한도 확인 직후 한도 초과 금액 이체 요청
+matched,C-UU-2,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,1일 한도 확인 직후 한도 초과 금액 이체 요청
+matched,C-UU-2,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),6,6,6,1,True,1일 한도 확인 직후 한도 초과 금액 이체 요청
+matched,C-UU-2,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,1일 한도 확인 직후 한도 초과 금액 이체 요청
+matched,C-UU-2,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,3,0.375,True,1일 한도 확인 직후 한도 초과 금액 이체 요청
+matched,C-UU-2,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),7,7,5,0.7142857142857143,True,1일 한도 확인 직후 한도 초과 금액 이체 요청
+matched,C-DC-1,information_coherence,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,7,0.875,True,이체 완료 확인 후 '방금 이체 취소' 요청
+matched,C-DC-1,information_coherence,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,4,0.5,True,이체 완료 확인 후 '방금 이체 취소' 요청
+matched,C-DC-1,information_coherence,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,8,1,True,이체 완료 확인 후 '방금 이체 취소' 요청
+matched,C-DC-1,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,이체 완료 확인 후 '방금 이체 취소' 요청
+matched,C-DC-1,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,7,0.875,True,이체 완료 확인 후 '방금 이체 취소' 요청
+matched,C-DC-1,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),5,5,5,1,True,이체 완료 확인 후 '방금 이체 취소' 요청
+matched,C-DC-1,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),5,5,5,1,True,이체 완료 확인 후 '방금 이체 취소' 요청
+matched,C-DC-1,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),4,4,4,1,True,이체 완료 확인 후 '방금 이체 취소' 요청
+matched,C-DC-2,information_coherence,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,7,0.875,True,36개월로 계산 완료 후 '방금 24개월 기준' 잘못 지칭
+matched,C-DC-2,information_coherence,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,1,0.125,True,36개월로 계산 완료 후 '방금 24개월 기준' 잘못 지칭
+matched,C-DC-2,information_coherence,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,8,1,True,36개월로 계산 완료 후 '방금 24개월 기준' 잘못 지칭
+matched,C-DC-2,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,36개월로 계산 완료 후 '방금 24개월 기준' 잘못 지칭
+matched,C-DC-2,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,7,0.875,True,36개월로 계산 완료 후 '방금 24개월 기준' 잘못 지칭
+matched,C-DC-2,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),5,5,5,1,True,36개월로 계산 완료 후 '방금 24개월 기준' 잘못 지칭
+matched,C-DC-2,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),5,5,5,1,True,36개월로 계산 완료 후 '방금 24개월 기준' 잘못 지칭
+matched,C-DC-2,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),4,4,4,1,True,36개월로 계산 완료 후 '방금 24개월 기준' 잘못 지칭
+matched,C-KB-1,information_coherence,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,6,0.75,True,판매 종료 상품으로 신규 가입 계산 요청
+matched,C-KB-1,information_coherence,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,4,0.5,True,판매 종료 상품으로 신규 가입 계산 요청
+matched,C-KB-1,information_coherence,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,1,0.125,True,판매 종료 상품으로 신규 가입 계산 요청
+matched,C-KB-1,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),7,7,2,0.2857142857142857,True,판매 종료 상품으로 신규 가입 계산 요청
+matched,C-KB-1,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,1,0.125,True,판매 종료 상품으로 신규 가입 계산 요청
+matched,C-KB-1,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,4,0.5,True,판매 종료 상품으로 신규 가입 계산 요청
+matched,C-KB-1,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),6,6,1,0.16666666666666666,True,판매 종료 상품으로 신규 가입 계산 요청
+matched,C-KB-1,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),6,6,1,0.16666666666666666,True,판매 종료 상품으로 신규 가입 계산 요청
+matched,C-KB-2,information_coherence,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,7,0.875,True,모임통장 미보유자가 지출 분석 요청
+matched,C-KB-2,information_coherence,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,7,4,0.5714285714285714,True,모임통장 미보유자가 지출 분석 요청
+matched,C-KB-2,information_coherence,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,8,1,True,모임통장 미보유자가 지출 분석 요청
+matched,C-KB-2,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),7,7,6,0.8571428571428571,True,모임통장 미보유자가 지출 분석 요청
+matched,C-KB-2,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,6,0.75,True,모임통장 미보유자가 지출 분석 요청
+matched,C-KB-2,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,8,1,True,모임통장 미보유자가 지출 분석 요청
+matched,C-KB-2,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),6,6,6,1,True,모임통장 미보유자가 지출 분석 요청
+matched,C-KB-2,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),6,6,3,0.5,True,모임통장 미보유자가 지출 분석 요청
+matched,M-UU-1,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),4,4,4,1,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-1,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),5,5,5,1,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-1,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),6,6,6,1,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-1,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),4,4,4,1,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-1,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),5,5,5,1,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-1,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-1,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),6,6,6,1,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-1,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),7,7,7,1,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-1,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),8,8,7,0.875,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-1,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,이체 대상·금액 열거 구문의 파싱 트리 분기
+matched,M-UU-2,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),4,4,4,1,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-UU-2,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),5,5,5,1,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-UU-2,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),6,6,6,1,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-UU-2,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),4,4,4,1,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-UU-2,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),5,5,5,1,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-UU-2,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-UU-2,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),6,6,6,1,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-UU-2,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),7,7,7,1,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-UU-2,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),8,8,8,1,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-UU-2,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),7,7,7,1,True,'예금이랑 적금 비교 계산' — 접속 구조의 통사적 해석 분기
+matched,M-DC-1,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),4,4,4,1,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-1,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-1,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),6,6,6,1,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-1,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),4,4,4,1,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-1,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-1,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-1,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),8,8,7,0.875,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-1,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-1,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-1,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),4,4,4,1,True,동명이인 두 '베프' 등장 후 이체 요청
+matched,M-DC-2,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),4,4,4,1,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-DC-2,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-DC-2,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),6,6,6,1,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-DC-2,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),4,4,4,1,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-DC-2,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-DC-2,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-DC-2,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),8,8,5,0.625,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-DC-2,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-DC-2,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-DC-2,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),4,4,4,1,True,두 적금 상품 비교 후 '그걸로 목표 계산' 지시
+matched,M-KB-1,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),4,4,4,1,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-1,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),5,5,5,1,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-1,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),6,6,6,1,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-1,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),4,4,4,1,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-1,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),5,5,0,0,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-1,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),7,7,7,1,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-1,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),8,8,6,0.75,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-1,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),8,8,6,0.75,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-1,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),6,6,6,1,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-1,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),6,6,4,0.6666666666666666,True,동일 별명 '엄마' — KB에 복수 수신자 매핑
+matched,M-KB-2,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),4,4,4,1,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,M-KB-2,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),5,5,5,1,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,M-KB-2,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),6,6,6,1,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,M-KB-2,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),4,4,4,1,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,M-KB-2,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),5,5,5,1,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,M-KB-2,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),7,7,5,0.7142857142857143,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,M-KB-2,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),8,8,7,0.875,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,M-KB-2,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),8,8,8,1,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,M-KB-2,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),6,6,6,1,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,M-KB-2,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),6,6,2,0.3333333333333333,True,'세이프박스' 검색 시 복수 버전 상품 KB 반환
+matched,G-UU-1,request_specificity,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,0,0,True,'돈 좀 처리해줘' — 행위 유형 전혀 미지정
+matched,G-UU-1,request_specificity,G×UU,포괄성(Generality),사용자 발화(User Utterance),8,8,3,0.375,True,'돈 좀 처리해줘' — 행위 유형 전혀 미지정
+matched,G-UU-1,request_specificity,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,0,0,True,'돈 좀 처리해줘' — 행위 유형 전혀 미지정
+matched,G-UU-1,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,'돈 좀 처리해줘' — 행위 유형 전혀 미지정
+matched,G-UU-1,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),6,6,6,1,True,'돈 좀 처리해줘' — 행위 유형 전혀 미지정
+matched,G-UU-1,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,5,0.7142857142857143,True,'돈 좀 처리해줘' — 행위 유형 전혀 미지정
+matched,G-UU-1,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),8,8,7,0.875,True,'돈 좀 처리해줘' — 행위 유형 전혀 미지정
+matched,G-UU-1,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,7,1,True,'돈 좀 처리해줘' — 행위 유형 전혀 미지정
+matched,G-UU-2,request_specificity,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,'노후 준비 계산해줘' — 계산 대상과 방식 모두 추상적
+matched,G-UU-2,request_specificity,G×UU,포괄성(Generality),사용자 발화(User Utterance),8,8,2,0.25,True,'노후 준비 계산해줘' — 계산 대상과 방식 모두 추상적
+matched,G-UU-2,request_specificity,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,0,0,True,'노후 준비 계산해줘' — 계산 대상과 방식 모두 추상적
+matched,G-UU-2,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,5,0.7142857142857143,True,'노후 준비 계산해줘' — 계산 대상과 방식 모두 추상적
+matched,G-UU-2,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),6,6,6,1,True,'노후 준비 계산해줘' — 계산 대상과 방식 모두 추상적
+matched,G-UU-2,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,7,1,True,'노후 준비 계산해줘' — 계산 대상과 방식 모두 추상적
+matched,G-UU-2,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),8,8,7,0.875,True,'노후 준비 계산해줘' — 계산 대상과 방식 모두 추상적
+matched,G-UU-2,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,7,1,True,'노후 준비 계산해줘' — 계산 대상과 방식 모두 추상적
+matched,G-DC-1,request_specificity,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),7,7,0,0,True,여러 모임 관련 질문 후 '다 정리해줘'
+matched,G-DC-1,request_specificity,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),8,8,4,0.5,True,여러 모임 관련 질문 후 '다 정리해줘'
+matched,G-DC-1,request_specificity,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),7,7,0,0,True,여러 모임 관련 질문 후 '다 정리해줘'
+matched,G-DC-1,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,여러 모임 관련 질문 후 '다 정리해줘'
+matched,G-DC-1,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),8,8,7,0.875,True,여러 모임 관련 질문 후 '다 정리해줘'
+matched,G-DC-1,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),5,5,5,1,True,여러 모임 관련 질문 후 '다 정리해줘'
+matched,G-DC-1,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),5,5,5,1,True,여러 모임 관련 질문 후 '다 정리해줘'
+matched,G-DC-1,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),4,4,4,1,True,여러 모임 관련 질문 후 '다 정리해줘'
+matched,G-DC-2,request_specificity,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),7,7,0,0,True,여러 상품 비교 후 '제일 유리한 걸로 해줘'
+matched,G-DC-2,request_specificity,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),8,8,0,0,True,여러 상품 비교 후 '제일 유리한 걸로 해줘'
+matched,G-DC-2,request_specificity,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),7,7,0,0,True,여러 상품 비교 후 '제일 유리한 걸로 해줘'
+matched,G-DC-2,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,여러 상품 비교 후 '제일 유리한 걸로 해줘'
+matched,G-DC-2,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),8,8,7,0.875,True,여러 상품 비교 후 '제일 유리한 걸로 해줘'
+matched,G-DC-2,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),5,5,5,1,True,여러 상품 비교 후 '제일 유리한 걸로 해줘'
+matched,G-DC-2,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),5,5,5,1,True,여러 상품 비교 후 '제일 유리한 걸로 해줘'
+matched,G-DC-2,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),4,4,4,1,True,여러 상품 비교 후 '제일 유리한 걸로 해줘'
+matched,G-KB-1,request_specificity,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),7,7,5,0.7142857142857143,True,'대출 이자 계산해줘' — 상위 분류명으로 KB 검색 범위 과다
+matched,G-KB-1,request_specificity,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),8,8,5,0.625,True,'대출 이자 계산해줘' — 상위 분류명으로 KB 검색 범위 과다
+matched,G-KB-1,request_specificity,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),7,7,0,0,True,'대출 이자 계산해줘' — 상위 분류명으로 KB 검색 범위 과다
+matched,G-KB-1,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),7,7,5,0.7142857142857143,True,'대출 이자 계산해줘' — 상위 분류명으로 KB 검색 범위 과다
+matched,G-KB-1,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),8,8,7,0.875,True,'대출 이자 계산해줘' — 상위 분류명으로 KB 검색 범위 과다
+matched,G-KB-1,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),8,8,8,1,True,'대출 이자 계산해줘' — 상위 분류명으로 KB 검색 범위 과다
+matched,G-KB-1,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),6,6,6,1,True,'대출 이자 계산해줘' — 상위 분류명으로 KB 검색 범위 과다
+matched,G-KB-1,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),6,6,1,0.16666666666666666,True,'대출 이자 계산해줘' — 상위 분류명으로 KB 검색 범위 과다
+matched,G-KB-2,request_specificity,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),7,7,0,0,True,'지출 내역' 포괄 요청 — KB 필터 범위 과다
+matched,G-KB-2,request_specificity,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),8,8,0,0,True,'지출 내역' 포괄 요청 — KB 필터 범위 과다
+matched,G-KB-2,request_specificity,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),7,7,0,0,True,'지출 내역' 포괄 요청 — KB 필터 범위 과다
+matched,G-KB-2,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),7,7,2,0.2857142857142857,True,'지출 내역' 포괄 요청 — KB 필터 범위 과다
+matched,G-KB-2,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),8,8,7,0.875,True,'지출 내역' 포괄 요청 — KB 필터 범위 과다
+matched,G-KB-2,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),8,8,8,1,True,'지출 내역' 포괄 요청 — KB 필터 범위 과다
+matched,G-KB-2,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),6,6,6,1,True,'지출 내역' 포괄 요청 — KB 필터 범위 과다
+matched,G-KB-2,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),6,6,3,0.5,True,'지출 내역' 포괄 요청 — KB 필터 범위 과다
+matched,F-UU-1,temporal_determinacy,F×UU,유동성(Fluidity),사용자 발화(User Utterance),9,9,0,0,True,'지금 환율로 바꾸면' — 발화 시점 의존 환율의 유동성
+matched,F-UU-1,temporal_determinacy,F×UU,유동성(Fluidity),사용자 발화(User Utterance),8,8,1,0.125,True,'지금 환율로 바꾸면' — 발화 시점 의존 환율의 유동성
+matched,F-UU-1,temporal_determinacy,F×UU,유동성(Fluidity),사용자 발화(User Utterance),8,8,1,0.125,True,'지금 환율로 바꾸면' — 발화 시점 의존 환율의 유동성
+matched,F-UU-1,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,'지금 환율로 바꾸면' — 발화 시점 의존 환율의 유동성
+matched,F-UU-1,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),6,6,6,1,True,'지금 환율로 바꾸면' — 발화 시점 의존 환율의 유동성
+matched,F-UU-1,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),7,7,7,1,True,'지금 환율로 바꾸면' — 발화 시점 의존 환율의 유동성
+matched,F-UU-1,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),8,8,7,0.875,True,'지금 환율로 바꾸면' — 발화 시점 의존 환율의 유동성
+matched,F-UU-1,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),7,7,1,0.14285714285714285,True,'지금 환율로 바꾸면' — 발화 시점 의존 환율의 유동성
+matched,F-UU-2,temporal_determinacy,F×UU,유동성(Fluidity),사용자 발화(User Utterance),9,9,0,0,True,'요즘 금리로 계산해줘' — 주관적 현재 금리의 시점 의존성
+matched,F-UU-2,temporal_determinacy,F×UU,유동성(Fluidity),사용자 발화(User Utterance),8,8,1,0.125,True,'요즘 금리로 계산해줘' — 주관적 현재 금리의 시점 의존성
+matched,F-UU-2,temporal_determinacy,F×UU,유동성(Fluidity),사용자 발화(User Utterance),8,8,0,0,True,'요즘 금리로 계산해줘' — 주관적 현재 금리의 시점 의존성
+matched,F-UU-2,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,'요즘 금리로 계산해줘' — 주관적 현재 금리의 시점 의존성
+matched,F-UU-2,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),6,6,6,1,True,'요즘 금리로 계산해줘' — 주관적 현재 금리의 시점 의존성
+matched,F-UU-2,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),7,7,7,1,True,'요즘 금리로 계산해줘' — 주관적 현재 금리의 시점 의존성
+matched,F-UU-2,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),8,8,7,0.875,True,'요즘 금리로 계산해줘' — 주관적 현재 금리의 시점 의존성
+matched,F-UU-2,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),7,7,1,0.14285714285714285,True,'요즘 금리로 계산해줘' — 주관적 현재 금리의 시점 의존성
+matched,F-DC-1,temporal_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),9,9,0,0,True,"이체 진행 중 잔여 한도가 실시간 감소 — ""지금 남은 금액 전부"" 지칭 대상 이동"
+matched,F-DC-1,temporal_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),8,8,1,0.125,True,"이체 진행 중 잔여 한도가 실시간 감소 — ""지금 남은 금액 전부"" 지칭 대상 이동"
+matched,F-DC-1,temporal_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),8,8,0,0,True,"이체 진행 중 잔여 한도가 실시간 감소 — ""지금 남은 금액 전부"" 지칭 대상 이동"
+matched,F-DC-1,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,"이체 진행 중 잔여 한도가 실시간 감소 — ""지금 남은 금액 전부"" 지칭 대상 이동"
+matched,F-DC-1,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),8,8,7,0.875,True,"이체 진행 중 잔여 한도가 실시간 감소 — ""지금 남은 금액 전부"" 지칭 대상 이동"
+matched,F-DC-1,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),5,5,5,1,True,"이체 진행 중 잔여 한도가 실시간 감소 — ""지금 남은 금액 전부"" 지칭 대상 이동"
+matched,F-DC-1,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),5,5,5,1,True,"이체 진행 중 잔여 한도가 실시간 감소 — ""지금 남은 금액 전부"" 지칭 대상 이동"
+matched,F-DC-1,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),4,4,4,1,True,"이체 진행 중 잔여 한도가 실시간 감소 — ""지금 남은 금액 전부"" 지칭 대상 이동"
+matched,F-DC-2,temporal_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),9,9,0,0,True,"모임 현장에서 회비 실시간 납부 중 — ""지금까지 걷힌 금액"" 지칭 대상 이동"
+matched,F-DC-2,temporal_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),8,8,5,0.625,True,"모임 현장에서 회비 실시간 납부 중 — ""지금까지 걷힌 금액"" 지칭 대상 이동"
+matched,F-DC-2,temporal_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),8,8,0,0,True,"모임 현장에서 회비 실시간 납부 중 — ""지금까지 걷힌 금액"" 지칭 대상 이동"
+matched,F-DC-2,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,"모임 현장에서 회비 실시간 납부 중 — ""지금까지 걷힌 금액"" 지칭 대상 이동"
+matched,F-DC-2,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),8,8,7,0.875,True,"모임 현장에서 회비 실시간 납부 중 — ""지금까지 걷힌 금액"" 지칭 대상 이동"
+matched,F-DC-2,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),5,5,5,1,True,"모임 현장에서 회비 실시간 납부 중 — ""지금까지 걷힌 금액"" 지칭 대상 이동"
+matched,F-DC-2,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),5,5,5,1,True,"모임 현장에서 회비 실시간 납부 중 — ""지금까지 걷힌 금액"" 지칭 대상 이동"
+matched,F-DC-2,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),4,4,4,1,True,"모임 현장에서 회비 실시간 납부 중 — ""지금까지 걷힌 금액"" 지칭 대상 이동"
+matched,F-KB-1,temporal_determinacy,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),9,9,0,0,True,실시간 달러 환율 기준 환전 계산 — t 의존 결과값
+matched,F-KB-1,temporal_determinacy,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,1,0.125,True,실시간 달러 환율 기준 환전 계산 — t 의존 결과값
+matched,F-KB-1,temporal_determinacy,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,1,0.125,True,실시간 달러 환율 기준 환전 계산 — t 의존 결과값
+matched,F-KB-1,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),7,7,2,0.2857142857142857,True,실시간 달러 환율 기준 환전 계산 — t 의존 결과값
+matched,F-KB-1,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,7,0.875,True,실시간 달러 환율 기준 환전 계산 — t 의존 결과값
+matched,F-KB-1,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,5,0.625,True,실시간 달러 환율 기준 환전 계산 — t 의존 결과값
+matched,F-KB-1,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),6,6,6,1,True,실시간 달러 환율 기준 환전 계산 — t 의존 결과값
+matched,F-KB-1,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),6,6,2,0.3333333333333333,True,실시간 달러 환율 기준 환전 계산 — t 의존 결과값
+matched,F-KB-2,temporal_determinacy,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),9,9,0,0,True,"""첫 이체 직전 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-2,temporal_determinacy,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,2,0.25,True,"""첫 이체 직전 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-2,temporal_determinacy,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,0,0,True,"""첫 이체 직전 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-2,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),7,7,4,0.5714285714285714,True,"""첫 이체 직전 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-2,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,6,0.75,True,"""첫 이체 직전 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-2,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,8,1,True,"""첫 이체 직전 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-2,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),6,6,6,1,True,"""첫 이체 직전 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-2,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),6,6,1,0.16666666666666666,True,"""첫 이체 직전 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,E-UU-3,information_sufficiency,E×UU,결핍(Emptiness),사용자 발화(User Utterance),6,6,4,0.6666666666666666,True,모임 회비 미납자 독촉 요청 — 행위 대상·수단 생략
+matched,E-UU-3,information_sufficiency,E×UU,결핍(Emptiness),사용자 발화(User Utterance),9,9,7,0.7777777777777778,True,모임 회비 미납자 독촉 요청 — 행위 대상·수단 생략
+matched,E-UU-3,information_sufficiency,E×UU,결핍(Emptiness),사용자 발화(User Utterance),8,8,6,0.75,True,모임 회비 미납자 독촉 요청 — 행위 대상·수단 생략
+matched,E-UU-3,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,모임 회비 미납자 독촉 요청 — 행위 대상·수단 생략
+matched,E-UU-3,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),6,6,6,1,True,모임 회비 미납자 독촉 요청 — 행위 대상·수단 생략
+matched,E-UU-3,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),7,7,5,0.7142857142857143,True,모임 회비 미납자 독촉 요청 — 행위 대상·수단 생략
+matched,E-UU-3,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),8,8,8,1,True,모임 회비 미납자 독촉 요청 — 행위 대상·수단 생략
+matched,E-UU-3,utterance_completeness,E×UU,결핍(Emptiness),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,모임 회비 미납자 독촉 요청 — 행위 대상·수단 생략
+matched,E-DC-3,information_sufficiency,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),6,6,6,1,True,환율 상담 중 갑작스러운 적금 지시어 등장
+matched,E-DC-3,information_sufficiency,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),9,9,4,0.4444444444444444,True,환율 상담 중 갑작스러운 적금 지시어 등장
+matched,E-DC-3,information_sufficiency,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),8,8,5,0.625,True,환율 상담 중 갑작스러운 적금 지시어 등장
+matched,E-DC-3,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,환율 상담 중 갑작스러운 적금 지시어 등장
+matched,E-DC-3,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),8,8,7,0.875,True,환율 상담 중 갑작스러운 적금 지시어 등장
+matched,E-DC-3,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),5,5,5,1,True,환율 상담 중 갑작스러운 적금 지시어 등장
+matched,E-DC-3,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),5,5,5,1,True,환율 상담 중 갑작스러운 적금 지시어 등장
+matched,E-DC-3,context_determinacy,E×DC,결핍(Emptiness),대화 문맥(Dialogue Context),4,4,4,1,True,환율 상담 중 갑작스러운 적금 지시어 등장
+matched,E-KB-3,information_sufficiency,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),6,6,6,1,True,회비 금액 미설정 상태에서 납부 요청
+matched,E-KB-3,information_sufficiency,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),9,9,1,0.1111111111111111,True,회비 금액 미설정 상태에서 납부 요청
+matched,E-KB-3,information_sufficiency,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),8,8,5,0.625,True,회비 금액 미설정 상태에서 납부 요청
+matched,E-KB-3,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),7,7,0,0,True,회비 금액 미설정 상태에서 납부 요청
+matched,E-KB-3,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),8,8,6,0.75,True,회비 금액 미설정 상태에서 납부 요청
+matched,E-KB-3,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),8,8,8,1,True,회비 금액 미설정 상태에서 납부 요청
+matched,E-KB-3,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),6,6,6,1,True,회비 금액 미설정 상태에서 납부 요청
+matched,E-KB-3,kb_alignment,E×KB,결핍(Emptiness),지식 베이스(Knowledge Base),6,6,1,0.16666666666666666,True,회비 금액 미설정 상태에서 납부 요청
+matched,C-UU-3,information_coherence,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,3,0.375,True,만기 전 전액 출금하면서 만기 이자 동시 요구
+matched,C-UU-3,information_coherence,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,8,1,True,만기 전 전액 출금하면서 만기 이자 동시 요구
+matched,C-UU-3,information_coherence,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,8,1,True,만기 전 전액 출금하면서 만기 이자 동시 요구
+matched,C-UU-3,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,만기 전 전액 출금하면서 만기 이자 동시 요구
+matched,C-UU-3,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),6,6,6,1,True,만기 전 전액 출금하면서 만기 이자 동시 요구
+matched,C-UU-3,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),7,7,7,1,True,만기 전 전액 출금하면서 만기 이자 동시 요구
+matched,C-UU-3,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),8,8,3,0.375,True,만기 전 전액 출금하면서 만기 이자 동시 요구
+matched,C-UU-3,utterance_completeness,C×UU,모순(Clash),사용자 발화(User Utterance),7,7,4,0.5714285714285714,True,만기 전 전액 출금하면서 만기 이자 동시 요구
+matched,C-DC-3,information_coherence,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,8,1,True,지출 없다고 확인 후 '지난달 지출 내역' 재요청
+matched,C-DC-3,information_coherence,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,4,0.5,True,지출 없다고 확인 후 '지난달 지출 내역' 재요청
+matched,C-DC-3,information_coherence,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,8,1,True,지출 없다고 확인 후 '지난달 지출 내역' 재요청
+matched,C-DC-3,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,지출 없다고 확인 후 '지난달 지출 내역' 재요청
+matched,C-DC-3,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),8,8,8,1,True,지출 없다고 확인 후 '지난달 지출 내역' 재요청
+matched,C-DC-3,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),5,5,5,1,True,지출 없다고 확인 후 '지난달 지출 내역' 재요청
+matched,C-DC-3,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),5,5,5,1,True,지출 없다고 확인 후 '지난달 지출 내역' 재요청
+matched,C-DC-3,context_determinacy,C×DC,모순(Clash),대화 문맥(Dialogue Context),4,4,4,1,True,지출 없다고 확인 후 '지난달 지출 내역' 재요청
+matched,C-KB-3,information_coherence,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,7,0.875,True,본인 계좌로 이체 요청 — KB 수신 계좌 = 출금 계좌 충돌
+matched,C-KB-3,information_coherence,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,7,0.875,True,본인 계좌로 이체 요청 — KB 수신 계좌 = 출금 계좌 충돌
+matched,C-KB-3,information_coherence,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,4,0.5,True,본인 계좌로 이체 요청 — KB 수신 계좌 = 출금 계좌 충돌
+matched,C-KB-3,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),7,7,7,1,True,본인 계좌로 이체 요청 — KB 수신 계좌 = 출금 계좌 충돌
+matched,C-KB-3,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,7,0.875,True,본인 계좌로 이체 요청 — KB 수신 계좌 = 출금 계좌 충돌
+matched,C-KB-3,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),8,8,8,1,True,본인 계좌로 이체 요청 — KB 수신 계좌 = 출금 계좌 충돌
+matched,C-KB-3,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),6,6,6,1,True,본인 계좌로 이체 요청 — KB 수신 계좌 = 출금 계좌 충돌
+matched,C-KB-3,kb_alignment,C×KB,모순(Clash),지식 베이스(Knowledge Base),6,6,2,0.3333333333333333,True,본인 계좌로 이체 요청 — KB 수신 계좌 = 출금 계좌 충돌
+matched,M-UU-3,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),4,4,4,1,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-UU-3,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),5,5,5,1,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-UU-3,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),6,6,6,1,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-UU-3,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),4,4,4,1,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-UU-3,interpretation_singularity,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),5,5,5,1,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-UU-3,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-UU-3,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),6,6,6,1,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-UU-3,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),7,7,7,1,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-UU-3,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),8,8,7,0.875,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-UU-3,utterance_completeness,M×UU,다중성(Multiplicity),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,'대출이랑 적금 이자 비교' — 접속 구조 범위 분기
+matched,M-DC-3,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),4,4,4,1,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-DC-3,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-DC-3,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),6,6,6,1,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-DC-3,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),4,4,4,1,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-DC-3,interpretation_singularity,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-DC-3,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-DC-3,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),8,8,6,0.75,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-DC-3,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-DC-3,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),5,5,5,1,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-DC-3,context_determinacy,M×DC,다중성(Multiplicity),대화 문맥(Dialogue Context),4,4,4,1,True,두 기간 지출 비교 후 '그때' 재지칭
+matched,M-KB-3,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),4,4,4,1,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,M-KB-3,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),5,5,5,1,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,M-KB-3,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),6,6,6,1,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,M-KB-3,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),4,4,4,1,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,M-KB-3,interpretation_singularity,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),5,5,5,1,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,M-KB-3,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),7,7,5,0.7142857142857143,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,M-KB-3,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),8,8,8,1,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,M-KB-3,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),8,8,8,1,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,M-KB-3,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),6,6,6,1,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,M-KB-3,kb_alignment,M×KB,다중성(Multiplicity),지식 베이스(Knowledge Base),6,6,2,0.3333333333333333,True,'청년 적금' 검색 시 복수 KB 상품 엔티티 반환
+matched,G-UU-3,request_specificity,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,0,0,True,'모임통장 관리해줘' — 행위 유형과 대상 모두 추상적
+matched,G-UU-3,request_specificity,G×UU,포괄성(Generality),사용자 발화(User Utterance),8,8,0,0,True,'모임통장 관리해줘' — 행위 유형과 대상 모두 추상적
+matched,G-UU-3,request_specificity,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,0,0,True,'모임통장 관리해줘' — 행위 유형과 대상 모두 추상적
+matched,G-UU-3,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,5,0.7142857142857143,True,'모임통장 관리해줘' — 행위 유형과 대상 모두 추상적
+matched,G-UU-3,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),6,6,6,1,True,'모임통장 관리해줘' — 행위 유형과 대상 모두 추상적
+matched,G-UU-3,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,5,0.7142857142857143,True,'모임통장 관리해줘' — 행위 유형과 대상 모두 추상적
+matched,G-UU-3,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),8,8,8,1,True,'모임통장 관리해줘' — 행위 유형과 대상 모두 추상적
+matched,G-UU-3,utterance_completeness,G×UU,포괄성(Generality),사용자 발화(User Utterance),7,7,7,1,True,'모임통장 관리해줘' — 행위 유형과 대상 모두 추상적
+matched,G-DC-3,request_specificity,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),7,7,0,0,True,여러 계산 조건 논의 후 '좋은 쪽으로 해줘'
+matched,G-DC-3,request_specificity,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),8,8,0,0,True,여러 계산 조건 논의 후 '좋은 쪽으로 해줘'
+matched,G-DC-3,request_specificity,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),7,7,0,0,True,여러 계산 조건 논의 후 '좋은 쪽으로 해줘'
+matched,G-DC-3,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,여러 계산 조건 논의 후 '좋은 쪽으로 해줘'
+matched,G-DC-3,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),8,8,7,0.875,True,여러 계산 조건 논의 후 '좋은 쪽으로 해줘'
+matched,G-DC-3,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),5,5,5,1,True,여러 계산 조건 논의 후 '좋은 쪽으로 해줘'
+matched,G-DC-3,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),5,5,3,0.6,True,여러 계산 조건 논의 후 '좋은 쪽으로 해줘'
+matched,G-DC-3,context_determinacy,G×DC,포괄성(Generality),대화 문맥(Dialogue Context),4,4,4,1,True,여러 계산 조건 논의 후 '좋은 쪽으로 해줘'
+matched,G-KB-3,request_specificity,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),7,7,0,0,True,'최근 이체 내역' 포괄 조회 — KB 필터 범위 과다
+matched,G-KB-3,request_specificity,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),8,8,3,0.375,True,'최근 이체 내역' 포괄 조회 — KB 필터 범위 과다
+matched,G-KB-3,request_specificity,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),7,7,0,0,True,'최근 이체 내역' 포괄 조회 — KB 필터 범위 과다
+matched,G-KB-3,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),7,7,5,0.7142857142857143,True,'최근 이체 내역' 포괄 조회 — KB 필터 범위 과다
+matched,G-KB-3,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),8,8,6,0.75,True,'최근 이체 내역' 포괄 조회 — KB 필터 범위 과다
+matched,G-KB-3,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),8,8,8,1,True,'최근 이체 내역' 포괄 조회 — KB 필터 범위 과다
+matched,G-KB-3,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),6,6,6,1,True,'최근 이체 내역' 포괄 조회 — KB 필터 범위 과다
+matched,G-KB-3,kb_alignment,G×KB,포괄성(Generality),지식 베이스(Knowledge Base),6,6,3,0.5,True,'최근 이체 내역' 포괄 조회 — KB 필터 범위 과다
+matched,F-UU-3,temporal_determinacy,F×UU,유동성(Fluidity),사용자 발화(User Utterance),9,9,7,0.7777777777777778,True,'오늘 남은 한도로' — 잔여 이체 한도의 실시간 가변성
+matched,F-UU-3,temporal_determinacy,F×UU,유동성(Fluidity),사용자 발화(User Utterance),8,8,5,0.625,True,'오늘 남은 한도로' — 잔여 이체 한도의 실시간 가변성
+matched,F-UU-3,temporal_determinacy,F×UU,유동성(Fluidity),사용자 발화(User Utterance),8,8,0,0,True,'오늘 남은 한도로' — 잔여 이체 한도의 실시간 가변성
+matched,F-UU-3,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),7,7,6,0.8571428571428571,True,'오늘 남은 한도로' — 잔여 이체 한도의 실시간 가변성
+matched,F-UU-3,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),6,6,6,1,True,'오늘 남은 한도로' — 잔여 이체 한도의 실시간 가변성
+matched,F-UU-3,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),7,7,7,1,True,'오늘 남은 한도로' — 잔여 이체 한도의 실시간 가변성
+matched,F-UU-3,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),8,8,7,0.875,True,'오늘 남은 한도로' — 잔여 이체 한도의 실시간 가변성
+matched,F-UU-3,utterance_completeness,F×UU,유동성(Fluidity),사용자 발화(User Utterance),7,7,1,0.14285714285714285,True,'오늘 남은 한도로' — 잔여 이체 한도의 실시간 가변성
+matched,F-DC-3,temporal_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),9,9,0,0,True,"세이프박스 이자 실시간 누적 중 — ""지금 쌓인 이자만큼"" 지칭 대상 이동"
+matched,F-DC-3,temporal_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),8,8,1,0.125,True,"세이프박스 이자 실시간 누적 중 — ""지금 쌓인 이자만큼"" 지칭 대상 이동"
+matched,F-DC-3,temporal_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),8,8,2,0.25,True,"세이프박스 이자 실시간 누적 중 — ""지금 쌓인 이자만큼"" 지칭 대상 이동"
+matched,F-DC-3,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),7,7,6,0.8571428571428571,True,"세이프박스 이자 실시간 누적 중 — ""지금 쌓인 이자만큼"" 지칭 대상 이동"
+matched,F-DC-3,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),8,8,7,0.875,True,"세이프박스 이자 실시간 누적 중 — ""지금 쌓인 이자만큼"" 지칭 대상 이동"
+matched,F-DC-3,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),5,5,5,1,True,"세이프박스 이자 실시간 누적 중 — ""지금 쌓인 이자만큼"" 지칭 대상 이동"
+matched,F-DC-3,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),5,5,5,1,True,"세이프박스 이자 실시간 누적 중 — ""지금 쌓인 이자만큼"" 지칭 대상 이동"
+matched,F-DC-3,context_determinacy,F×DC,유동성(Fluidity),대화 문맥(Dialogue Context),4,4,4,1,True,"세이프박스 이자 실시간 누적 중 — ""지금 쌓인 이자만큼"" 지칭 대상 이동"
+matched,F-KB-3,temporal_determinacy,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),9,9,0,0,True,"""모임통장 개설 당시 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-3,temporal_determinacy,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,3,0.375,True,"""모임통장 개설 당시 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-3,temporal_determinacy,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,0,0,True,"""모임통장 개설 당시 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-3,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),7,7,0,0,True,"""모임통장 개설 당시 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-3,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,3,0.375,True,"""모임통장 개설 당시 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-3,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),8,8,8,1,True,"""모임통장 개설 당시 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-3,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),6,6,0,0,True,"""모임통장 개설 당시 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
+matched,F-KB-3,kb_alignment,F×KB,유동성(Fluidity),지식 베이스(Knowledge Base),6,6,1,0.16666666666666666,True,"""모임통장 개설 당시 잔액"" 요구 — KB는 t_now 잔액만 보유, t_past 스냅샷 없음"
