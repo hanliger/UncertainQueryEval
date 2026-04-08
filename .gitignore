@@ -16,6 +16,7 @@ __pycache__/
 
 # Local editor/agent artifacts
 .codex
+CLAUDE.md
 
 # Local notebooks not intended for upload
 notebooks/demo_ambiguity_checkeval.ipynb
