@@ -3,17 +3,17 @@
     "model": "gpt-5.4",
     "max_clarification_turns": 10,
     "question_version": "filtered",
-    "timestamp": "2026-04-08T15:37:54.892096"
+    "timestamp": "2026-04-08T16:18:16.507206"
   },
   "summary": {
     "stage1_avg_ambiguity": 0.5539155555555555,
     "stage2_baseline_recall@1": 0.6222222222222222,
     "stage2_baseline_slot_accuracy": 0.40185111111111116,
-    "stage3_mrr": 0.4907355555555556,
-    "stage3_recall@3": 0.7333333333333333,
-    "stage3_slot_accuracy": 0.5114822222222222,
-    "stage3b_post_ambiguity": 0.38870400000000005,
-    "avg_ambiguity_reduction": 0.170348
+    "stage3_final_endpoint_hit": 0.7555555555555555,
+    "stage3_slot_accuracy": 0.5659266666666667,
+    "stage3_avg_clarif_turns": 1.4666666666666666,
+    "stage3b_post_ambiguity": 0.42883720930232555,
+    "avg_ambiguity_reduction": 0.11949534883720929
   },
   "per_scenario": [
     {
@@ -24,14 +24,11 @@
       "pre_ambiguity": 0.3452,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.6667,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.3413,
+      "ambiguity_reduction": 0.0039
     },
     {
       "scenario_id": "E-UU-2",
@@ -41,14 +38,11 @@
       "pre_ambiguity": 0.4325,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.75,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.75,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.3504,
+      "ambiguity_reduction": 0.0821
     },
     {
       "scenario_id": "E-DC-1",
@@ -58,14 +52,11 @@
       "pre_ambiguity": 0.5811,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 2,
-      "post_ambiguity": 0.5151,
-      "ambiguity_reduction": 0.066
+      "post_ambiguity": 0.5642,
+      "ambiguity_reduction": 0.0169
     },
     {
       "scenario_id": "E-DC-2",
@@ -75,14 +66,11 @@
       "pre_ambiguity": 0.612,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.3333,
-      "mrr_score": 0.3333,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 1.0,
-      "mt_slot_accuracy": 0.3333,
-      "clarif_turns": 2,
-      "post_ambiguity": 0.1483,
-      "ambiguity_reduction": 0.4637
+      "mt_endpoint_hit": 1.0,
+      "mt_slot_accuracy": 0.0,
+      "clarif_turns": 4,
+      "post_ambiguity": 0.4348,
+      "ambiguity_reduction": 0.1772
     },
     {
       "scenario_id": "E-KB-1",
@@ -92,14 +80,11 @@
       "pre_ambiguity": 0.7222,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.5,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.724,
+      "ambiguity_reduction": -0.0018
     },
     {
       "scenario_id": "E-KB-2",
@@ -109,14 +94,11 @@
       "pre_ambiguity": 0.6615,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.75,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
-      "mt_slot_accuracy": 0.75,
+      "mt_endpoint_hit": 1.0,
+      "mt_slot_accuracy": 0.5,
       "clarif_turns": 0,
-      "post_ambiguity": 0.5662,
-      "ambiguity_reduction": 0.0953
+      "post_ambiguity": 0.6124,
+      "ambiguity_reduction": 0.0491
     },
     {
       "scenario_id": "C-UU-1",
@@ -126,14 +108,11 @@
       "pre_ambiguity": 0.2798,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.75,
       "clarif_turns": 1,
-      "post_ambiguity": 0.1436,
-      "ambiguity_reduction": 0.1362
+      "post_ambiguity": 0.1235,
+      "ambiguity_reduction": 0.1563
     },
     {
       "scenario_id": "C-UU-2",
@@ -143,14 +122,11 @@
       "pre_ambiguity": 0.4851,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
-      "clarif_turns": 1,
-      "post_ambiguity": 0.3021,
-      "ambiguity_reduction": 0.183
+      "clarif_turns": 0,
+      "post_ambiguity": 0.4717,
+      "ambiguity_reduction": 0.0134
     },
     {
       "scenario_id": "C-DC-1",
@@ -160,14 +136,11 @@
       "pre_ambiguity": 0.1562,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
-      "mt_slot_accuracy": 0.0,
-      "clarif_turns": 2,
-      "post_ambiguity": 0.1906,
-      "ambiguity_reduction": -0.0344
+      "mt_endpoint_hit": 1.0,
+      "mt_slot_accuracy": 0.5,
+      "clarif_turns": 5,
+      "post_ambiguity": 0.1188,
+      "ambiguity_reduction": 0.0374
     },
     {
       "scenario_id": "C-DC-2",
@@ -177,14 +150,11 @@
       "pre_ambiguity": 0.725,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
-      "mt_slot_accuracy": 0.6667,
+      "mt_endpoint_hit": 0.0,
+      "mt_slot_accuracy": 0.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.3594,
-      "ambiguity_reduction": 0.3656
+      "post_ambiguity": 0.2656,
+      "ambiguity_reduction": 0.4594
     },
     {
       "scenario_id": "C-KB-1",
@@ -194,14 +164,11 @@
       "pre_ambiguity": 0.3869,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.6,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.4,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.4025,
+      "ambiguity_reduction": -0.0156
     },
     {
       "scenario_id": "C-KB-2",
@@ -211,14 +178,11 @@
       "pre_ambiguity": 0.6257,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.5,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 10,
-      "post_ambiguity": 0.6362,
-      "ambiguity_reduction": -0.0105
+      "post_ambiguity": 0.7299,
+      "ambiguity_reduction": -0.1042
     },
     {
       "scenario_id": "M-UU-1",
@@ -228,14 +192,11 @@
       "pre_ambiguity": 0.549,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 3,
-      "post_ambiguity": 0.1645,
-      "ambiguity_reduction": 0.3845
+      "clarif_turns": 2,
+      "post_ambiguity": 0.0943,
+      "ambiguity_reduction": 0.4547
     },
     {
       "scenario_id": "M-UU-2",
@@ -245,14 +206,11 @@
       "pre_ambiguity": 0.1988,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.3333,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 2,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.2881,
+      "ambiguity_reduction": -0.0893
     },
     {
       "scenario_id": "M-DC-1",
@@ -262,12 +220,9 @@
       "pre_ambiguity": 0.8248,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 1.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
-      "mt_slot_accuracy": 0.0,
-      "clarif_turns": 1,
+      "mt_endpoint_hit": 1.0,
+      "mt_slot_accuracy": 1.0,
+      "clarif_turns": 0,
       "post_ambiguity": NaN,
       "ambiguity_reduction": NaN
     },
@@ -279,14 +234,11 @@
       "pre_ambiguity": 0.7232,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.75,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.75,
       "clarif_turns": 1,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.215,
+      "ambiguity_reduction": 0.5082
     },
     {
       "scenario_id": "M-KB-1",
@@ -296,14 +248,11 @@
       "pre_ambiguity": 0.3613,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 1,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "clarif_turns": 0,
+      "post_ambiguity": 0.2595,
+      "ambiguity_reduction": 0.1018
     },
     {
       "scenario_id": "M-KB-2",
@@ -313,14 +262,11 @@
       "pre_ambiguity": 0.6536,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 1.0,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.75,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.6804,
+      "ambiguity_reduction": -0.0268
     },
     {
       "scenario_id": "G-UU-1",
@@ -330,14 +276,11 @@
       "pre_ambiguity": 0.8415,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 1,
-      "post_ambiguity": 0.3512,
-      "ambiguity_reduction": 0.4903
+      "clarif_turns": 2,
+      "post_ambiguity": 0.244,
+      "ambiguity_reduction": 0.5975
     },
     {
       "scenario_id": "G-UU-2",
@@ -347,14 +290,11 @@
       "pre_ambiguity": 0.2976,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 1.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
-      "clarif_turns": 1,
-      "post_ambiguity": 0.1406,
-      "ambiguity_reduction": 0.157
+      "clarif_turns": 2,
+      "post_ambiguity": 0.1585,
+      "ambiguity_reduction": 0.1391
     },
     {
       "scenario_id": "G-DC-1",
@@ -364,10 +304,7 @@
       "pre_ambiguity": 0.3536,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
       "post_ambiguity": 0.2902,
@@ -381,14 +318,11 @@
       "pre_ambiguity": 0.6228,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 1.0,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
-      "mt_slot_accuracy": 0.0,
-      "clarif_turns": 2,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "mt_endpoint_hit": 1.0,
+      "mt_slot_accuracy": 1.0,
+      "clarif_turns": 1,
+      "post_ambiguity": 0.2286,
+      "ambiguity_reduction": 0.3942
     },
     {
       "scenario_id": "G-KB-1",
@@ -398,14 +332,11 @@
       "pre_ambiguity": 0.6674,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.5,
-      "mrr_score": 0.3333,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 2,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.7775,
+      "ambiguity_reduction": -0.1101
     },
     {
       "scenario_id": "G-KB-2",
@@ -415,14 +346,11 @@
       "pre_ambiguity": 0.6362,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
-      "mt_slot_accuracy": 0.0,
-      "clarif_turns": 0,
-      "post_ambiguity": 0.6882,
-      "ambiguity_reduction": -0.052
+      "mt_endpoint_hit": 1.0,
+      "mt_slot_accuracy": 1.0,
+      "clarif_turns": 1,
+      "post_ambiguity": 0.7612,
+      "ambiguity_reduction": -0.125
     },
     {
       "scenario_id": "F-UU-1",
@@ -432,10 +360,7 @@
       "pre_ambiguity": 0.5231,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 1.0,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 0,
       "post_ambiguity": NaN,
@@ -449,14 +374,11 @@
       "pre_ambiguity": 0.4844,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.75,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.5,
+      "ambiguity_reduction": -0.0156
     },
     {
       "scenario_id": "F-DC-1",
@@ -466,14 +388,11 @@
       "pre_ambiguity": 0.3938,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.3938,
+      "ambiguity_reduction": 0.0
     },
     {
       "scenario_id": "F-DC-2",
@@ -483,14 +402,11 @@
       "pre_ambiguity": 0.5946,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.3333,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 2,
-      "post_ambiguity": 0.4938,
-      "ambiguity_reduction": 0.1008
+      "post_ambiguity": 0.4875,
+      "ambiguity_reduction": 0.1071
     },
     {
       "scenario_id": "F-KB-1",
@@ -500,14 +416,11 @@
       "pre_ambiguity": 0.7917,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.5,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.8125,
+      "ambiguity_reduction": -0.0208
     },
     {
       "scenario_id": "F-KB-2",
@@ -517,14 +430,11 @@
       "pre_ambiguity": 0.5714,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.6205,
-      "ambiguity_reduction": -0.0491
+      "post_ambiguity": 0.5685,
+      "ambiguity_reduction": 0.0029
     },
     {
       "scenario_id": "E-UU-3",
@@ -534,10 +444,7 @@
       "pre_ambiguity": 0.4494,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.5,
-      "mrr_score": 0.3333,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 2,
       "post_ambiguity": 0.2619,
@@ -551,14 +458,11 @@
       "pre_ambiguity": 0.8785,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.503,
-      "ambiguity_reduction": 0.3755
+      "post_ambiguity": 0.5578,
+      "ambiguity_reduction": 0.3207
     },
     {
       "scenario_id": "E-KB-3",
@@ -568,14 +472,11 @@
       "pre_ambiguity": 0.6027,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.25,
-      "mrr_score": 0.3333,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 2,
-      "post_ambiguity": 0.4933,
-      "ambiguity_reduction": 0.1094
+      "clarif_turns": 3,
+      "post_ambiguity": 0.5141,
+      "ambiguity_reduction": 0.0886
     },
     {
       "scenario_id": "C-UU-3",
@@ -585,14 +486,11 @@
       "pre_ambiguity": 0.6421,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.8,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.6,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.622,
+      "ambiguity_reduction": 0.0201
     },
     {
       "scenario_id": "C-DC-3",
@@ -602,14 +500,11 @@
       "pre_ambiguity": 0.2781,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.6,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
-      "mt_slot_accuracy": 0.6,
-      "clarif_turns": 0,
-      "post_ambiguity": 0.1562,
-      "ambiguity_reduction": 0.1219
+      "mt_endpoint_hit": 1.0,
+      "mt_slot_accuracy": 0.8,
+      "clarif_turns": 1,
+      "post_ambiguity": 0.2455,
+      "ambiguity_reduction": 0.0326
     },
     {
       "scenario_id": "C-KB-3",
@@ -619,14 +514,11 @@
       "pre_ambiguity": 0.6101,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 10,
-      "post_ambiguity": 0.4777,
-      "ambiguity_reduction": 0.1324
+      "clarif_turns": 4,
+      "post_ambiguity": 0.3996,
+      "ambiguity_reduction": 0.2105
     },
     {
       "scenario_id": "M-UU-3",
@@ -636,14 +528,11 @@
       "pre_ambiguity": 0.3327,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 1.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.2256,
+      "ambiguity_reduction": 0.1071
     },
     {
       "scenario_id": "M-DC-3",
@@ -653,14 +542,11 @@
       "pre_ambiguity": 0.5443,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 0.3333,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.6667,
       "clarif_turns": 1,
-      "post_ambiguity": 0.1214,
-      "ambiguity_reduction": 0.4229
+      "post_ambiguity": 0.05,
+      "ambiguity_reduction": 0.4943
     },
     {
       "scenario_id": "M-KB-3",
@@ -670,14 +556,11 @@
       "pre_ambiguity": 0.8389,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.25,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
-      "clarif_turns": 3,
-      "post_ambiguity": 0.8399,
-      "ambiguity_reduction": -0.001
+      "clarif_turns": 2,
+      "post_ambiguity": 0.7542,
+      "ambiguity_reduction": 0.0847
     },
     {
       "scenario_id": "G-UU-3",
@@ -687,14 +570,11 @@
       "pre_ambiguity": 0.5722,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.2411,
-      "ambiguity_reduction": 0.3311
+      "post_ambiguity": 0.3512,
+      "ambiguity_reduction": 0.221
     },
     {
       "scenario_id": "G-DC-3",
@@ -704,14 +584,11 @@
       "pre_ambiguity": 0.7353,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 1.0,
-      "mrr_score": 0.5,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.1085,
+      "ambiguity_reduction": 0.6268
     },
     {
       "scenario_id": "G-KB-3",
@@ -721,14 +598,11 @@
       "pre_ambiguity": 0.6518,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 1.0,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "post_ambiguity": 0.6049,
+      "ambiguity_reduction": 0.0469
     },
     {
       "scenario_id": "F-UU-3",
@@ -738,14 +612,11 @@
       "pre_ambiguity": 0.5565,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.0,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 0.0,
+      "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 2,
-      "post_ambiguity": 0.4516,
-      "ambiguity_reduction": 0.1049
+      "post_ambiguity": 0.5275,
+      "ambiguity_reduction": 0.029
     },
     {
       "scenario_id": "F-DC-3",
@@ -755,14 +626,11 @@
       "pre_ambiguity": 0.4563,
       "baseline_recall@1": 1.0,
       "baseline_slot_accuracy": 1.0,
-      "mrr_score": 1.0,
-      "mt_recall@1": 1.0,
-      "mt_recall@2": 1.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
-      "clarif_turns": 0,
-      "post_ambiguity": NaN,
-      "ambiguity_reduction": NaN
+      "clarif_turns": 6,
+      "post_ambiguity": 0.5759,
+      "ambiguity_reduction": -0.1196
     },
     {
       "scenario_id": "F-KB-3",
@@ -772,14 +640,11 @@
       "pre_ambiguity": 0.6753,
       "baseline_recall@1": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mrr_score": 0.3333,
-      "mt_recall@1": 0.0,
-      "mt_recall@2": 0.0,
-      "mt_recall@3": 1.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
-      "clarif_turns": 2,
-      "post_ambiguity": 0.561,
-      "ambiguity_reduction": 0.1143
+      "clarif_turns": 1,
+      "post_ambiguity": 0.7426,
+      "ambiguity_reduction": -0.0673
     }
   ]
 }
