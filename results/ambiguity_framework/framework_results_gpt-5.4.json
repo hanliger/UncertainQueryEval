@@ -3,17 +3,17 @@
     "model": "gpt-5.4",
     "max_clarification_turns": 10,
     "question_version": "filtered",
-    "timestamp": "2026-04-08T16:18:16.507206"
+    "timestamp": "2026-04-08T17:07:42.628040"
   },
   "summary": {
     "stage1_avg_ambiguity": 0.5539155555555555,
-    "stage2_baseline_recall@1": 0.6222222222222222,
+    "stage2_baseline_endpoint_hit": 0.6222222222222222,
     "stage2_baseline_slot_accuracy": 0.40185111111111116,
-    "stage3_final_endpoint_hit": 0.7555555555555555,
-    "stage3_slot_accuracy": 0.5659266666666667,
-    "stage3_avg_clarif_turns": 1.4666666666666666,
-    "stage3b_post_ambiguity": 0.42883720930232555,
-    "avg_ambiguity_reduction": 0.11949534883720929
+    "stage3_endpoint_hit": 0.7777777777777778,
+    "stage3_slot_accuracy": 0.6011133333333334,
+    "stage3_avg_clarif_turns": 1.0222222222222221,
+    "stage3b_post_ambiguity": 0.4204666666666667,
+    "avg_ambiguity_reduction": 0.13005714285714287
   },
   "per_scenario": [
     {
@@ -22,13 +22,13 @@
       "element": "User Utterance",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.3452,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.6667,
       "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 0,
-      "post_ambiguity": 0.3413,
-      "ambiguity_reduction": 0.0039
+      "post_ambiguity": 0.3274,
+      "ambiguity_reduction": 0.0178
     },
     {
       "scenario_id": "E-UU-2",
@@ -36,13 +36,13 @@
       "element": "User Utterance",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.4325,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.75,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.75,
       "clarif_turns": 0,
-      "post_ambiguity": 0.3504,
-      "ambiguity_reduction": 0.0821
+      "post_ambiguity": 0.3938,
+      "ambiguity_reduction": 0.0387
     },
     {
       "scenario_id": "E-DC-1",
@@ -50,13 +50,13 @@
       "element": "Dialogue Context",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.5811,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mt_endpoint_hit": 0.0,
-      "mt_slot_accuracy": 0.0,
-      "clarif_turns": 2,
-      "post_ambiguity": 0.5642,
-      "ambiguity_reduction": 0.0169
+      "mt_endpoint_hit": 1.0,
+      "mt_slot_accuracy": 1.0,
+      "clarif_turns": 3,
+      "post_ambiguity": 0.6049,
+      "ambiguity_reduction": -0.0238
     },
     {
       "scenario_id": "E-DC-2",
@@ -64,13 +64,13 @@
       "element": "Dialogue Context",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.612,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.3333,
       "mt_endpoint_hit": 1.0,
-      "mt_slot_accuracy": 0.0,
-      "clarif_turns": 4,
-      "post_ambiguity": 0.4348,
-      "ambiguity_reduction": 0.1772
+      "mt_slot_accuracy": 0.6667,
+      "clarif_turns": 2,
+      "post_ambiguity": 0.3032,
+      "ambiguity_reduction": 0.3088
     },
     {
       "scenario_id": "E-KB-1",
@@ -78,13 +78,13 @@
       "element": "Knowledge Base",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.7222,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.5,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 0,
-      "post_ambiguity": 0.724,
-      "ambiguity_reduction": -0.0018
+      "post_ambiguity": 0.7396,
+      "ambiguity_reduction": -0.0174
     },
     {
       "scenario_id": "E-KB-2",
@@ -92,13 +92,13 @@
       "element": "Knowledge Base",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.6615,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.75,
       "mt_endpoint_hit": 1.0,
-      "mt_slot_accuracy": 0.5,
-      "clarif_turns": 0,
-      "post_ambiguity": 0.6124,
-      "ambiguity_reduction": 0.0491
+      "mt_slot_accuracy": 0.75,
+      "clarif_turns": 2,
+      "post_ambiguity": 0.3549,
+      "ambiguity_reduction": 0.3066
     },
     {
       "scenario_id": "C-UU-1",
@@ -106,13 +106,13 @@
       "element": "User Utterance",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.2798,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.75,
       "clarif_turns": 1,
-      "post_ambiguity": 0.1235,
-      "ambiguity_reduction": 0.1563
+      "post_ambiguity": 0.186,
+      "ambiguity_reduction": 0.0938
     },
     {
       "scenario_id": "C-UU-2",
@@ -120,13 +120,13 @@
       "element": "User Utterance",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.4851,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mt_endpoint_hit": 1.0,
-      "mt_slot_accuracy": 0.5,
+      "mt_endpoint_hit": 0.0,
+      "mt_slot_accuracy": 0.0,
       "clarif_turns": 0,
-      "post_ambiguity": 0.4717,
-      "ambiguity_reduction": 0.0134
+      "post_ambiguity": 0.4539,
+      "ambiguity_reduction": 0.0312
     },
     {
       "scenario_id": "C-DC-1",
@@ -134,13 +134,13 @@
       "element": "Dialogue Context",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.1562,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mt_endpoint_hit": 1.0,
-      "mt_slot_accuracy": 0.5,
-      "clarif_turns": 5,
-      "post_ambiguity": 0.1188,
-      "ambiguity_reduction": 0.0374
+      "mt_endpoint_hit": 0.0,
+      "mt_slot_accuracy": 0.0,
+      "clarif_turns": 1,
+      "post_ambiguity": 0.0781,
+      "ambiguity_reduction": 0.0781
     },
     {
       "scenario_id": "C-DC-2",
@@ -148,13 +148,13 @@
       "element": "Dialogue Context",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.725,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
-      "mt_endpoint_hit": 0.0,
-      "mt_slot_accuracy": 0.0,
+      "mt_endpoint_hit": 1.0,
+      "mt_slot_accuracy": 0.6667,
       "clarif_turns": 1,
-      "post_ambiguity": 0.2656,
-      "ambiguity_reduction": 0.4594
+      "post_ambiguity": 0.3929,
+      "ambiguity_reduction": 0.3321
     },
     {
       "scenario_id": "C-KB-1",
@@ -162,13 +162,13 @@
       "element": "Knowledge Base",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.3869,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.6,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.4,
       "clarif_turns": 0,
-      "post_ambiguity": 0.4025,
-      "ambiguity_reduction": -0.0156
+      "post_ambiguity": 0.3869,
+      "ambiguity_reduction": 0.0
     },
     {
       "scenario_id": "C-KB-2",
@@ -176,13 +176,13 @@
       "element": "Knowledge Base",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.6257,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.5,
       "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 10,
-      "post_ambiguity": 0.7299,
-      "ambiguity_reduction": -0.1042
+      "clarif_turns": 2,
+      "post_ambiguity": 0.7455,
+      "ambiguity_reduction": -0.1198
     },
     {
       "scenario_id": "M-UU-1",
@@ -190,13 +190,13 @@
       "element": "User Utterance",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.549,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 2,
-      "post_ambiguity": 0.0943,
-      "ambiguity_reduction": 0.4547
+      "post_ambiguity": 0.1211,
+      "ambiguity_reduction": 0.4279
     },
     {
       "scenario_id": "M-UU-2",
@@ -204,13 +204,13 @@
       "element": "User Utterance",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.1988,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
-      "clarif_turns": 2,
-      "post_ambiguity": 0.2881,
-      "ambiguity_reduction": -0.0893
+      "clarif_turns": 1,
+      "post_ambiguity": 0.3685,
+      "ambiguity_reduction": -0.1697
     },
     {
       "scenario_id": "M-DC-1",
@@ -218,7 +218,7 @@
       "element": "Dialogue Context",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.8248,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 1.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
@@ -232,13 +232,13 @@
       "element": "Dialogue Context",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.7232,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.75,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.75,
       "clarif_turns": 1,
-      "post_ambiguity": 0.215,
-      "ambiguity_reduction": 0.5082
+      "post_ambiguity": 0.265,
+      "ambiguity_reduction": 0.4582
     },
     {
       "scenario_id": "M-KB-1",
@@ -246,13 +246,13 @@
       "element": "Knowledge Base",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.3613,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 0,
-      "post_ambiguity": 0.2595,
-      "ambiguity_reduction": 0.1018
+      "clarif_turns": 1,
+      "post_ambiguity": 0.2896,
+      "ambiguity_reduction": 0.0717
     },
     {
       "scenario_id": "M-KB-2",
@@ -260,7 +260,7 @@
       "element": "Knowledge Base",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.6536,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 1.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.75,
@@ -274,13 +274,13 @@
       "element": "User Utterance",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.8415,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 2,
-      "post_ambiguity": 0.244,
-      "ambiguity_reduction": 0.5975
+      "clarif_turns": 1,
+      "post_ambiguity": 0.2686,
+      "ambiguity_reduction": 0.5729
     },
     {
       "scenario_id": "G-UU-2",
@@ -288,13 +288,13 @@
       "element": "User Utterance",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.2976,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 1.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
-      "clarif_turns": 2,
-      "post_ambiguity": 0.1585,
-      "ambiguity_reduction": 0.1391
+      "clarif_turns": 1,
+      "post_ambiguity": 0.1793,
+      "ambiguity_reduction": 0.1183
     },
     {
       "scenario_id": "G-DC-1",
@@ -302,13 +302,13 @@
       "element": "Dialogue Context",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.3536,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.2902,
-      "ambiguity_reduction": 0.0634
+      "post_ambiguity": 0.3705,
+      "ambiguity_reduction": -0.0169
     },
     {
       "scenario_id": "G-DC-2",
@@ -316,13 +316,13 @@
       "element": "Dialogue Context",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.6228,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 1.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.2286,
-      "ambiguity_reduction": 0.3942
+      "post_ambiguity": 0.0679,
+      "ambiguity_reduction": 0.5549
     },
     {
       "scenario_id": "G-KB-1",
@@ -330,13 +330,13 @@
       "element": "Knowledge Base",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.6674,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.5,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 2,
-      "post_ambiguity": 0.7775,
-      "ambiguity_reduction": -0.1101
+      "post_ambiguity": 0.7686,
+      "ambiguity_reduction": -0.1012
     },
     {
       "scenario_id": "G-KB-2",
@@ -344,13 +344,13 @@
       "element": "Knowledge Base",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.6362,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.7612,
-      "ambiguity_reduction": -0.125
+      "post_ambiguity": 0.5811,
+      "ambiguity_reduction": 0.0551
     },
     {
       "scenario_id": "F-UU-1",
@@ -358,7 +358,7 @@
       "element": "User Utterance",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.5231,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 1.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
@@ -372,13 +372,13 @@
       "element": "User Utterance",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.4844,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.75,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 0,
-      "post_ambiguity": 0.5,
-      "ambiguity_reduction": -0.0156
+      "post_ambiguity": 0.4866,
+      "ambiguity_reduction": -0.0022
     },
     {
       "scenario_id": "F-DC-1",
@@ -386,7 +386,7 @@
       "element": "Dialogue Context",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.3938,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
@@ -400,13 +400,13 @@
       "element": "Dialogue Context",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.5946,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 2,
-      "post_ambiguity": 0.4875,
-      "ambiguity_reduction": 0.1071
+      "post_ambiguity": 0.4625,
+      "ambiguity_reduction": 0.1321
     },
     {
       "scenario_id": "F-KB-1",
@@ -414,13 +414,13 @@
       "element": "Knowledge Base",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.7917,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.5,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 0,
-      "post_ambiguity": 0.8125,
-      "ambiguity_reduction": -0.0208
+      "post_ambiguity": 0.8594,
+      "ambiguity_reduction": -0.0677
     },
     {
       "scenario_id": "F-KB-2",
@@ -428,13 +428,13 @@
       "element": "Knowledge Base",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.5714,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.5685,
-      "ambiguity_reduction": 0.0029
+      "post_ambiguity": 0.6071,
+      "ambiguity_reduction": -0.0357
     },
     {
       "scenario_id": "E-UU-3",
@@ -442,13 +442,13 @@
       "element": "User Utterance",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.4494,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.5,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.5,
       "clarif_turns": 2,
-      "post_ambiguity": 0.2619,
-      "ambiguity_reduction": 0.1875
+      "post_ambiguity": 0.1518,
+      "ambiguity_reduction": 0.2976
     },
     {
       "scenario_id": "E-DC-3",
@@ -456,13 +456,13 @@
       "element": "Dialogue Context",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.8785,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.5578,
-      "ambiguity_reduction": 0.3207
+      "post_ambiguity": 0.5092,
+      "ambiguity_reduction": 0.3693
     },
     {
       "scenario_id": "E-KB-3",
@@ -470,13 +470,13 @@
       "element": "Knowledge Base",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.6027,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.25,
-      "mt_endpoint_hit": 0.0,
+      "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 3,
-      "post_ambiguity": 0.5141,
-      "ambiguity_reduction": 0.0886
+      "clarif_turns": 0,
+      "post_ambiguity": 0.535,
+      "ambiguity_reduction": 0.0677
     },
     {
       "scenario_id": "C-UU-3",
@@ -484,13 +484,13 @@
       "element": "User Utterance",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.6421,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.8,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.6,
       "clarif_turns": 0,
-      "post_ambiguity": 0.622,
-      "ambiguity_reduction": 0.0201
+      "post_ambiguity": 0.6064,
+      "ambiguity_reduction": 0.0357
     },
     {
       "scenario_id": "C-DC-3",
@@ -498,7 +498,7 @@
       "element": "Dialogue Context",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.2781,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.6,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.8,
@@ -512,13 +512,13 @@
       "element": "Knowledge Base",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.6101,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
-      "clarif_turns": 4,
-      "post_ambiguity": 0.3996,
-      "ambiguity_reduction": 0.2105
+      "clarif_turns": 3,
+      "post_ambiguity": 0.4896,
+      "ambiguity_reduction": 0.1205
     },
     {
       "scenario_id": "M-UU-3",
@@ -526,13 +526,13 @@
       "element": "User Utterance",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.3327,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 1.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.2256,
-      "ambiguity_reduction": 0.1071
+      "post_ambiguity": 0.2131,
+      "ambiguity_reduction": 0.1196
     },
     {
       "scenario_id": "M-DC-3",
@@ -540,13 +540,13 @@
       "element": "Dialogue Context",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.5443,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 0.3333,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.6667,
       "clarif_turns": 1,
-      "post_ambiguity": 0.05,
-      "ambiguity_reduction": 0.4943
+      "post_ambiguity": 0.2014,
+      "ambiguity_reduction": 0.3429
     },
     {
       "scenario_id": "M-KB-3",
@@ -554,13 +554,13 @@
       "element": "Knowledge Base",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.8389,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
-      "clarif_turns": 2,
-      "post_ambiguity": 0.7542,
-      "ambiguity_reduction": 0.0847
+      "clarif_turns": 5,
+      "post_ambiguity": 0.8149,
+      "ambiguity_reduction": 0.024
     },
     {
       "scenario_id": "G-UU-3",
@@ -568,13 +568,13 @@
       "element": "User Utterance",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.5722,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.3512,
-      "ambiguity_reduction": 0.221
+      "post_ambiguity": 0.3125,
+      "ambiguity_reduction": 0.2597
     },
     {
       "scenario_id": "G-DC-3",
@@ -582,13 +582,13 @@
       "element": "Dialogue Context",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.7353,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 1.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.1085,
-      "ambiguity_reduction": 0.6268
+      "post_ambiguity": 0.1571,
+      "ambiguity_reduction": 0.5782
     },
     {
       "scenario_id": "G-KB-3",
@@ -596,13 +596,13 @@
       "element": "Knowledge Base",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.6518,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 1.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 0,
-      "post_ambiguity": 0.6049,
-      "ambiguity_reduction": 0.0469
+      "post_ambiguity": 0.558,
+      "ambiguity_reduction": 0.0938
     },
     {
       "scenario_id": "F-UU-3",
@@ -610,13 +610,13 @@
       "element": "User Utterance",
       "service": "AI_TRANSFER",
       "pre_ambiguity": 0.5565,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 0.0,
       "mt_slot_accuracy": 0.0,
       "clarif_turns": 2,
-      "post_ambiguity": 0.5275,
-      "ambiguity_reduction": 0.029
+      "post_ambiguity": 0.5253,
+      "ambiguity_reduction": 0.0312
     },
     {
       "scenario_id": "F-DC-3",
@@ -624,13 +624,13 @@
       "element": "Dialogue Context",
       "service": "AI_CALCULATOR",
       "pre_ambiguity": 0.4563,
-      "baseline_recall@1": 1.0,
+      "baseline_endpoint_hit": 1.0,
       "baseline_slot_accuracy": 1.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
-      "clarif_turns": 6,
-      "post_ambiguity": 0.5759,
-      "ambiguity_reduction": -0.1196
+      "clarif_turns": 0,
+      "post_ambiguity": NaN,
+      "ambiguity_reduction": NaN
     },
     {
       "scenario_id": "F-KB-3",
@@ -638,13 +638,13 @@
       "element": "Knowledge Base",
       "service": "AI_GROUP_TREASURER",
       "pre_ambiguity": 0.6753,
-      "baseline_recall@1": 0.0,
+      "baseline_endpoint_hit": 0.0,
       "baseline_slot_accuracy": 0.0,
       "mt_endpoint_hit": 1.0,
       "mt_slot_accuracy": 1.0,
       "clarif_turns": 1,
-      "post_ambiguity": 0.7426,
-      "ambiguity_reduction": -0.0673
+      "post_ambiguity": 0.6027,
+      "ambiguity_reduction": 0.0726
     }
   ]
 }
